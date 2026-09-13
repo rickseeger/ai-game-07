@@ -1,0 +1,31 @@
+COMMAND /opt/g-harness/workspace/G14/node_2_step_122/repo/.venv-verify/bin/python tools/runtime_smoke.py --output /opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release
+:display: loading display module: libpandagl.so
+Known pipe types:
+  glxGraphicsPipe
+(1 aux display modules not yet loaded.)
+:display: Created output of type glxGraphicsWindow
+:audio: NullAudioManager
+:audio: NullAudioManager
+:pnmtext: Loaded font Perspective Sans Regular
+RENDERER {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "seed": 14, "fixed_dt": 0.016666666666666666, "render_hz": 60, "controls": ["W/S raise/lower throttle | B brake and zero throttle", "A/D roll left/right | Arrows: nose up/down/left/right", "Mouse: aim stick (up = nose up) | C: center aim", "Hold Home: level horizon | Esc: pause/resume | F10: quit", "R: flight interlock only (brakes + locks turning; no repair yet)", "Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)"], "settings": {"sensitivity": 0.012, "deadzone": 0.12, "invert_y": false}, "eye_offset": [0.0, 0.0, 0.65], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160}
+WINDOW_READY
+TIME_DROP 0.683675
+:display:x11display(warning): XF86DGA extension not available, cannot enable relative mouse mode
+:display: Unable to set window properties: !undecorated !fixed_size relative 
+INPUT arrow_right down
+INPUT arrow_right up
+RUNTIME_PASS {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "seed": 14, "fixed_dt": 0.016666666666666666, "render_hz": 60, "controls": ["W/S raise/lower throttle | B brake and zero throttle", "A/D roll left/right | Arrows: nose up/down/left/right", "Mouse: aim stick (up = nose up) | C: center aim", "Hold Home: level horizon | Esc: pause/resume | F10: quit", "R: flight interlock only (brakes + locks turning; no repair yet)", "Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)"], "settings": {"sensitivity": 0.012, "deadzone": 0.12, "invert_y": false}, "eye_offset": [0.0, 0.0, 0.65], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160, "frames": 180, "ticks": 186, "input_events": 1, "mouse_events": 0, "ship": {"entity_id": "player", "position": [0.0, -15.0, 4.0], "velocity": [0.0, 0.0, 0.0], "orientation": [0.9988829493522644, 0.0, 0.0, -0.04725172743201256], "throttle": 0}, "dropped_seconds": 0.683675, "drop_events": 1, "capture": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/window.png"}
+:display: Closing glxGraphicsWindow
+:display: loading display module: libpandagl.so
+Known pipe types:
+  glxGraphicsPipe
+(1 aux display modules not yet loaded.)
+:display: Created output of type glxGraphicsBuffer
+:audio: NullAudioManager
+:audio: NullAudioManager
+:pnmtext: Loaded font Perspective Sans Regular
+RENDERER {"engine": "Panda3D", "mode": "offscreen", "output_type": "glxGraphicsBuffer", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "seed": 14, "fixed_dt": 0.016666666666666666, "render_hz": 60, "controls": ["W/S raise/lower throttle | B brake and zero throttle", "A/D roll left/right | Arrows: nose up/down/left/right", "Mouse: aim stick (up = nose up) | C: center aim", "Hold Home: level horizon | Esc: pause/resume | F10: quit", "R: flight interlock only (brakes + locks turning; no repair yet)", "Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)"], "settings": {"sensitivity": 0.012, "deadzone": 0.12, "invert_y": false}, "eye_offset": [0.0, 0.0, 0.65], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame"}
+WINDOW_READY
+TIME_DROP 0.16706399999999996
+RUNTIME_PASS {"engine": "Panda3D", "mode": "offscreen", "output_type": "glxGraphicsBuffer", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "seed": 14, "fixed_dt": 0.016666666666666666, "render_hz": 60, "controls": ["W/S raise/lower throttle | B brake and zero throttle", "A/D roll left/right | Arrows: nose up/down/left/right", "Mouse: aim stick (up = nose up) | C: center aim", "Hold Home: level horizon | Esc: pause/resume | F10: quit", "R: flight interlock only (brakes + locks turning; no repair yet)", "Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)"], "settings": {"sensitivity": 0.012, "deadzone": 0.12, "invert_y": false}, "eye_offset": [0.0, 0.0, 0.65], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "frames": 180, "ticks": 186, "input_events": 0, "mouse_events": 0, "ship": {"entity_id": "player", "position": [0.0, -15.0, 4.0], "velocity": [0.0, 0.0, 0.0], "orientation": [1.0, 0.0, 0.0, 0.0], "throttle": 0}, "dropped_seconds": 0.16706399999999996, "drop_events": 1, "capture": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/offscreen.png"}
+RUNTIME_SMOKE_PASS {"status": "passed", "captures": [{"mode": "window", "sha256": "375c953fdabeec091ee811d7f7af782f1240bc46f0f4c3b3a909856093d21b08", "viewport_colors": 145, "foreground_fraction": 0.12743892441383833, "input_events": 1, "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "capture": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/window.png", "frames": 180}, {"mode": "offscreen", "sha256": "f8bc87519780c0b4946e5c1a6b1f1e8468e1cd527fc89ee67465c6b05b9d44fe", "viewport_colors": 145, "foreground_fraction": 0.1278078373503853, "input_events": 0, "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "capture": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/offscreen.png", "frames": 180}], "input_scope": "XTest Right-arrow through X11/Panda event loop, not a human/device playtest", "audio_scope": "muted; audible playback NOT verified"}

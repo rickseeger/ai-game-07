@@ -11,7 +11,7 @@ import sys
 import time
 from panda3d.core import PNMImage
 
-def send_space(window):
+def send_turn(window):
     x = C.CDLL("libX11.so.6")
     t = C.CDLL("libXtst.so.6")
     x.XOpenDisplay.argtypes = [C.c_char_p]
@@ -27,7 +27,7 @@ def send_space(window):
         raise RuntimeError("Cannot open DISPLAY for real X11 event injection")
     try:
         x.XSetInputFocus(d, window, 1, 0)
-        code = x.XKeysymToKeycode(d, 0x20)
+        code = x.XKeysymToKeycode(d, 0xff53)
         assert code
         assert t.XTestFakeKeyEvent(d, code, 1, 0)
         x.XFlush(d)
@@ -76,7 +76,7 @@ def launch(out, mode):
                         if line == "WINDOW_READY":
                             ready = True
                             if mode == "window":
-                                send_space(details["window_id"])
+                                send_turn(details["window_id"])
         assert p.wait(timeout=5) == 0, "renderer process failed"
     finally:
         if p.poll() is None:
@@ -120,7 +120,7 @@ def main():
     results = [launch(args.output, mode) for mode in ("window", "offscreen")]
     assert results[0]["sha256"] != results[1]["sha256"], "camera input must change framebuffer"
     summary = dict(status="passed", captures=results,
-                   input_scope="XTest Space through X11/Panda event loop, not a human/device playtest",
+                   input_scope="XTest Right-arrow through X11/Panda event loop, not a human/device playtest",
                    audio_scope="muted; audible playback NOT verified")
     (args.output / "runtime-summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     print("RUNTIME_SMOKE_PASS " + json.dumps(summary))

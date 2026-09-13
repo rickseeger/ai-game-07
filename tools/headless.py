@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--venv", default=".venv-verify")
+    p.add_argument("--venv", default=".venv")
     p.add_argument("--output", default="artifacts/local")
     args = p.parse_args()
     out = (ROOT / args.output).resolve()

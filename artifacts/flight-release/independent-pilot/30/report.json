@@ -1,0 +1,63 @@
+{
+  "engine": "Panda3D",
+  "mode": "window",
+  "output_type": "glxGraphicsWindow",
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "vendor": "Mesa",
+  "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3",
+  "size": [
+    960,
+    540
+  ],
+  "seed": 14,
+  "fixed_dt": 0.016666666666666666,
+  "render_hz": 30,
+  "controls": [
+    "W/S raise/lower throttle | B brake and zero throttle",
+    "A/D roll left/right | Arrows: nose up/down/left/right",
+    "Mouse aim disabled (--keyboard-only); use arrow keys",
+    "Hold Home: level horizon | Esc: pause/resume | F10: quit",
+    "R: flight interlock only (brakes + locks turning; no repair yet)",
+    "Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)"
+  ],
+  "settings": {
+    "sensitivity": 0.012,
+    "deadzone": 0.12,
+    "invert_y": false
+  },
+  "eye_offset": [
+    0.0,
+    0.0,
+    0.65
+  ],
+  "audio": "explicitly disabled",
+  "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame",
+  "window_id": 4194312,
+  "frames": 270,
+  "ticks": 551,
+  "input_events": 9,
+  "mouse_events": 0,
+  "ship": {
+    "entity_id": "player",
+    "position": [
+      16.078197479248047,
+      47.25979232788086,
+      -3.249274253845215
+    ],
+    "velocity": [
+      0.0,
+      0.0,
+      -0.0
+    ],
+    "orientation": [
+      0.9845482707023621,
+      -0.06723544746637344,
+      -0.0360395684838295,
+      -0.15762273967266083
+    ],
+    "throttle": 0.0
+  },
+  "dropped_seconds": 0.665994,
+  "drop_events": 1,
+  "capture": null
+}

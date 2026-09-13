@@ -1,0 +1,102 @@
+[
+  {
+    "status": "passed",
+    "render_hz": 30,
+    "frames": 270,
+    "ticks": 551,
+    "median_frame_dt": 0.033333999999999975,
+    "initial_range": 81.27730560302734,
+    "final_range": 16.584430694580078,
+    "final_speed": 0.0,
+    "captures": [
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/30/flight/frame-0030.png",
+        "frame": 30,
+        "tick": 64,
+        "sha256": "81f7e5cc2d337a7da1de92e31dbedfc339f3843d04624625f99230e2b04d414b"
+      },
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/30/flight/frame-0090.png",
+        "frame": 90,
+        "tick": 185,
+        "sha256": "e287a6562a060a488d4f54da0cc257d4e956b328994a002de7f1216008d40980"
+      },
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/30/flight/frame-0150.png",
+        "frame": 150,
+        "tick": 307,
+        "sha256": "dfbfc059b2aeded96c7f167f69e4080e77fa298929a4bc04c278284373193f8a"
+      },
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/30/flight/frame-0210.png",
+        "frame": 210,
+        "tick": 429,
+        "sha256": "0b75d36ed4d9c238799a61e02acc1f404e271a7b0d66e7e660ea35b15da0a36c"
+      },
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/30/flight/frame-0270.png",
+        "frame": 270,
+        "tick": 551,
+        "sha256": "0b75d36ed4d9c238799a61e02acc1f404e271a7b0d66e7e660ea35b15da0a36c"
+      }
+    ],
+    "checks": [
+      "independent XTest keyboard flight",
+      "roll and yaw then Home recovery",
+      "feedback-directed aim and pursuit of stationary scene fighter",
+      "brake stop",
+      "cockpit local eye unchanged"
+    ],
+    "scope": "Automated pilot, not a physical human playtest"
+  },
+  {
+    "status": "passed",
+    "render_hz": 144,
+    "frames": 1296,
+    "ticks": 560,
+    "median_frame_dt": 0.006944999999999979,
+    "initial_range": 81.27730560302734,
+    "final_range": 16.758073806762695,
+    "final_speed": 0.0,
+    "captures": [
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/144/flight/frame-0144.png",
+        "frame": 144,
+        "tick": 66,
+        "sha256": "81f7e5cc2d337a7da1de92e31dbedfc339f3843d04624625f99230e2b04d414b"
+      },
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/144/flight/frame-0432.png",
+        "frame": 432,
+        "tick": 190,
+        "sha256": "d6a78ca7d5f2d467cbcb87a965ce06a1915f2971d3b07206f013d1b2ffaa55d2"
+      },
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/144/flight/frame-0720.png",
+        "frame": 720,
+        "tick": 314,
+        "sha256": "c6bf3acfb4d499fe5ce91306f94a2c38fcc25089739f9c0fa43daa97e21d9f25"
+      },
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/144/flight/frame-1008.png",
+        "frame": 1008,
+        "tick": 437,
+        "sha256": "95bec8ae9b383bc1ec4535c75cd8a2bd0dade0c8448719aa2047af7a3eae7ab4"
+      },
+      {
+        "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/independent-pilot/144/flight/frame-1296.png",
+        "frame": 1296,
+        "tick": 560,
+        "sha256": "95bec8ae9b383bc1ec4535c75cd8a2bd0dade0c8448719aa2047af7a3eae7ab4"
+      }
+    ],
+    "checks": [
+      "independent XTest keyboard flight",
+      "roll and yaw then Home recovery",
+      "feedback-directed aim and pursuit of stationary scene fighter",
+      "brake stop",
+      "cockpit local eye unchanged"
+    ],
+    "scope": "Automated pilot, not a physical human playtest"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "source": "artifacts/flight-release/independent-pilot/30/flight/frame-0030.png",
+  "source_sha256": "81f7e5cc2d337a7da1de92e31dbedfc339f3843d04624625f99230e2b04d414b",
+  "command": [
+    "tesseract",
+    "artifacts/flight-release/controls-keyboard/hud-crop-3x.png",
+    "stdout",
+    "--psm",
+    "6"
+  ],
+  "recognized_phrases": [
+    "raise/lower throttle",
+    "brake and zero throttle",
+    "roll",
+    "arrows",
+    "level horizon",
+    "pause/resume",
+    "quit",
+    "flight interlock",
+    "locks turning",
+    "no repair yet",
+    "reserved inputs",
+    "no combat yet",
+    "disabled",
+    "arrow keys"
+  ],
+  "method": "Only crop and 3x resample of the genuine framebuffer; no synthesized/replaced text. Original PNG retained.",
+  "limitation": "OCR verifies visible instructions; runtime traces and unit sign tests verify their behavior. Not a human readability review."
+}

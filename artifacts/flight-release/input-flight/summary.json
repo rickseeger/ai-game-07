@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "frames": 520,
+  "simulation_ticks": 495,
+  "seed": 14,
+  "input_events": 23,
+  "mouse_events": 1,
+  "mouse_modes": [
+    0
+  ],
+  "peak_speed": 26.58799855026832,
+  "stop_speed": 0.0,
+  "camera_max_anchor_error": 0.0,
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "dropped_seconds": 0.7139490000000001,
+  "captures": [
+    {
+      "frame": 20,
+      "tick": 25,
+      "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/input-flight/flight/frame-0020.png",
+      "sha256": "f8bc87519780c0b4946e5c1a6b1f1e8468e1cd527fc89ee67465c6b05b9d44fe",
+      "viewport_colors": 45
+    },
+    {
+      "frame": 100,
+      "tick": 108,
+      "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/input-flight/flight/frame-0100.png",
+      "sha256": "813e1e7b1c6440ff60650a8f49406b0b0f0eace8ab7f3c94cef924fbc5c605de",
+      "viewport_colors": 45
+    },
+    {
+      "frame": 140,
+      "tick": 151,
+      "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/input-flight/flight/frame-0140.png",
+      "sha256": "44ef3a2e80332a2878df129b3628351a918dde95df56890a7346743400c52152",
+      "viewport_colors": 35
+    },
+    {
+      "frame": 190,
+      "tick": 204,
+      "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/input-flight/flight/frame-0190.png",
+      "sha256": "4e9ac8ba0fbeea8aa0f75527b58c17584bda66086b2072815a09dcbf5c3e1b08",
+      "viewport_colors": 31
+    },
+    {
+      "frame": 240,
+      "tick": 227,
+      "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/input-flight/flight/frame-0240.png",
+      "sha256": "4332e351e1f37b8145803941056e8d62260034af70ef49e55fcdc67072da4d2f",
+      "viewport_colors": 267
+    },
+    {
+      "frame": 300,
+      "tick": 267,
+      "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/input-flight/flight/frame-0300.png",
+      "sha256": "77c58b99e4b0cc983154908253040a8ca61017b9d0b86faf58a57d82f1210bfc",
+      "viewport_colors": 25
+    },
+    {
+      "frame": 410,
+      "tick": 379,
+      "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/input-flight/flight/frame-0410.png",
+      "sha256": "5ff6703da193022fe0d0ab08ba1bf1178019764008cd779e44ccd24f85d13731",
+      "viewport_colors": 16
+    },
+    {
+      "frame": 470,
+      "tick": 442,
+      "path": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/input-flight/flight/frame-0470.png",
+      "sha256": "5ff6703da193022fe0d0ab08ba1bf1178019764008cd779e44ccd24f85d13731",
+      "viewport_colors": 16
+    }
+  ],
+  "checks": [
+    "W pursuit / S reduction / release retention",
+    "simultaneous pitch yaw roll thrust",
+    "brake stop",
+    "focus loss clears + freezes until explicit resume",
+    "Escape pause/resume with held inputs",
+    "XTest mouse steering + C center",
+    "Home horizon recovery",
+    "Space/LMB reserved, not inspection",
+    "opposed throttles cancel",
+    "repair input locks flight, release allows escape",
+    "every received tick deterministically replayed",
+    "every frame camera anchored inside ship",
+    "displayed controls equal shared control strings"
+  ],
+  "scope": "Real X11/XTest -> Panda -> InputAdapter -> fixed flight -> actual GLX framebuffer; no physical human playtest. Relative mode may use center-warp fallback; see logs."
+}

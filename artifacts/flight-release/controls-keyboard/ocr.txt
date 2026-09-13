@@ -1,0 +1,6 @@
+W'S raise/lower throttle | B brake and zero throttle .
+A/D roll left/right | Arrows: nose up/down/left/right -
+Mouse aim disabled (--keyboard-only); use arrow keys
+Hold Horne: level horizon | Esc: pause/resume | Fio: quit!
+R: flight interlock only (brakes + locks turning; no repair yet)
+Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)

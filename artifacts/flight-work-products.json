@@ -1,0 +1,402 @@
+{
+  "base_commit": "efa7a4457dc7b66d033900918d5758af9a7e9b2f",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 4461,
+      "sha256": "9280015bda23d3ae055c7863125d1870ea71d4ab1a029bcf7f401ff54d368a02"
+    },
+    {
+      "path": "artifacts/flight-recovery.tar.gz",
+      "size": 1391825,
+      "sha256": "0828c22cef5f9e87814b75b1c0fee691abf16bc021c518b95bbfc341d75afab9"
+    },
+    {
+      "path": "artifacts/flight-release/controls-default/hud-crop-3x.png",
+      "size": 43772,
+      "sha256": "ff7837da4de0879db74206fa323dfd7859db36925fef7b2e5fe8fc7e5e82c2ea"
+    },
+    {
+      "path": "artifacts/flight-release/controls-default/ocr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/flight-release/controls-default/ocr.txt",
+      "size": 336,
+      "sha256": "40722a2f273573bfb4d65408d94f680bf08b8ae7909421d10a180843bf4937b8"
+    },
+    {
+      "path": "artifacts/flight-release/controls-default/summary.json",
+      "size": 918,
+      "sha256": "38f3b9cda77650a8dc1aa5bc5ce8c20806b6051592ca0637f1558c1b8f90721f"
+    },
+    {
+      "path": "artifacts/flight-release/controls-keyboard/hud-crop-3x.png",
+      "size": 45436,
+      "sha256": "41a4d63c04761697de87d6d31ab88518c84fa0192006716bd745f5c568aa2ff9"
+    },
+    {
+      "path": "artifacts/flight-release/controls-keyboard/ocr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/flight-release/controls-keyboard/ocr.txt",
+      "size": 343,
+      "sha256": "aa09568a6265ac9ad67be2f2eb48dddddac407146c9c326b89bab0746807ff5b"
+    },
+    {
+      "path": "artifacts/flight-release/controls-keyboard/summary.json",
+      "size": 911,
+      "sha256": "43a5511a74f7761bc1d86f7d3bafc4c3e890c99ee32f08c9fb72ef5efc842e4a"
+    },
+    {
+      "path": "artifacts/flight-release/environment.json",
+      "size": 2381,
+      "sha256": "f0649e4f6357edb443bb7b70c58f5c98002fde23e49c2b9afd307052f05e0c33"
+    },
+    {
+      "path": "artifacts/flight-release/final-check.log",
+      "size": 3552,
+      "sha256": "7ba98eb42530544ec58cbd303ed723ca2637ef191deb7b2be0a2144a969325e1"
+    },
+    {
+      "path": "artifacts/flight-release/flight-runtime.log",
+      "size": 3250,
+      "sha256": "643f1467c347a40885735e7d1762c86cb5c60b5721570e35f62583fffc54bd8d"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot.log",
+      "size": 3536,
+      "sha256": "da7b0dee05b0a73d9471bc13ff8c94f0ca44d18bcec904d48fe424cfe265e690"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/command.json",
+      "size": 492,
+      "sha256": "6d908b8b25e1cdc84c4f422df04270e948bdecd3abc8976150e7b2eec2140d13"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/flight/frame-0144.png",
+      "size": 43783,
+      "sha256": "81f7e5cc2d337a7da1de92e31dbedfc339f3843d04624625f99230e2b04d414b"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/flight/frame-0432.png",
+      "size": 45840,
+      "sha256": "d6a78ca7d5f2d467cbcb87a965ce06a1915f2971d3b07206f013d1b2ffaa55d2"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/flight/frame-0720.png",
+      "size": 44266,
+      "sha256": "c6bf3acfb4d499fe5ce91306f94a2c38fcc25089739f9c0fa43daa97e21d9f25"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/flight/frame-1008.png",
+      "size": 44470,
+      "sha256": "95bec8ae9b383bc1ec4535c75cd8a2bd0dade0c8448719aa2047af7a3eae7ab4"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/flight/frame-1296.png",
+      "size": 44470,
+      "sha256": "95bec8ae9b383bc1ec4535c75cd8a2bd0dade0c8448719aa2047af7a3eae7ab4"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/flight/trace.jsonl",
+      "size": 1472519,
+      "sha256": "3908f3130eb368c8f1f193265c4e78d80b686cc3bd8b0ba0be86e5b39558d69a"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/pilot.jsonl",
+      "size": 222538,
+      "sha256": "91948043ab1081afbefe2ddb324f531cd8095ed45b646c19db1cf1716dea6c1f"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/report.json",
+      "size": 1523,
+      "sha256": "cbebfdb5e417288325b09460d8ec59ffe6a7dd45a7bf236fc87a77f2e87b51ba"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/runtime.log",
+      "size": 25213,
+      "sha256": "3862b23e9ad19b7865c45566916724a6d1c35c53e7988a32427b5be2f18d18a0"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/144/summary.json",
+      "size": 1876,
+      "sha256": "d856c8a5cc12a6323a7b46e13094ae8f682767ea21632ad76497479aee1ca695"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/command.json",
+      "size": 484,
+      "sha256": "0b10b95557868e492a7643cdcfc2af3d168e49afe319814f4a66788cb4bd50fb"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/flight/frame-0030.png",
+      "size": 43783,
+      "sha256": "81f7e5cc2d337a7da1de92e31dbedfc339f3843d04624625f99230e2b04d414b"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/flight/frame-0090.png",
+      "size": 46000,
+      "sha256": "e287a6562a060a488d4f54da0cc257d4e956b328994a002de7f1216008d40980"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/flight/frame-0150.png",
+      "size": 44244,
+      "sha256": "dfbfc059b2aeded96c7f167f69e4080e77fa298929a4bc04c278284373193f8a"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/flight/frame-0210.png",
+      "size": 44374,
+      "sha256": "0b75d36ed4d9c238799a61e02acc1f404e271a7b0d66e7e660ea35b15da0a36c"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/flight/frame-0270.png",
+      "size": 44374,
+      "sha256": "0b75d36ed4d9c238799a61e02acc1f404e271a7b0d66e7e660ea35b15da0a36c"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/flight/trace.jsonl",
+      "size": 523207,
+      "sha256": "f9f24a6e9da2023d0b88ddc47d466bcb780443145f2b7264878b70730cbf3bc0"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/pilot.jsonl",
+      "size": 46106,
+      "sha256": "626884577ad07923246d311fada53f6926d7dd1da4ee017045ec4a947b99ae44"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/report.json",
+      "size": 1511,
+      "sha256": "e9dcfe1dc1e3f3b3f8fc0f03aefc4b2ab3a33a9b6476ff5f0da32770c7eb2278"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/runtime.log",
+      "size": 7406,
+      "sha256": "d2bdd949cc823f77d20988aeb117b5a0ec987259ea9cbda81708be6cf88c48a0"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/30/summary.json",
+      "size": 1865,
+      "sha256": "20269b6523aa86f9d266bf173cb4e2aa6d92f98c904e3abf640f933cfabc71ec"
+    },
+    {
+      "path": "artifacts/flight-release/independent-pilot/summary.json",
+      "size": 3946,
+      "sha256": "4f36bfb55e18122477a3a9492cb8b32aa8e5d8bfc35433eae41a39e8fbc08488"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/commands.json",
+      "size": 4377,
+      "sha256": "31807a105af537c1ad344b67d9f9cb8ec126f8d518e74d92d588550a16bacf43"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/frame-0020.png",
+      "size": 42325,
+      "sha256": "f8bc87519780c0b4946e5c1a6b1f1e8468e1cd527fc89ee67465c6b05b9d44fe"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/frame-0100.png",
+      "size": 42616,
+      "sha256": "813e1e7b1c6440ff60650a8f49406b0b0f0eace8ab7f3c94cef924fbc5c605de"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/frame-0140.png",
+      "size": 43995,
+      "sha256": "44ef3a2e80332a2878df129b3628351a918dde95df56890a7346743400c52152"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/frame-0190.png",
+      "size": 44889,
+      "sha256": "4e9ac8ba0fbeea8aa0f75527b58c17584bda66086b2072815a09dcbf5c3e1b08"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/frame-0240.png",
+      "size": 49852,
+      "sha256": "4332e351e1f37b8145803941056e8d62260034af70ef49e55fcdc67072da4d2f"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/frame-0300.png",
+      "size": 45658,
+      "sha256": "77c58b99e4b0cc983154908253040a8ca61017b9d0b86faf58a57d82f1210bfc"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/frame-0410.png",
+      "size": 39877,
+      "sha256": "5ff6703da193022fe0d0ab08ba1bf1178019764008cd779e44ccd24f85d13731"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/frame-0470.png",
+      "size": 39877,
+      "sha256": "5ff6703da193022fe0d0ab08ba1bf1178019764008cd779e44ccd24f85d13731"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/flight/trace.jsonl",
+      "size": 687237,
+      "sha256": "9aa1edf0a017ef338c2bbccbbbe0c9fe2ccaa40906df11c2d09dd598e5af4848"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/injected.jsonl",
+      "size": 2912,
+      "sha256": "635bf938fe8c79dceedc29b0112d53232a9031fc4648f2e13cb4432dc571c41f"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/report.json",
+      "size": 1480,
+      "sha256": "f75345c1c08a28a593056479aa8d6b4b63d3ad62222df7bf02eca82e3194352d"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/runtime.log",
+      "size": 12430,
+      "sha256": "7e37be3996220b5fb8cfb6ac51e86a024f18f25a233b7bdf592ff98b13af6733"
+    },
+    {
+      "path": "artifacts/flight-release/input-flight/summary.json",
+      "size": 3447,
+      "sha256": "2c6386f41a08b2796726da2262410c68079b52a0950a35278b61f86c220f0dc0"
+    },
+    {
+      "path": "artifacts/flight-release/offscreen.json",
+      "size": 1472,
+      "sha256": "ac1d2dc0cbd428f70521fa130435ad079723277ea4f177c3b8583a9805c95be1"
+    },
+    {
+      "path": "artifacts/flight-release/offscreen.log",
+      "size": 2790,
+      "sha256": "1463725d2e5bdca0fdab75cad6ef6ab5ac3d87c977aa948afc087ec1f98d4247"
+    },
+    {
+      "path": "artifacts/flight-release/offscreen.png",
+      "size": 42325,
+      "sha256": "f8bc87519780c0b4946e5c1a6b1f1e8468e1cd527fc89ee67465c6b05b9d44fe"
+    },
+    {
+      "path": "artifacts/flight-release/runtime-summary.json",
+      "size": 1015,
+      "sha256": "0998a0f94f1c13f461f9cbc043bb3c5e3ad4e587ab0ae814365c06e12eaee638"
+    },
+    {
+      "path": "artifacts/flight-release/runtime.log",
+      "size": 6321,
+      "sha256": "987eb6daee6a12b3ccfcb103cdb7a6a4a3cbf185a948583f01ddc0f8e298d170"
+    },
+    {
+      "path": "artifacts/flight-release/setup.log",
+      "size": 294,
+      "sha256": "e52fbd1cb6918a5823882aa53b095fff14f719377e348d10315aac82ed06db90"
+    },
+    {
+      "path": "artifacts/flight-release/tests.log",
+      "size": 3602,
+      "sha256": "791f7f9abbd5ba4474286e96f1988dc2c7f307ee514726342fdde5198e38ff95"
+    },
+    {
+      "path": "artifacts/flight-release/window.json",
+      "size": 1511,
+      "sha256": "1dbd3dd27cb619d2b78aa9e754366822961d1d6fa513bf42d3421777e79285c4"
+    },
+    {
+      "path": "artifacts/flight-release/window.log",
+      "size": 3072,
+      "sha256": "493bf8d1e457b2ccde1565859f02eb48691b6eb9b171a9744062ac67f6a2af6f"
+    },
+    {
+      "path": "artifacts/flight-release/window.png",
+      "size": 42612,
+      "sha256": "375c953fdabeec091ee811d7f7af782f1240bc46f0f4c3b3a909856093d21b08"
+    },
+    {
+      "path": "artifacts/flight-release/xvfb.log",
+      "size": 37,
+      "sha256": "b31dcaee6018dc0fb55adaefc438cfb284ebaac7c17cd1e496ffca6745acb4b4"
+    },
+    {
+      "path": "docs/EVIDENCE.md",
+      "size": 6222,
+      "sha256": "39202c0366671957cc606f12be3ce5346ddded26e27118931d3846488fc416d9"
+    },
+    {
+      "path": "docs/FLIGHT.md",
+      "size": 8767,
+      "sha256": "3813f18b1f494045a98d08932bdffcdfa71e6fb1b1595817241c4e8590707a89"
+    },
+    {
+      "path": "docs/INTEGRATION.md",
+      "size": 11038,
+      "sha256": "18c821ab24c293f5fbd3296b83545ebec937d2be7c3486c97c39987f6b78e9e4"
+    },
+    {
+      "path": "src/breach/app.py",
+      "size": 13218,
+      "sha256": "4b9803f512e947fd2838ae7d407c6e6ed153e761f3e95a85588c2ccc5aba8a45"
+    },
+    {
+      "path": "src/breach/camera.py",
+      "size": 1407,
+      "sha256": "52e7738616f5c90c3b116c9da0f0e11dc26c08cf275ab6ce53a2f89c7f3dcffb"
+    },
+    {
+      "path": "src/breach/contracts.py",
+      "size": 1651,
+      "sha256": "9f798a56a520c8bb1e6c4dbd0f65c43f3e7ca8eb09f53e793a4e75a3a3ca2889"
+    },
+    {
+      "path": "src/breach/flight.py",
+      "size": 5152,
+      "sha256": "80b9ea30957680f5b0e226a36c4803cee1458592becb6263c7d41ebc18aad37b"
+    },
+    {
+      "path": "src/breach/input.py",
+      "size": 4653,
+      "sha256": "25efe735bc1b1520c78ecb760fcccc1578356904b63ca75ce13369029e191691"
+    },
+    {
+      "path": "src/breach/scene.py",
+      "size": 3232,
+      "sha256": "5aaf6dcb94bca88207fe6dd6f66782dda2374baa82cdff5fdaac118a8ced1add"
+    },
+    {
+      "path": "src/breach/timing.py",
+      "size": 1836,
+      "sha256": "33d59769175156e10e046bc3d0d3c3f08a5f6fcee6d0a46d3dd0a40fc4f1856e"
+    },
+    {
+      "path": "tests/test_flight.py",
+      "size": 12621,
+      "sha256": "6fe70fa470a8d7e3574d199a21a237a64090cdd1e766c4f198236a115eaf598f"
+    },
+    {
+      "path": "tools/flight_runtime.py",
+      "size": 12535,
+      "sha256": "50850cab7011da538f85c4b486a97dd8955ea9a3f733694a2fe58f4b7009674a"
+    },
+    {
+      "path": "tools/headless.py",
+      "size": 2317,
+      "sha256": "24d6d8b9fa68049e0e3bd9f3f46900e67b2a82ebcea9dca7db53cfeb58130733"
+    },
+    {
+      "path": "tools/independent_flight.py",
+      "size": 7234,
+      "sha256": "0a4e4e1156530ac5fb8e3bfb2447e937a80e30da9e09a1f6d4fc77bef0837217"
+    },
+    {
+      "path": "tools/runtime_smoke.py",
+      "size": 5582,
+      "sha256": "d5b6fe276f9a79701d736636200ed566a5b462a9051d08bd777ae59676aa5675"
+    },
+    {
+      "path": "tools/verify.py",
+      "size": 2488,
+      "sha256": "976f921f6d0634a86820918db561bd61a4f6dcfd233f3c640660e0b9c1dccdf5"
+    },
+    {
+      "path": "tools/verify_controls.py",
+      "size": 2263,
+      "sha256": "05a9e90d24fa3fd4829f23c85d797e96de40e5f8cf044022e14d7cffea06f0ae"
+    }
+  ],
+  "manifest": "artifacts/flight-work-products.json",
+  "note": "Lists delivered changed/new files; excludes inherited foundation files, git metadata and virtualenv/cache. Recovery archive retains prior source and failed evidence."
+}

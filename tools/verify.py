@@ -43,6 +43,8 @@ def main():
     python = str(venv / "bin/python")
     run([python, "-m", "unittest", "discover", "-s", "tests", "-v"], out / "tests.log", env)
     run([python, "tools/runtime_smoke.py", "--output", str(out)], out / "runtime.log", env)
+    run([python, "tools/flight_runtime.py", "--output", str(out / "input-flight")], out / "flight-runtime.log", env)
+    run([python, "tools/independent_flight.py", "--output", str(out / "independent-pilot")], out / "independent-pilot.log", env)
     print("VERIFY_PASS " + str(out))
 if __name__ == "__main__":
     main()

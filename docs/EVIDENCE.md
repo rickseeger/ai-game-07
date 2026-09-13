@@ -1,3 +1,10 @@
+# Current flight evidence
+
+Node 2 supersedes the historical staging/remaining-work statements below for
+player flight only. See FLIGHT.md and artifacts/flight-release for current
+source, tests, real input traces, frames and limitations. The following record
+is retained unchanged as foundation evidence, not claims about the current app.
+
 # Measured runtime evidence and limitations
 
 Worktree: /opt/g-harness/workspace/G14/node_1_step_118/repo

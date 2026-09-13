@@ -1,55 +1,84 @@
-# Breach Flight — G14 Linux foundation
+# Breach Flight — G14 player-flight slice
 
-A real Panda3D 1.10.16 / Python 3.12 application, not yet a game. Original
-procedural, lit 3D meshes stage a capital ship, fighters and a repair/dock frame.
-Space changes the inspection camera; Escape exits. Flight, combat, cockpit,
-HUD/radar, effects, tuning and distribution belong to the remaining nodes.
+Panda3D 1.10.16 / Python 3.12, Linux-first. Fly from inside the ship using
+assisted inertial flight and a fixed 60 Hz simulation. The capital, dock and
+orange fighters are stationary navigation references, not working enemies.
+No combat, damage, repair progress, collisions, win/lose loop or packaged game
+is delivered here. The old Space inspection camera has been removed.
 
-## Setup and launch (from repository root)
+## Setup and launch (repository root)
 
-Install uv using https://docs.astral.sh/uv/getting-started/installation/ .
-On Debian/Ubuntu the runtime/test OS prerequisites are:
+Install uv: https://docs.astral.sh/uv/getting-started/installation/ .
+Debian/Ubuntu prerequisites:
 
     sudo apt-get install xvfb libgl1 libglx-mesa0 libx11-6 libxtst6 libopenal1
     uv python install 3.12
     uv sync --project . --frozen
-    uv run --project . --frozen breach-flight
+    uv run --project . --frozen breach-flight --mute
 
-Launch on a Linux graphical desktop (DISPLAY provided by X11 or XWayland).
-Use --mute when no audio output is configured. No sound assets are played yet.
-The source launch path requires network on first setup; the lock pins dependencies
-and wheel hashes. No system Python packages or harness dependencies are needed.
-Do not run uv until pyproject.toml is present; always stay in this repository.
+Launch on a graphical Linux desktop (X11 or XWayland DISPLAY). No sound assets
+are played yet. First setup can require network. Stay in this repository and
+use --project; no system Python/harness dependency changes are needed.
 
-## Tests, real rendering, and independent setup
+## Displayed controls
+
+    W/S raise/lower throttle | B brake and zero throttle
+    A/D roll left/right | Arrows: nose up/down/left/right
+    Mouse: aim stick (up = nose up) | C: center aim
+    Hold Home: level horizon | Esc: pause/resume | F10: quit
+    R: flight interlock only (brakes + locks turning; no repair yet)
+    Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)
+
+Hold W to increase throttle; releasing it retains the setting. S lowers the
+setting, not reverse thrust. Idle drag slows a zero-throttle ship gradually;
+B deliberately stops it and zeros throttle even if W remains held. Arrows
+point the nose, A/D bank; opposite keys cancel, different axes combine.
+
+Mouse is a bounded virtual aiming stick, not free look: moving right/up sets
+right/up turning, and the orange circle shows stick deflection. It stays there
+until moved back or centered with C. The camera always points with the ship.
+Hold Home to recover pitch and roll to the horizon while retaining compass
+heading; this overrides turn axes and centers mouse aim. Hold B too to stop.
+Static stars in every direction and fixed cockpit sills provide motion cues.
+
+Escape pauses/resumes and releases/captures the pointer. Losing window focus
+clears held inputs and mouse aim, freezes flight, and requires Escape after
+focus returns. Resuming retains prior velocity/throttle; press B to stop.
+R currently only demonstrates the flight-side interlock, NOT healing anything.
+
+Options: --mouse-sensitivity 0.006 (default 0.012), --invert-y,
+--keyboard-only (no pointer capture), --render-hz 30 (15–240; simulation always
+60 Hz). The HUD updates its mouse instructions for inversion/keyboard-only.
+Bindings live in src/breach/input.py; no remapping UI or controller support.
+
+## Automated and real-runtime validation
 
     uv run --project . --frozen python -m unittest discover -s tests -v
     python3 tools/headless.py --venv .venv-verify --output artifacts/local
 
-The second command starts a private Xvfb, verifies its X11 connection, installs
-from uv.lock into the specified environment, runs unit smoke tests, then opens a
-real GLX window and a separate GLX offscreen buffer. It sends an actual XTest
-Space event through X11 to Panda, asserts receipt and a changed framebuffer,
-and checks the central 3D viewport has nontrivial geometry pixels. It writes
-setup/tests/runtime/Xvfb logs, environment inventory, reports and PNG captures.
-It exits nonzero on failures and always tears down its X server. Use a new --venv
-path for a clean environment rerun. Xvfb is software rendering, not a GPU test.
+Use a fresh output directory on every run; flight evidence refuses overwrite.
+This health-checks a private Xvfb, installs the lock into the requested venv,
+runs unit tests, captures window/offscreen GLX, injects a 520-frame XTest flight,
+then independently pursues a reference fighter through XTest keys at 30/144 Hz
+render limiters. Actual receipt, simulation ticks, poses, input decisions,
+renderer reports, PNGs and hashes are retained. Exit nonzero means failure.
 
-On an existing desktop, one deterministic capture command is:
+Optional visible-instructions check (install tesseract-ocr first):
 
-    uv run --project . --frozen breach-flight --mute --frames 180 --capture artifacts/local/manual.png --report artifacts/local/manual.json
+    .venv-verify/bin/python tools/verify_controls.py --capture artifacts/local/input-flight/flight/frame-0020.png --output artifacts/local/controls-default
 
-Add --offscreen to render to an actual GLX buffer instead of opening a window;
-it still needs DISPLAY in this GLX configuration. The default interactive run
-continues until Escape. Capture/report options require a positive --frames.
+For a trace of your own desktop flight:
+
+    uv run --project . --frozen breach-flight --mute --frames 900 --trace-dir artifacts/my-flight --capture-frames 60,180,360,600,900 --report artifacts/my-flight-report.json
+
+F10 quits the unlimited interactive run. --capture/--report/--trace-dir require
+positive --frames; --offscreen uses real GLX but still needs DISPLAY and cannot
+validate window input. The test host uses llvmpipe, not physical GPU evidence.
 
 ## Evidence and handoff
 
-See docs/INTEGRATION.md for interfaces, design and ownership; docs/EVIDENCE.md
-for measured capabilities and limitations; docs/ASSETS.md for asset policy.
-Committed artifacts/initial and artifacts/independent contain successful runs.
-artifacts/audio-probe records the genuine audio-device failure and graceful
-fallback; that exit code does NOT mean audible sound was verified.
-
-No binary distribution, playability, human-input, audible playback, or final
-mission completion is claimed by this foundation.
+Current flight: docs/FLIGHT.md and artifacts/flight-release/.
+Foundation history: docs/EVIDENCE.md and artifacts/initial, independent.
+Interfaces/ownership: docs/INTEGRATION.md. Asset policy: docs/ASSETS.md.
+No human desktop playtest, audible playback, laptop performance, native Wayland,
+Windows support, final game quality or mission-tree completion is claimed.

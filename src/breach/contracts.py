@@ -18,6 +18,9 @@ class PilotInput:
     fire: bool = False
     repair: bool = False
     target_next: bool = False
+    brake: bool = False
+    level: bool = False
+    repair_subsystem: Subsystem = Subsystem.ENGINE
     def __post_init__(self):
         for name in ("pitch", "yaw", "roll", "throttle"):
             if not -1.0 <= getattr(self, name) <= 1.0:
@@ -41,3 +44,12 @@ class SimulationSystem(Protocol):
     def fixed_update(self, dt: float, controls: PilotInput) -> None: ...
 class PresentationSystem(Protocol):
     def present(self, alpha: float) -> None: ...
+
+
+@dataclass(frozen=True)
+class ShipView:
+    entity_id: str
+    position: tuple[float, float, float]
+    velocity: tuple[float, float, float]
+    orientation: tuple[float, float, float, float]
+    throttle: float

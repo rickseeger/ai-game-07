@@ -1,0 +1,18 @@
+COMMAND /opt/g-harness/workspace/G14/node_2_step_122/repo/.venv-verify/bin/python -m breach.app --mute --frames 180 --capture /opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/window.png --report /opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/window.json
+:display: loading display module: libpandagl.so
+Known pipe types:
+  glxGraphicsPipe
+(1 aux display modules not yet loaded.)
+:display: Created output of type glxGraphicsWindow
+:audio: NullAudioManager
+:audio: NullAudioManager
+:pnmtext: Loaded font Perspective Sans Regular
+RENDERER {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "seed": 14, "fixed_dt": 0.016666666666666666, "render_hz": 60, "controls": ["W/S raise/lower throttle | B brake and zero throttle", "A/D roll left/right | Arrows: nose up/down/left/right", "Mouse: aim stick (up = nose up) | C: center aim", "Hold Home: level horizon | Esc: pause/resume | F10: quit", "R: flight interlock only (brakes + locks turning; no repair yet)", "Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)"], "settings": {"sensitivity": 0.012, "deadzone": 0.12, "invert_y": false}, "eye_offset": [0.0, 0.0, 0.65], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160}
+WINDOW_READY
+TIME_DROP 0.683675
+:display:x11display(warning): XF86DGA extension not available, cannot enable relative mouse mode
+:display: Unable to set window properties: !undecorated !fixed_size relative 
+INPUT arrow_right down
+INPUT arrow_right up
+RUNTIME_PASS {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "seed": 14, "fixed_dt": 0.016666666666666666, "render_hz": 60, "controls": ["W/S raise/lower throttle | B brake and zero throttle", "A/D roll left/right | Arrows: nose up/down/left/right", "Mouse: aim stick (up = nose up) | C: center aim", "Hold Home: level horizon | Esc: pause/resume | F10: quit", "R: flight interlock only (brakes + locks turning; no repair yet)", "Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)"], "settings": {"sensitivity": 0.012, "deadzone": 0.12, "invert_y": false}, "eye_offset": [0.0, 0.0, 0.65], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160, "frames": 180, "ticks": 186, "input_events": 1, "mouse_events": 0, "ship": {"entity_id": "player", "position": [0.0, -15.0, 4.0], "velocity": [0.0, 0.0, 0.0], "orientation": [0.9988829493522644, 0.0, 0.0, -0.04725172743201256], "throttle": 0}, "dropped_seconds": 0.683675, "drop_events": 1, "capture": "/opt/g-harness/workspace/G14/node_2_step_122/repo/artifacts/flight-release/window.png"}
+:display: Closing glxGraphicsWindow

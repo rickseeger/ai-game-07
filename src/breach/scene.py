@@ -55,4 +55,18 @@ def build_scene(render):
         place(f"marker-{i}", (0.25, 0.25, 0.25),
               (rng.uniform(-100, 100), rng.uniform(130, 230), rng.uniform(-60, 70)),
               (0.6, 0.7, 0.85, 1))
+    # All-direction navigation references: turning away must not erase every
+    # orientation cue. Static world geometry, never a camera/chase transform.
+    import math
+    for i in range(360):
+        z = rng.uniform(-1, 1)
+        azimuth = rng.uniform(0, 2*math.pi)
+        radius = rng.uniform(400, 650)
+        radial = math.sqrt(1-z*z)
+        value = rng.uniform(.25, .7)
+        star = place(f"flight-reference-{i}", (2, 2, 2),
+                     (radius*radial*math.cos(azimuth),
+                      radius*radial*math.sin(azimuth), radius*z),
+                     (value*.8, value*.9, value, 1))
+        star.setLightOff()
     return root

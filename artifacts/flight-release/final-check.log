@@ -1,0 +1,34 @@
+COMMAND .venv-verify/bin/python -m unittest discover -s tests -v
+test_brake_overrides_throttle_and_stops (test_flight.FlightTests.test_brake_overrides_throttle_and_stops) ... ok
+test_damage_injection_independent_thrust_and_turning (test_flight.FlightTests.test_damage_injection_independent_thrust_and_turning) ... ok
+test_level_recovers_pitch_roll_without_chase_camera (test_flight.FlightTests.test_level_recovers_pitch_roll_without_chase_camera) ... ok
+test_pilot_signs_and_body_local_axes (test_flight.FlightTests.test_pilot_signs_and_body_local_axes) ... ok
+test_repair_request_brakes_and_locks_turn_thrust_immediately (test_flight.FlightTests.test_repair_request_brakes_and_locks_turn_thrust_immediately) ... ok
+test_simultaneous_rotations_normalized_and_finite (test_flight.FlightTests.test_simultaneous_rotations_normalized_and_finite) ... ok
+test_snapshots_are_frozen_detached_and_dt_validation (test_flight.FlightTests.test_snapshots_are_frozen_detached_and_dt_validation) ... ok
+test_thrust_deliberate_pursuit_and_throttle_retention (test_flight.FlightTests.test_thrust_deliberate_pursuit_and_throttle_retention) ... ok
+test_alias_release_keeps_other_fire_key (test_flight.InputTests.test_alias_release_keeps_other_fire_key) ... ok
+test_displayed_controls_follow_settings (test_flight.InputTests.test_displayed_controls_follow_settings) ... ok
+test_each_keyboard_direction_and_action (test_flight.InputTests.test_each_keyboard_direction_and_action) ... ok
+test_edge_consumed_only_once_and_repeat_suppressed (test_flight.InputTests.test_edge_consumed_only_once_and_repeat_suppressed) ... ok
+test_focus_and_pause_clear_held_edges_mouse (test_flight.InputTests.test_focus_and_pause_clear_held_edges_mouse) ... ok
+test_mouse_deadzone_bounds_sign_invert_and_center (test_flight.InputTests.test_mouse_deadzone_bounds_sign_invert_and_center) ... ok
+test_mouse_displacement_partition_independence (test_flight.InputTests.test_mouse_displacement_partition_independence) ... ok
+test_normal_release_opposition_and_simultaneous (test_flight.InputTests.test_normal_release_opposition_and_simultaneous) ... ok
+test_remap_selection_and_validation (test_flight.InputTests.test_remap_selection_and_validation) ... ok
+test_staging_bindings_removed (test_flight.InputTests.test_staging_bindings_removed) ... ok
+test_drop_budget_alpha_pause_and_invalid_intervals (test_flight.TimingCameraTests.test_drop_budget_alpha_pause_and_invalid_intervals) ... ok
+test_edges_preserved_until_tick_then_consumed_in_catchup (test_flight.TimingCameraTests.test_edges_preserved_until_tick_then_consumed_in_catchup) ... ok
+test_frame_intervals_identical_per_tick_controls (test_flight.TimingCameraTests.test_frame_intervals_identical_per_tick_controls) ... ok
+test_interpolation_endpoints_short_arc_and_camera_anchor (test_flight.TimingCameraTests.test_interpolation_endpoints_short_arc_and_camera_anchor) ... ok
+test_damage_validation (test_foundation.FoundationTests.test_damage_validation) ... ok
+test_fixed_step_budget (test_foundation.FoundationTests.test_fixed_step_budget) ... ok
+test_input_rejects_invalid_axis (test_foundation.FoundationTests.test_input_rejects_invalid_axis) ... ok
+test_mesh_is_3d_triangles (test_foundation.FoundationTests.test_mesh_is_3d_triangles) ... ok
+test_neutral_input (test_foundation.FoundationTests.test_neutral_input) ... ok
+test_scene_contains_depth_and_capital (test_foundation.FoundationTests.test_scene_contains_depth_and_capital) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.057s
+
+OK

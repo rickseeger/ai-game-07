@@ -7,7 +7,8 @@ real-time 3D, scene graph, collision facilities, event input and OpenAL without
 an editor, and is exercised here on Mesa llvmpipe. Prefer this over introducing
 a second engine or a custom renderer. Root app owns the only ShowBase/window;
 modules must not create a window at import. Procedural meshes are the baseline.
-Current app is staging only: inspection camera is not a flight implementation.
+Node 2 now supplies player flight and a ship-anchored camera. Scene enemies
+remain staging meshes, not combat. See FLIGHT.md for measured flight evidence.
 
 Coordinates: right-handed, +X right, +Y forward, +Z up; one unit = one metre.
 World positions/velocities are metres/metres per second. Entity forward is +Y.
@@ -19,7 +20,7 @@ these semantics rather than blindly assigning HPR signs. Health is normalized
 [0,1], damage amount is HP, timers seconds, angular speed degrees/second.
 Each ship defines hull_max_hp and subsystem_max_hp, avoiding implicit unit mixing.
 
-Timing (to implement in flight/integration, NOT present in the staging tick):
+Timing (implemented by timing.FixedStepper and app integration):
 60 Hz fixed simulation; accumulate min(real_dt, 0.1), at most six fixed steps,
 drop excess backlog explicitly with a diagnostic. Render interpolates last/current
 poses with alpha in [0,1]. Rendering never changes simulation. Headless simulation
@@ -30,8 +31,9 @@ tests use seeded randomness; visual captures also record seed, tick and input.
 src/breach/contracts.py provides validated immutable PilotInput, DamageEvent,
 RepairIntent, Subsystem, SimulationSystem.fixed_update(dt, controls), and
 PresentationSystem.present(alpha). Shared IDs are stable strings, never NodePaths.
-The following concrete APIs are the handoff contract; only the types/protocols
-above are implemented at this stage. Implement each in its named module, not app.py.
+The following APIs are the handoff contract. InputAdapter, FlightSystem and
+ShipView are now implemented; combat services remain future work. Implement
+each in its named module, not app.py.
 
 - input.py: InputAdapter.sample() -> PilotInput. Own key/mouse state and focus
   clearing; never mutate ship transforms. PilotInput axes are [-1,1]; throttle
@@ -60,7 +62,7 @@ above are implemented at this stage. Implement each in its named module, not app
   schedule systems, dispose/recreate mission state on restart; no global ShowBase
   singleton accesses from simulation modules. Packaging wraps this same entry point.
 
-ShipView schema (immutable dataclass to add with flight): entity_id: str,
+ShipView schema (implemented immutable dataclass): entity_id: str,
 position: tuple[float,float,float], velocity: tuple[float,float,float],
 orientation: tuple[float,float,float,float] in wxyz order, throttle: float [0,1].
 HealthView schema (add with damage): hull: float [0,1], subsystems: immutable
@@ -89,8 +91,9 @@ left mouse or Space fires, Tab cycles targets, hold R repairs selected subsystem
 1/2/3 select engine/weapons/sensors, Escape pauses/releases mouse. Relative mouse
 capture only during play; focus loss clears all held controls and pauses. Remap
 through one binding table, with sensitivity and inversion settings. Controller
-support is deferred; do not advertise it. The foundation ONLY binds inspection
-Space and exit Escape; integration replaces these explicitly.
+support is deferred; do not advertise it. Node 2 replaces inspection Space with the reserved fire level; Escape now
+pauses, F10 exits, B brakes, C centers aim, Home levels pitch/roll. See README
+for exact current controls. No repair/weapon effects are implemented.
 
 ## Scenario: Breach Flight (design target, not implemented gameplay)
 
@@ -134,3 +137,27 @@ win and loss restart cleanly. Human Linux playtest, not unit tests alone, judges
 readability, repair tension, motion comfort and the capital encounter pacing.
 Performance target is stable 60 fps at 1280x720 on the target laptop, not claimed
 from this 960x540 software-rendered staging check.
+
+## Node 2 concrete flight boundary
+
+PilotInput adds brake and level held flags. InputAdapter has no engine imports;
+all bindings are in BINDINGS, with sensitivity/deadzone/inversion InputSettings.
+control_lines renders settings-correct help, shared by app and documented defaults.
+FlightSystem.snapshot returns detached frozen ShipView; fixed_update alone moves
+simulation. timing.FixedStepper publishes previous/current, alpha and dropped-time
+diagnostics; input edges are consumed only when a fixed tick executes.
+camera.FlightCamera presents interpolated pose through player-presentation and
+keeps the eye local (0,0,0.65) with identity local orientation, inside the declared
+hull envelope. Minimal canopy/HUD are flight references; future CockpitSystem
+should replace presentation, never own/mutate authoritative flight state.
+
+Damage integration uses constructor-injected FlightDamageService.flight_performance
+(entity_id) -> FlightPerformance(thrust_multiplier, turning_multiplier, repair_locked).
+NeutralDamage returns full performance and no lock. The damage-node adapter must
+supply actual health-derived values; node 2 does not invent health/repair progress.
+R immediately brakes/zeros thrust/locks rotation as a flight-side request guard.
+The downstream weapons and damage services must still enforce their own rules.
+Turning multipliers do not disable mouse input or the cockpit viewpoint.
+
+The app runs only input -> flight -> snapshot -> presentation at this stage;
+insert the sibling systems in the previously specified order when implemented.

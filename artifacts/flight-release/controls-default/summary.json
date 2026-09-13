@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "source": "artifacts/flight-release/input-flight/flight/frame-0020.png",
+  "source_sha256": "f8bc87519780c0b4946e5c1a6b1f1e8468e1cd527fc89ee67465c6b05b9d44fe",
+  "command": [
+    "tesseract",
+    "artifacts/flight-release/controls-default/hud-crop-3x.png",
+    "stdout",
+    "--psm",
+    "6"
+  ],
+  "recognized_phrases": [
+    "raise/lower throttle",
+    "brake and zero throttle",
+    "roll",
+    "arrows",
+    "level horizon",
+    "pause/resume",
+    "quit",
+    "flight interlock",
+    "locks turning",
+    "no repair yet",
+    "reserved inputs",
+    "no combat yet",
+    "aim stick",
+    "nose up",
+    "center aim"
+  ],
+  "method": "Only crop and 3x resample of the genuine framebuffer; no synthesized/replaced text. Original PNG retained.",
+  "limitation": "OCR verifies visible instructions; runtime traces and unit sign tests verify their behavior. Not a human readability review."
+}
