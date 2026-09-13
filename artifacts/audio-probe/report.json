@@ -1,0 +1,18 @@
+{
+  "engine": "Panda3D",
+  "mode": "window",
+  "output_type": "glxGraphicsWindow",
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "vendor": "Mesa",
+  "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3",
+  "size": [
+    960,
+    540
+  ],
+  "audio": "backend requested; no playback test",
+  "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame",
+  "window_id": 2097160,
+  "frames": 10,
+  "input_events": 0,
+  "capture": null
+}

@@ -1,0 +1,27 @@
+version = 1
+revision = 3
+requires-python = "==3.12.*"
+
+[[package]]
+name = "g14-breach-flight"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "panda3d" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "panda3d", specifier = "==1.10.16" }]
+
+[[package]]
+name = "panda3d"
+version = "1.10.16"
+source = { registry = "https://pypi.org/simple" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e6/b2/c53321e4fcbc645affd86a4b695da7f5e94f672a6f7eaa71a3b8740b3ff2/panda3d-1.10.16-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:b2a4b72c8d64505c3db1d25a37b9da7b267616fa3bf4bdcd8b3bf15040e961c7", size = 68568321, upload-time = "2025-12-25T19:27:51.415Z" },
+    { url = "https://files.pythonhosted.org/packages/4e/3f/7e9a43f71982712fb097bf0ff6f165e944b232f84f7215d4cedebb3e0991/panda3d-1.10.16-cp312-cp312-macosx_11_0_universal2.whl", hash = "sha256:69ebff55f625161bd5d8589539345d1732095ec735af05c50583a49e0619f870", size = 120977545, upload-time = "2025-12-25T19:27:59.847Z" },
+    { url = "https://files.pythonhosted.org/packages/31/87/169de5d9f2d798a087ce0dc4282337acf2fb76f3276b1ca2473d6fd389b1/panda3d-1.10.16-cp312-cp312-manylinux2014_aarch64.whl", hash = "sha256:383ad14bfe451505959a86bc18958853e21b6a6a25c896e04a44a14c1a412944", size = 48641430, upload-time = "2025-12-25T19:28:05.406Z" },
+    { url = "https://files.pythonhosted.org/packages/26/90/402848a9929a9e734f9c4da98f61c5501bfed084b5d0fb92e3fbb8d0d49b/panda3d-1.10.16-cp312-cp312-manylinux2014_x86_64.whl", hash = "sha256:7ab1a4d93897c03014d7749d173f5fcb2ac3a3cd747e2468247acd2022efd23c", size = 53927261, upload-time = "2025-12-25T19:28:10.513Z" },
+    { url = "https://files.pythonhosted.org/packages/32/f4/e50ccf2dec001f1b10463efdd0131896d905cd9db63cb16bb8ecd23113cb/panda3d-1.10.16-cp312-cp312-win32.whl", hash = "sha256:540b4d9d7719dc10c60e0910e63af762e348ab128eca91eee8e8c291348c88ab", size = 53593365, upload-time = "2025-12-25T19:28:15.193Z" },
+    { url = "https://files.pythonhosted.org/packages/5e/06/8f32a501a98d82a10060c1f75ed5c06672d652022763079c49ed67b970ef/panda3d-1.10.16-cp312-cp312-win_amd64.whl", hash = "sha256:f6493e2ecc0d1b7c1556a999556e5278cbc9484fe5fe1e159a1ccc02b870b18f", size = 65586786, upload-time = "2025-12-25T19:28:21.313Z" },
+]

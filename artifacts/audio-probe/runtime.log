@@ -1,0 +1,63 @@
+COMMAND .venv/bin/python -m breach.app --frames 10 --report artifacts/audio-probe/report.json
+:display: loading display module: libpandagl.so
+Known pipe types:
+  glxGraphicsPipe
+(1 aux display modules not yet loaded.)
+:display: Created output of type glxGraphicsWindow
+AL lib: (WW) alc_initconfig: Failed to initialize backend "pulse"
+:audio: Using default OpenAL device
+ALSA lib confmisc.c:855:(parse_card) [error.core] cannot find card '0'
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) [error.core] error evaluating strings
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) [error.core] error evaluating name
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5734:(snd_config_expand) [error.core] Evaluate error: No such file or directory
+ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) [error.pcm] Unknown PCM default
+AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
+AL lib: (WW) alcSetError: Error generated on device (nil), code 0xa005
+ALSA lib confmisc.c:855:(parse_card) [error.core] cannot find card '0'
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) [error.core] error evaluating strings
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) [error.core] error evaluating name
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5734:(snd_config_expand) [error.core] Evaluate error: No such file or directory
+ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) [error.pcm] Unknown PCM default
+AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
+AL lib: (WW) alcSetError: Error generated on device (nil), code 0xa005
+:audio(error): Couldn't open default OpenAL device
+:audio(error): OpenALAudioManager: No open device or context
+:audio(error):   OpenALAudioManager is not valid, will use NullAudioManager
+:audio: NullAudioManager
+:audio: Using default OpenAL device
+ALSA lib confmisc.c:855:(parse_card) [error.core] cannot find card '0'
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) [error.core] error evaluating strings
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) [error.core] error evaluating name
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5734:(snd_config_expand) [error.core] Evaluate error: No such file or directory
+ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) [error.pcm] Unknown PCM default
+AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
+AL lib: (WW) alcSetError: Error generated on device (nil), code 0xa005
+ALSA lib confmisc.c:855:(parse_card) [error.core] cannot find card '0'
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) [error.core] error evaluating strings
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) [error.core] error evaluating name
+ALSA lib conf.c:5211:(_snd_config_evaluate) [error.core] function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5734:(snd_config_expand) [error.core] Evaluate error: No such file or directory
+ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) [error.pcm] Unknown PCM default
+AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
+AL lib: (WW) alcSetError: Error generated on device (nil), code 0xa005
+:audio(error): Couldn't open default OpenAL device
+:audio(error): OpenALAudioManager: No open device or context
+:audio(error):   OpenALAudioManager is not valid, will use NullAudioManager
+:audio: NullAudioManager
+:pnmtext: Loaded font Perspective Sans Regular
+RENDERER {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "audio": "backend requested; no playback test", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160}
+WINDOW_READY
+:display: Unable to set window properties: !undecorated !fixed_size 
+RUNTIME_PASS {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "audio": "backend requested; no playback test", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160, "frames": 10, "input_events": 0, "capture": null}
+:display: Closing glxGraphicsWindow

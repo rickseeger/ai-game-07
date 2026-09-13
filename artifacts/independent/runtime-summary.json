@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "captures": [
+    {
+      "mode": "window",
+      "sha256": "ffebf9decd3ffcd132b4a1812435a4bf123b8d3bbee9c022568f968bacf0ce15",
+      "viewport_colors": 13,
+      "foreground_fraction": 0.11985571405148385,
+      "input_events": 1,
+      "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+      "capture": "/opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/independent/window.png",
+      "frames": 180
+    },
+    {
+      "mode": "offscreen",
+      "sha256": "44f4fb4ebf30c77faaa5edbd1a31485e7abe726c2380bbd84768e1d8535c4a06",
+      "viewport_colors": 14,
+      "foreground_fraction": 0.12096245286112478,
+      "input_events": 0,
+      "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+      "capture": "/opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/independent/offscreen.png",
+      "frames": 180
+    }
+  ],
+  "input_scope": "XTest Space through X11/Panda event loop, not a human/device playtest",
+  "audio_scope": "muted; audible playback NOT verified"
+}

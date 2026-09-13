@@ -1,0 +1,2 @@
+# Preserve renderer logs verbatim, including upstream trailing spaces.
+artifacts/** whitespace=-blank-at-eol

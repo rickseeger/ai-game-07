@@ -1,0 +1,27 @@
+COMMAND /opt/g-harness/workspace/G14/node_1_step_118/repo/.venv/bin/python tools/runtime_smoke.py --output /opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/initial
+:display: loading display module: libpandagl.so
+Known pipe types:
+  glxGraphicsPipe
+(1 aux display modules not yet loaded.)
+:display: Created output of type glxGraphicsWindow
+:audio: NullAudioManager
+:audio: NullAudioManager
+:pnmtext: Loaded font Perspective Sans Regular
+RENDERER {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160}
+WINDOW_READY
+:display: Unable to set window properties: !undecorated !fixed_size 
+INPUT space 1
+RUNTIME_PASS {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160, "frames": 180, "input_events": 1, "capture": "/opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/initial/window.png"}
+:display: Closing glxGraphicsWindow
+:display: loading display module: libpandagl.so
+Known pipe types:
+  glxGraphicsPipe
+(1 aux display modules not yet loaded.)
+:display: Created output of type glxGraphicsBuffer
+:audio: NullAudioManager
+:audio: NullAudioManager
+:pnmtext: Loaded font Perspective Sans Regular
+RENDERER {"engine": "Panda3D", "mode": "offscreen", "output_type": "glxGraphicsBuffer", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame"}
+WINDOW_READY
+RUNTIME_PASS {"engine": "Panda3D", "mode": "offscreen", "output_type": "glxGraphicsBuffer", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "frames": 180, "input_events": 0, "capture": "/opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/initial/offscreen.png"}
+RUNTIME_SMOKE_PASS {"status": "passed", "captures": [{"mode": "window", "sha256": "ffebf9decd3ffcd132b4a1812435a4bf123b8d3bbee9c022568f968bacf0ce15", "viewport_colors": 13, "foreground_fraction": 0.11985571405148385, "input_events": 1, "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "capture": "/opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/initial/window.png", "frames": 180}, {"mode": "offscreen", "sha256": "44f4fb4ebf30c77faaa5edbd1a31485e7abe726c2380bbd84768e1d8535c4a06", "viewport_colors": 14, "foreground_fraction": 0.12096245286112478, "input_events": 0, "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "capture": "/opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/initial/offscreen.png", "frames": 180}], "input_scope": "XTest Space through X11/Panda event loop, not a human/device playtest", "audio_scope": "muted; audible playback NOT verified"}

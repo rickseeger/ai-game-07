@@ -1,0 +1,42 @@
+{
+  "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+  "machine": "x86_64",
+  "variables": {
+    "DISPLAY": ":114",
+    "WAYLAND_DISPLAY": null,
+    "PULSE_SERVER": null,
+    "XDG_RUNTIME_DIR": null,
+    "LIBGL_ALWAYS_SOFTWARE": "1"
+  },
+  "devices": {
+    "/dev/dri": null,
+    "/dev/snd": [
+      "seq",
+      "timer"
+    ],
+    "/dev/input": [
+      "by-path",
+      "event0",
+      "event1",
+      "event2",
+      "event3",
+      "mice",
+      "mouse0",
+      "mouse1"
+    ]
+  },
+  "proc": {
+    "/proc/asound/cards": null,
+    "/proc/bus/input/devices": "I: Bus=0019 Vendor=0000 Product=0001 Version=0000\nN: Name=\"Power Button\"\nP: Phys=LNXPWRBN/button/input0\nS: Sysfs=/devices/platform/LNXPWRBN:00/input/input0\nU: Uniq=\nH: Handlers=kbd event0 \nB: PROP=0\nB: EV=3\nB: KEY=8000 10000000000000 0\n\nI: Bus=0011 Vendor=0001 Product=0001 Version=ab41\nN: Name=\"AT Translated Set 2 keyboard\"\nP: Phys=isa0060/serio0/input0\nS: Sysfs=/devices/platform/i8042/serio0/input/input1\nU: Uniq=\nH: Handlers=sysrq kbd event1 leds \nB: PROP=0\nB: EV=120013\nB: KEY=402000007 ff803078f800d001 feffffdfffcfffff fffffffffffffffe\nB: MSC=10\nB: LED=7\n\nI: Bus=0011 Vendor=0002 Product=0013 Version=0006\nN: Name=\"VirtualPS/2 VMware VMMouse\"\nP: Phys=isa0060/serio1/input1\nS: Sysfs=/devices/platform/i8042/serio1/input/input4\nU: Uniq=\nH: Handlers=mouse0 event2 \nB: PROP=0\nB: EV=b\nB: KEY=70000 0 0 0 0\nB: ABS=3\n\nI: Bus=0011 Vendor=0002 Product=0013 Version=0006\nN: Name=\"VirtualPS/2 VMware VMMouse\"\nP: Phys=isa0060/serio1/input0\nS: Sysfs=/devices/platform/i8042/serio1/input/input3\nU: Uniq=\nH: Handlers=mouse1 event3 \nB: PROP=1\nB: EV=7\nB: KEY=30000 0 0 0 0\nB: REL=103\n\n",
+    "/etc/os-release": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n"
+  },
+  "libraries": {
+    "GL": "libGL.so.1",
+    "EGL": null,
+    "X11": "libX11.so.6",
+    "Xtst": "libXtst.so.6",
+    "asound": "libasound.so.2",
+    "pulse": "libpulse.so.0",
+    "openal": "libopenal.so.1"
+  }
+}

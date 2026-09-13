@@ -1,0 +1,15 @@
+COMMAND /opt/g-harness/workspace/G14/node_1_step_118/repo/.venv-verify/bin/python -m breach.app --mute --frames 180 --capture /opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/independent/window.png --report /opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/independent/window.json
+:display: loading display module: libpandagl.so
+Known pipe types:
+  glxGraphicsPipe
+(1 aux display modules not yet loaded.)
+:display: Created output of type glxGraphicsWindow
+:audio: NullAudioManager
+:audio: NullAudioManager
+:pnmtext: Loaded font Perspective Sans Regular
+RENDERER {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160}
+WINDOW_READY
+:display: Unable to set window properties: !undecorated !fixed_size 
+INPUT space 1
+RUNTIME_PASS {"engine": "Panda3D", "mode": "window", "output_type": "glxGraphicsWindow", "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)", "vendor": "Mesa", "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3", "size": [960, 540], "audio": "explicitly disabled", "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame", "window_id": 2097160, "frames": 180, "input_events": 1, "capture": "/opt/g-harness/workspace/G14/node_1_step_118/repo/artifacts/independent/window.png"}
+:display: Closing glxGraphicsWindow

@@ -1,0 +1,12 @@
+COMMAND /opt/g-harness/workspace/G14/node_1_step_118/repo/.venv/bin/python -m unittest discover -s tests -v
+test_damage_validation (test_foundation.FoundationTests.test_damage_validation) ... ok
+test_fixed_step_budget (test_foundation.FoundationTests.test_fixed_step_budget) ... ok
+test_input_rejects_invalid_axis (test_foundation.FoundationTests.test_input_rejects_invalid_axis) ... ok
+test_mesh_is_3d_triangles (test_foundation.FoundationTests.test_mesh_is_3d_triangles) ... ok
+test_neutral_input (test_foundation.FoundationTests.test_neutral_input) ... ok
+test_scene_contains_depth_and_capital (test_foundation.FoundationTests.test_scene_contains_depth_and_capital) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.007s
+
+OK
