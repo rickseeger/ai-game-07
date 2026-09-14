@@ -10,6 +10,8 @@ from breach.damage import DamageSystem, FIGHTER_PROFILE, CAPITAL_PROFILE
 from breach.enemies import CAPITAL_HALF, FIGHTER_HALF, EnemySystem, look_quat
 from breach.weapons import WEAPONS_WITH_TURRET, WeaponsSystem
 from breach.cockpit import CockpitSystem
+from breach.audio import AudioEngine
+from breach.effects import EffectsSystem
 
 
 def parser():
@@ -17,6 +19,8 @@ def parser():
     p.add_argument("--render-hz", type=int, default=60, help="render limiter only; simulation stays 60 Hz")
     p.add_argument("--offscreen", action="store_true")
     p.add_argument("--mute", action="store_true")
+    p.add_argument("--master-volume", type=float, default=1.0,
+                   help="master sound volume in [0, 1] (default 1.0)")
     p.add_argument("--frames", type=int, default=0, help="0 = run until F10/window close")
     p.add_argument("--capture", type=Path)
     p.add_argument("--report", type=Path)
@@ -170,9 +174,19 @@ def main():
                         self.enemies.spawn_fighter(entry["id"], entry["position"],
                                                    orientation=look_quat(tuple(aim)))
                         self.combat_ids.append(entry["id"])
+            self.audio = AudioEngine(
+                loader=self.loader,
+                sfx_manager=(self.sfxManagerList[0] if self.sfxManagerList else None),
+                muted=args.mute,
+                master_volume=args.master_volume)
+            self.effects = EffectsSystem(
+                self.render, self.camera, self.damage, self.weapons,
+                self.enemies, self.flight, audio=self.audio,
+                tracked_entities=list(self.combat_ids) + [self.flight.entity_id])
             self.stepper = FixedStepper(self.flight, systems=[self.enemies,
                                                               self.weapons,
-                                                              self.damage])
+                                                              self.damage,
+                                                              self.effects])
             self.view = FlightCamera(self.render, self.camera)
             self.view.present(self.stepper.previous, self.stepper.current, 1)
             self.scene = build_scene(self.render)
@@ -235,7 +249,9 @@ def main():
                                 driver=gsg.getDriverVersion(), size=[self.win.getXSize(), self.win.getYSize()],
                                 seed=14, fixed_dt=1/60, render_hz=args.render_hz, controls=list(displayed_controls),
                                 settings=asdict(settings), eye_offset=EYE_OFFSET,
-                                audio="explicitly disabled" if args.mute else "backend requested; no playback test",
+                                audio=("muted" if args.mute
+                                       else ("openal" if self.sfxManagerList else "no-device")),
+                                master_volume=args.master_volume,
                                 capture_method="GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame")
             if not args.offscreen:
                 self.details["window_id"] = self.win.getWindowHandle().getIntHandle()
@@ -390,6 +406,7 @@ def main():
                 mesh.setPos(*view.position)
                 mesh.setQuat(Quat(*view.orientation))
                 mesh.setColor(*self._enemy_tint(self.damage.snapshot(eid).state.value))
+            self.effects.present(self.stepper.alpha)
             capture = None
             if args.trace_dir and self.frame_count in capture_frames:
                 capture = f"frame-{self.frame_count:04d}.png"
@@ -407,12 +424,19 @@ def main():
                         radar=[b.to_dict() for b in self.cockpit.last_blips],
                         camera_position=tuple(self.camera.getPos(self.render)),
                         camera_orientation=tuple(self.camera.getQuat(self.render)),
-                        eye_local=tuple(self.camera.getPos()), capture=capture)
+                        eye_local=tuple(self.camera.getPos()),
+                        effects=self.effects.counts(),
+                        effects_spawns=self.effects.last_spawns,
+                        effects_audio=self.effects.last_audio,
+                        capture=capture)
             if args.trace_dir:
                 print("FLIGHT_FRAME " + str(self.frame_count), flush=True)
             if args.frames and self.frame_count >= args.frames:
                 if args.capture:
                     self.screenshot(args.capture)
+                audio_tally = {}
+                for e in self.audio.events:
+                    audio_tally[e["name"]] = audio_tally.get(e["name"], 0) + 1
                 self.details.update(frames=self.frame_count, ticks=self.stepper.tick,
                                     input_events=self.input_events, mouse_events=self.mouse_events,
                                     ship=asdict(self.flight.snapshot()),
@@ -423,6 +447,13 @@ def main():
                                     enemy_state=self.enemies.ai_snapshot(),
                                     dropped_seconds=self.stepper.dropped_seconds,
                                     drop_events=self.stepper.drop_events,
+                                    effects=self.effects.counts(),
+                                    effects_event_tally=self.effects.event_tally,
+                                    effects_destroyed_kinds=sorted(self.effects.destroyed_kinds),
+                                    audio_played=self.audio.played,
+                                    audio_events=len(self.audio.events),
+                                    audio_tally=audio_tally,
+                                    audio_cues=self.audio.events[-1] if self.audio.events else None,
                                     capture=str(args.capture) if args.capture else None)
                 if args.report:
                     args.report.parent.mkdir(parents=True, exist_ok=True)

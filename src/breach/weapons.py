@@ -258,6 +258,8 @@ class WeaponsSystem:
         self._misses = 0
         self.last_events = []       # DamageEvents emitted this tick (for effects)
         self.hits_this_tick = []    # (target_id, weapon, amount) this tick
+        self.fired_this_tick = []   # (entity_id, kind, origin, direction) this tick
+        self.impacts_this_tick = []  # (target_id, weapon, amount, position) this tick
 
     # -- registry ----------------------------------------------------------
     def set_faction(self, entity_id, faction):
@@ -346,6 +348,8 @@ class WeaponsSystem:
         self._cooldown[kind] = spec.cooldown
         self._heat[kind] += spec.heat_per_shot
         self._fired += spec.pellets
+        self.fired_this_tick.append((entity_id, kind, tuple(origin),
+                                     tuple(forward)))
         return True
 
     # -- fixed-step simulation ---------------------------------------------
@@ -397,9 +401,17 @@ class WeaponsSystem:
         self._lock_index = (self._lock_index + 1) % len(enemies)
         self._locked = enemies[self._lock_index]
 
+    def clear_tick_effects(self):
+        """Clear the fire-event buffer after the effects system reads it
+        (once per fixed tick). Firing accumulates across enemies + player via
+        the shared fire() entry point, so it is cleared externally, not inside
+        fixed_update (which would erase enemy fire that precedes it)."""
+        self.fired_this_tick = []
+
     def _advance_projectiles(self, dt):
         self.last_events = []
         self.hits_this_tick = []
+        self.impacts_this_tick = []
         surviving = []
         for proj in self._projectiles:
             p0 = proj.position
@@ -413,6 +425,8 @@ class WeaponsSystem:
                 else:
                     self._hits += 1
                     self.hits_this_tick.append((target.entity_id, proj.weapon, proj.damage))
+                    self.impacts_this_tick.append((target.entity_id, proj.weapon,
+                                                   proj.damage, tuple(_hit_pos)))
                     event = DamageEvent(source_id=proj.owner_id,
                                         target_id=target.entity_id,
                                         amount=proj.damage, subsystem=None)

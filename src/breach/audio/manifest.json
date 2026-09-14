@@ -1,0 +1,82 @@
+{
+  "cannon": {
+    "path": "src/breach/audio/cannon.wav",
+    "duration_s": 0.09,
+    "samples": 4320,
+    "peak": 1.0338,
+    "bytes": 8684,
+    "sha256": "a7554f73c06208fa6bf6714432a7b7ddc844d0ffc8d6fe8416751e676837f24b"
+  },
+  "scatter": {
+    "path": "src/breach/audio/scatter.wav",
+    "duration_s": 0.22,
+    "samples": 10560,
+    "peak": 1.0106,
+    "bytes": 21164,
+    "sha256": "57f3567bc110b860de41269e41059c0f9c8ae07d5a1ce82c83b3a7658863e18a"
+  },
+  "torpedo": {
+    "path": "src/breach/audio/torpedo.wav",
+    "duration_s": 0.6,
+    "samples": 28800,
+    "peak": 0.6874,
+    "bytes": 57644,
+    "sha256": "0bf94631bfcecf99b7a5a77f847da854ef8bce6d393874f885d039f281bb63e2"
+  },
+  "turret": {
+    "path": "src/breach/audio/turret.wav",
+    "duration_s": 0.35,
+    "samples": 16800,
+    "peak": 0.9698,
+    "bytes": 33644,
+    "sha256": "26d01fc904c6a31f49af7b16b80e4a306acf9c2491a3f2aa3c1defee5e6edc2d"
+  },
+  "impact": {
+    "path": "src/breach/audio/impact.wav",
+    "duration_s": 0.18,
+    "samples": 8640,
+    "peak": 1.0495,
+    "bytes": 17324,
+    "sha256": "7c8c2d87d3c86946fb3ca15394b025f852d5826bef47ea12f7ee378c59fbb302"
+  },
+  "explosion_fighter": {
+    "path": "src/breach/audio/explosion_fighter.wav",
+    "duration_s": 1.1,
+    "samples": 52800,
+    "peak": 1.0559,
+    "bytes": 105644,
+    "sha256": "b61ae0d002694396e4e5cf5b7555148b8c309222f32a26b01928535951409f50"
+  },
+  "explosion_capital": {
+    "path": "src/breach/audio/explosion_capital.wav",
+    "duration_s": 2.6,
+    "samples": 124800,
+    "peak": 1.0795,
+    "bytes": 249644,
+    "sha256": "ab51710d55e34b57cec9f0e0ff1c49237e2295f1421ff8c8a57bc33650cb9f31"
+  },
+  "repair_start": {
+    "path": "src/breach/audio/repair_start.wav",
+    "duration_s": 0.3,
+    "samples": 14400,
+    "peak": 0.4993,
+    "bytes": 28844,
+    "sha256": "12c4b86a732205426e3299f8d005d7220911f34d8aa20e3eae40cb88cdd4397f"
+  },
+  "repair_complete": {
+    "path": "src/breach/audio/repair_complete.wav",
+    "duration_s": 0.36,
+    "samples": 17280,
+    "peak": 0.5498,
+    "bytes": 34604,
+    "sha256": "c4fa49213d5eb4518953b53c54826d040261827bfa870878b0bd64f2ee0e9cb3"
+  },
+  "fire_loop": {
+    "path": "src/breach/audio/fire_loop.wav",
+    "duration_s": 2.0,
+    "samples": 96000,
+    "peak": 1.1498,
+    "bytes": 192044,
+    "sha256": "6edd9f5ef7ff014f708a5d93707ebbe8af1116ea99bc7cf9ad4c789dac87c2d3"
+  }
+}
