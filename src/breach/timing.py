@@ -4,8 +4,9 @@ from breach.contracts import FIXED_DT, MAX_FRAME_DT, MAX_STEPS
 from breach.flight import interpolate
 
 class FixedStepper:
-    def __init__(self, flight):
+    def __init__(self, flight, systems=()):
         self.flight = flight
+        self.systems = tuple(systems)
         self.previous = self.current = flight.snapshot()
         self.accumulator = 0.0
         self.tick = 0
@@ -27,6 +28,8 @@ class FixedStepper:
             controls = sample()
             self.previous = self.current
             self.flight.fixed_update(FIXED_DT, controls)
+            for system in self.systems:
+                system.fixed_update(FIXED_DT, controls)
             self.current = self.flight.snapshot()
             self.accumulator = max(0, self.accumulator - FIXED_DT)
             steps += 1

@@ -3,8 +3,10 @@
 Panda3D 1.10.16 / Python 3.12, Linux-first. Fly from inside the ship using
 assisted inertial flight and a fixed 60 Hz simulation. The capital, dock and
 orange fighters are stationary navigation references, not working enemies.
-No combat, damage, repair progress, collisions, win/lose loop or packaged game
-is delivered here. The old Space inspection camera has been removed.
+No combat, collisions, win/lose loop or packaged game is delivered here.
+Accumulated hull/sub-system damage and repair ARE delivered (node 3): the
+player's condition drives live thrust/turning/weapons performance through the
+shared DamageSystem. The old Space inspection camera has been removed.
 
 ## Setup and launch (repository root)
 
@@ -26,8 +28,8 @@ use --project; no system Python/harness dependency changes are needed.
     A/D roll left/right | Arrows: nose up/down/left/right
     Mouse: aim stick (up = nose up) | C: center aim
     Hold Home: level horizon | Esc: pause/resume | F10: quit
-    R: flight interlock only (brakes + locks turning; no repair yet)
-    Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)
+    R: hold to repair selected subsystem (brakes + locks)
+    1/2/3 engine/weapons/sensors | Space/LMB, Tab reserved (no combat yet)
 
 Hold W to increase throttle; releasing it retains the setting. S lowers the
 setting, not reverse thrust. Idle drag slows a zero-throttle ship gradually;
@@ -44,7 +46,10 @@ Static stars in every direction and fixed cockpit sills provide motion cues.
 Escape pauses/resumes and releases/captures the pointer. Losing window focus
 clears held inputs and mouse aim, freezes flight, and requires Escape after
 focus returns. Resuming retains prior velocity/throttle; press B to stop.
-R currently only demonstrates the flight-side interlock, NOT healing anything.
+Hold R to repair the selected subsystem (1/2/3 choose engine/weapons/sensors):
+flight brakes to a stop and locks turning; once below 2 m/s the subsystem is
+restored toward 70% over about 4 s. Any hit interrupts repair without undoing
+already-restored HP, so repairing is a deliberate, exposed choice.
 
 Options: --mouse-sensitivity 0.006 (default 0.012), --invert-y,
 --keyboard-only (no pointer capture), --render-hz 30 (15–240; simulation always
@@ -59,9 +64,11 @@ Bindings live in src/breach/input.py; no remapping UI or controller support.
 Use a fresh output directory on every run; flight evidence refuses overwrite.
 This health-checks a private Xvfb, installs the lock into the requested venv,
 runs unit tests, captures window/offscreen GLX, injects a 520-frame XTest flight,
-then independently pursues a reference fighter through XTest keys at 30/144 Hz
-render limiters. Actual receipt, simulation ticks, poses, input decisions,
-renderer reports, PNGs and hashes are retained. Exit nonzero means failure.
+independently pursues a reference fighter through XTest keys at 30/144 Hz
+render limiters, then drives a scripted damage/repair timeline through the live
+DamageSystem. Actual receipt, simulation ticks, poses, input decisions,
+renderer reports, health/state transitions, PNGs and hashes are retained.
+Exit nonzero means failure.
 
 Optional visible-instructions check (install tesseract-ocr first):
 
@@ -78,6 +85,7 @@ validate window input. The test host uses llvmpipe, not physical GPU evidence.
 ## Evidence and handoff
 
 Current flight: docs/FLIGHT.md and artifacts/flight-release/.
+Damage/repair: docs/DAMAGE.md and artifacts/damage-release/.
 Foundation history: docs/EVIDENCE.md and artifacts/initial, independent.
 Interfaces/ownership: docs/INTEGRATION.md. Asset policy: docs/ASSETS.md.
 No human desktop playtest, audible playback, laptop performance, native Wayland,

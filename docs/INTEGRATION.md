@@ -42,9 +42,11 @@ each in its named module, not app.py.
 - flight.py: FlightSystem.fixed_update(dt, controls) -> None; own player pose,
   velocity and throttle. Read damage performance multipliers/repair lock from
   constructor-injected damage service. Expose snapshot() -> immutable ShipView.
-- damage.py: DamageSystem.queue(DamageEvent | RepairIntent) -> None and
-  fixed_update(dt, controls) -> None. Sole owner of health/repair state.
-  snapshot(entity_id) -> HealthView. Consume queued events once in enqueue order.
+- damage.py (IMPLEMENTED, node 3): DamageSystem.queue(DamageEvent | RepairIntent)
+  -> None and fixed_update(dt, controls) -> None. Sole owner of health/repair
+  state. snapshot(entity_id) -> HealthView. Consume queued events once in enqueue
+  order. Also implements FlightDamageService.flight_performance and
+  capability()/subsystem_health() queries for the sibling weapons/enemies nodes.
 - weapons.py: WeaponsSystem.fixed_update(dt, controls) -> None. Own projectile
   positions, cooldowns, hit collision queries and DamageEvent emission; never
   directly reduce health. Repair blocks firing at this boundary too.
@@ -65,10 +67,11 @@ each in its named module, not app.py.
 ShipView schema (implemented immutable dataclass): entity_id: str,
 position: tuple[float,float,float], velocity: tuple[float,float,float],
 orientation: tuple[float,float,float,float] in wxyz order, throttle: float [0,1].
-HealthView schema (add with damage): hull: float [0,1], subsystems: immutable
-mapping[Subsystem,float], repairing: Subsystem|None, repair_progress: float [0,1],
-engine_multiplier: float, weapons_multiplier: float, sensors_multiplier: float.
-Destroyed means hull == 0; removal from registry happens at end of fixed tick.
+HealthView schema (implemented, node 3): hull, hull_hp, state (ShipState
+healthy/smoking/burning/destroyed), subsystems (immutable mapping), repairing,
+repair_progress, and engine/turning/weapons/sensors multipliers. Destroyed means
+hull == 0 and zeroes every multiplier. Destroyed entities remain queryable with
+state DESTROYED (performance zeroed); the future mission system despawns them.
 Snapshots are copies/read-only, never references to mutable authoritative state.
 
 Fixed order: input -> flight -> enemies -> weapons/hit queries -> damage/repair
@@ -93,7 +96,8 @@ capture only during play; focus loss clears all held controls and pauses. Remap
 through one binding table, with sensitivity and inversion settings. Controller
 support is deferred; do not advertise it. Node 2 replaces inspection Space with the reserved fire level; Escape now
 pauses, F10 exits, B brakes, C centers aim, Home levels pitch/roll. See README
-for exact current controls. No repair/weapon effects are implemented.
+for exact current controls. Node 3 implements damage and repair; weapon effects
+remain future work.
 
 ## Scenario: Breach Flight (design target, not implemented gameplay)
 
@@ -153,11 +157,28 @@ should replace presentation, never own/mutate authoritative flight state.
 
 Damage integration uses constructor-injected FlightDamageService.flight_performance
 (entity_id) -> FlightPerformance(thrust_multiplier, turning_multiplier, repair_locked).
-NeutralDamage returns full performance and no lock. The damage-node adapter must
-supply actual health-derived values; node 2 does not invent health/repair progress.
-R immediately brakes/zeros thrust/locks rotation as a flight-side request guard.
-The downstream weapons and damage services must still enforce their own rules.
+NeutralDamage returns full performance and no lock. Node 3's DamageSystem is now
+the real adapter: engine health drives thrust AND turning, repair engagement or
+destruction sets repair_locked, and destruction zeroes all performance.
+R immediately brakes/zeros thrust/locks rotation as a flight-side request guard;
+the damage service independently gates repair on low speed and absence of hits.
 Turning multipliers do not disable mouse input or the cockpit viewpoint.
+
+## Node 3 concrete damage/repair boundary
+
+damage.DamageSystem owns hull + per-subsystem HP and repair progress; it is pure
+and deterministic. Profiles (DamageProfile) are explicit configuration:
+FIGHTER (hull 100 / subsystem 40 / 4 s repair to 70% / <=2 m/s) and CAPITAL
+(hull 3000 / subsystem 600 / 30 s / <=0.5 m/s). Hull thresholds map to
+healthy -> smoking (<=0.66) -> burning (<=0.33) -> destroyed (==0). Subsystem
+capability is linear in health (0 = failed). Repair restores the selected
+subsystem at repair_rate HP/s up to repair_cap, gated on speed and no incoming
+damage that tick; a hit interrupts the current interval without undoing
+already-restored HP. The player's R intent is edge-triggered so it composes
+with queued RepairIntent events. app.py spawns the player, injects the system
+into FlightSystem and FixedStepper, and records health in the trace; the
+--damage-script flag drives scripted damage/repair for validation. See
+docs/DAMAGE.md and tests/test_damage.py for the full contract.
 
 The app runs only input -> flight -> snapshot -> presentation at this stage;
 insert the sibling systems in the previously specified order when implemented.

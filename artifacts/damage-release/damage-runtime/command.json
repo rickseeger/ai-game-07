@@ -1,0 +1,17 @@
+[
+  "/opt/g-harness/workspace/G14/node_3_step_194/repo/.venv-verify/bin/python",
+  "-m",
+  "breach.app",
+  "--mute",
+  "--offscreen",
+  "--frames",
+  "700",
+  "--trace-dir",
+  "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/damage-runtime/trace",
+  "--report",
+  "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/damage-runtime/report.json",
+  "--damage-script",
+  "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/damage-runtime/damage-script.json",
+  "--capture-frames",
+  "120,240,480,680"
+]

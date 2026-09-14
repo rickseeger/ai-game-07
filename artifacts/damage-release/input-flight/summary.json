@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "frames": 520,
+  "simulation_ticks": 495,
+  "seed": 14,
+  "input_events": 23,
+  "mouse_events": 1,
+  "mouse_modes": [
+    0
+  ],
+  "peak_speed": 26.58799855026832,
+  "stop_speed": 0.0,
+  "camera_max_anchor_error": 0.0,
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "dropped_seconds": 0.7008110000000001,
+  "captures": [
+    {
+      "frame": 20,
+      "tick": 25,
+      "path": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight/frame-0020.png",
+      "sha256": "96e7fe5a2bbb6c2f8595525420a9e4f1eb6ce2753762f2357286918ec6a38ed5",
+      "viewport_colors": 45
+    },
+    {
+      "frame": 100,
+      "tick": 108,
+      "path": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight/frame-0100.png",
+      "sha256": "5da16c8babea25ace335f04d56dbc855da81c056dfcdcd06916d7d3bbe16788a",
+      "viewport_colors": 44
+    },
+    {
+      "frame": 140,
+      "tick": 151,
+      "path": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight/frame-0140.png",
+      "sha256": "1a2bf6116ff1a971f71f26449bd6228cc2586243026f6ddf341c96ff6b83485a",
+      "viewport_colors": 32
+    },
+    {
+      "frame": 190,
+      "tick": 204,
+      "path": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight/frame-0190.png",
+      "sha256": "068e5748beb7b0ac9144772592fda3106f4ee7f9e75761b2f8600e56c62fe93d",
+      "viewport_colors": 31
+    },
+    {
+      "frame": 240,
+      "tick": 227,
+      "path": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight/frame-0240.png",
+      "sha256": "c48f9b0697378fcef15625052604d9a847e224b88f5b3310576165d64f5cb249",
+      "viewport_colors": 267
+    },
+    {
+      "frame": 300,
+      "tick": 267,
+      "path": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight/frame-0300.png",
+      "sha256": "6c397ea7f5a56fdc7ef47900c3d707fe0d685dcaa79db5026fc5aa8bd28f371f",
+      "viewport_colors": 25
+    },
+    {
+      "frame": 410,
+      "tick": 379,
+      "path": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight/frame-0410.png",
+      "sha256": "f68641401d526d1bc7cc739b9671a84a9803a043db00757c0f304a070917f9f5",
+      "viewport_colors": 16
+    },
+    {
+      "frame": 470,
+      "tick": 442,
+      "path": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight/frame-0470.png",
+      "sha256": "f68641401d526d1bc7cc739b9671a84a9803a043db00757c0f304a070917f9f5",
+      "viewport_colors": 16
+    }
+  ],
+  "checks": [
+    "W pursuit / S reduction / release retention",
+    "simultaneous pitch yaw roll thrust",
+    "brake stop",
+    "focus loss clears + freezes until explicit resume",
+    "Escape pause/resume with held inputs",
+    "XTest mouse steering + C center",
+    "Home horizon recovery",
+    "Space/LMB reserved, not inspection",
+    "opposed throttles cancel",
+    "repair input locks flight, release allows escape",
+    "every received tick deterministically replayed",
+    "every frame camera anchored inside ship",
+    "displayed controls equal shared control strings"
+  ],
+  "scope": "Real X11/XTest -> Panda -> InputAdapter -> fixed flight -> actual GLX framebuffer; no physical human playtest. Relative mode may use center-warp fallback; see logs."
+}

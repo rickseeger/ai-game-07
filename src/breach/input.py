@@ -19,8 +19,8 @@ CONTROL_LINES = (
     "A/D roll left/right | Arrows: nose up/down/left/right",
     "Mouse: aim stick (up = nose up) | C: center aim",
     "Hold Home: level horizon | Esc: pause/resume | F10: quit",
-    "R: flight interlock only (brakes + locks turning; no repair yet)",
-    "Space/LMB, Tab, 1/2/3: reserved inputs (no combat yet)",
+    "R: hold to repair selected subsystem (brakes + locks)",
+    "1/2/3 engine/weapons/sensors | Space/LMB, Tab reserved (no combat yet)",
 )
 
 

@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 from panda3d.core import loadPrcFileData
 from breach.input import BINDINGS, CONTROL_LINES, InputAdapter, InputSettings, control_lines
+from breach.contracts import DamageEvent, RepairIntent, Subsystem
+from breach.damage import DamageSystem, FIGHTER_PROFILE
 
 
 def parser():
@@ -20,7 +22,30 @@ def parser():
     p.add_argument("--mouse-sensitivity", type=float, default=0.012)
     p.add_argument("--invert-y", action="store_true")
     p.add_argument("--keyboard-only", action="store_true")
+    p.add_argument("--damage-script", type=Path,
+                   help="JSON array of scripted damage/repair events keyed by tick "
+                        "(see docs/DAMAGE.md); queued at the listed tick and applied "
+                        "the following fixed tick (60 Hz).")
     return p
+
+
+def load_damage_schedule(path):
+    """Parse a JSON list into {tick: [DamageEvent | RepairIntent]} for scripting."""
+    schedule = {}
+    for entry in json.loads(Path(path).read_text()):
+        tick = int(entry["tick"])
+        if entry.get("type", "damage") == "repair":
+            event = RepairIntent(entity_id=entry.get("target_id", "player"),
+                                 subsystem=Subsystem(entry["subsystem"]),
+                                 active=bool(entry.get("active", True)))
+        else:
+            subsystem = entry.get("subsystem")
+            event = DamageEvent(source_id=entry.get("source_id", "script"),
+                                target_id=entry.get("target_id", "player"),
+                                amount=float(entry["amount"]),
+                                subsystem=Subsystem(subsystem) if subsystem else None)
+        schedule.setdefault(tick, []).append(event)
+    return schedule
 
 
 def main():
@@ -32,6 +57,7 @@ def main():
     settings = InputSettings(sensitivity=args.mouse_sensitivity, invert_y=args.invert_y)
     displayed_controls = control_lines(settings, args.keyboard_only)
     capture_frames = {int(x) for x in args.capture_frames.split(",") if x}
+    damage_schedule = load_damage_schedule(args.damage_script) if args.damage_script else {}
     if args.trace_dir:
         args.trace_dir.mkdir(parents=True, exist_ok=False)
     loadPrcFileData("flight", "window-title G14 - Breach Flight\nwin-size 960 540\nsync-video false\nclock-mode limited\nclock-frame-rate 60\nframebuffer-multisample false\nnotify-level info")
@@ -59,7 +85,11 @@ def main():
             self.camLens.setNearFar(0.1, 2000)
             self.controls = InputAdapter(settings=settings)
             self.flight = FlightSystem()
-            self.stepper = FixedStepper(self.flight)
+            self.damage = DamageSystem(player_entity_id=self.flight.entity_id,
+                                       speed_provider=lambda eid: self.flight.velocity.length())
+            self.flight.damage = self.damage
+            self.damage.spawn(self.flight.entity_id, FIGHTER_PROFILE)
+            self.stepper = FixedStepper(self.flight, systems=[self.damage])
             self.view = FlightCamera(self.render, self.camera)
             self.view.add_canopy()
             self.view.present(self.stepper.previous, self.stepper.current, 1)
@@ -185,8 +215,15 @@ def main():
                 self.capture_mouse(False)
                 self.record("mouse_unavailable", fallback="arrows")
 
+        def health_dict(self):
+            return self.damage.snapshot(self.flight.entity_id).to_dict()
+
         def simulation_tick(self, tick, controls, ship):
-            self.record("simulation", controls=asdict(controls), ship=asdict(ship))
+            if self.trace:
+                self.record("simulation", controls=asdict(controls), ship=asdict(ship),
+                            health=self.health_dict())
+            for event in damage_schedule.get(tick, ()):
+                self.damage.queue(event)
 
         def screenshot(self, path):
             self.graphicsEngine.renderFrame()
@@ -200,13 +237,18 @@ def main():
             dt = ClockObject.getGlobalClock().getDt()
             before = self.stepper.dropped_seconds
             steps = self.stepper.advance(dt, self.controls.sample, self.controls.paused,
-                                         self.simulation_tick if self.trace else None)
+                                         self.simulation_tick)
             if self.stepper.dropped_seconds > before:
                 self.record("time_drop", seconds=self.stepper.dropped_seconds-before)
                 print("TIME_DROP " + str(self.stepper.dropped_seconds-before), flush=True)
             pose = self.view.present(self.stepper.previous, self.stepper.current, self.stepper.alpha)
             speed = self.flight.velocity.length()
-            self.hud.setText(f"Throttle {self.flight.throttle:.0%} | Speed {speed:.1f} m/s | B stops | Home levels")
+            health = self.health_dict()
+            hud_line = (f"Throttle {self.flight.throttle:.0%} | Speed {speed:.1f} m/s | "
+                        f"Hull {health['hull']:.0%} {health['state'].upper()}")
+            if health["repairing"]:
+                hud_line += f" | repairing {health['repairing']} {health['repair_progress']:.0%}"
+            self.hud.setText(hud_line)
             self.aim_marker.setPos(self.controls.aim[0]*.25, self.controls.aim[1]*.25)
             self.pause_label.setText("PAUSED - Esc to resume (controls cleared)" if self.controls.paused else "")
             capture = None
@@ -216,6 +258,7 @@ def main():
             self.record("frame", dt=dt, steps=steps, alpha=self.stepper.alpha,
                         paused=self.controls.paused, held=sorted(self.controls.held),
                         ship=asdict(self.stepper.current), pose=asdict(pose),
+                        health=health,
                         camera_position=tuple(self.camera.getPos(self.render)),
                         camera_orientation=tuple(self.camera.getQuat(self.render)),
                         eye_local=tuple(self.camera.getPos()), capture=capture)
@@ -227,6 +270,7 @@ def main():
                 self.details.update(frames=self.frame_count, ticks=self.stepper.tick,
                                     input_events=self.input_events, mouse_events=self.mouse_events,
                                     ship=asdict(self.flight.snapshot()),
+                                    health=self.health_dict(),
                                     dropped_seconds=self.stepper.dropped_seconds,
                                     drop_events=self.stepper.drop_events,
                                     capture=str(args.capture) if args.capture else None)

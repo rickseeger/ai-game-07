@@ -1,0 +1,17 @@
+[
+  "/opt/g-harness/workspace/G14/node_3_step_194/repo/.venv-verify/bin/python",
+  "-m",
+  "breach.app",
+  "--mute",
+  "--keyboard-only",
+  "--render-hz",
+  "144",
+  "--frames",
+  "1296",
+  "--trace-dir",
+  "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/independent-pilot/144/flight",
+  "--report",
+  "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/independent-pilot/144/report.json",
+  "--capture-frames",
+  "144,432,720,1008,1296"
+]

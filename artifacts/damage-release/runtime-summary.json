@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "captures": [
+    {
+      "mode": "window",
+      "sha256": "48453bdf752489804abac6c1cc5e8e3da79bcb1f72412043fe7cde6c7996d531",
+      "viewport_colors": 139,
+      "foreground_fraction": 0.1308821118216101,
+      "input_events": 1,
+      "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+      "capture": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/window.png",
+      "frames": 180
+    },
+    {
+      "mode": "offscreen",
+      "sha256": "96e7fe5a2bbb6c2f8595525420a9e4f1eb6ce2753762f2357286918ec6a38ed5",
+      "viewport_colors": 145,
+      "foreground_fraction": 0.1278078373503853,
+      "input_events": 0,
+      "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+      "capture": "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/offscreen.png",
+      "frames": 180
+    }
+  ],
+  "input_scope": "XTest Right-arrow through X11/Panda event loop, not a human/device playtest",
+  "audio_scope": "muted; audible playback NOT verified"
+}

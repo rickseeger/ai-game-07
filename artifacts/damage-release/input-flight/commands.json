@@ -1,0 +1,358 @@
+{
+  "command": [
+    "/opt/g-harness/workspace/G14/node_3_step_194/repo/.venv-verify/bin/python",
+    "-m",
+    "breach.app",
+    "--mute",
+    "--frames",
+    "520",
+    "--trace-dir",
+    "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/flight",
+    "--report",
+    "/opt/g-harness/workspace/G14/node_3_step_194/repo/artifacts/damage-release/input-flight/report.json"
+  ],
+  "seed": 14,
+  "schedule": {
+    "30": [
+      [
+        "key",
+        "w",
+        true
+      ]
+    ],
+    "90": [
+      [
+        "key",
+        "w",
+        false
+      ]
+    ],
+    "95": [
+      [
+        "key",
+        "s",
+        true
+      ]
+    ],
+    "110": [
+      [
+        "key",
+        "s",
+        false
+      ]
+    ],
+    "115": [
+      [
+        "key",
+        "Right",
+        true
+      ],
+      [
+        "key",
+        "Up",
+        true
+      ],
+      [
+        "key",
+        "d",
+        true
+      ],
+      [
+        "key",
+        "w",
+        true
+      ]
+    ],
+    "140": [
+      [
+        "key",
+        "Right",
+        false
+      ],
+      [
+        "key",
+        "Up",
+        false
+      ],
+      [
+        "key",
+        "d",
+        false
+      ],
+      [
+        "key",
+        "w",
+        false
+      ]
+    ],
+    "145": [
+      [
+        "key",
+        "b",
+        true
+      ]
+    ],
+    "190": [
+      [
+        "key",
+        "b",
+        false
+      ]
+    ],
+    "195": [
+      [
+        "key",
+        "w",
+        true
+      ],
+      [
+        "key",
+        "Left",
+        true
+      ]
+    ],
+    "210": [
+      [
+        "focus",
+        "away"
+      ]
+    ],
+    "220": [
+      [
+        "key",
+        "w",
+        false
+      ],
+      [
+        "key",
+        "Left",
+        false
+      ]
+    ],
+    "235": [
+      [
+        "focus",
+        "game"
+      ]
+    ],
+    "245": [
+      [
+        "key",
+        "Escape",
+        true
+      ]
+    ],
+    "247": [
+      [
+        "key",
+        "Escape",
+        false
+      ]
+    ],
+    "260": [
+      [
+        "key",
+        "Right",
+        true
+      ],
+      [
+        "key",
+        "w",
+        true
+      ]
+    ],
+    "270": [
+      [
+        "key",
+        "Escape",
+        true
+      ]
+    ],
+    "272": [
+      [
+        "key",
+        "Escape",
+        false
+      ]
+    ],
+    "278": [
+      [
+        "key",
+        "Right",
+        false
+      ],
+      [
+        "key",
+        "w",
+        false
+      ]
+    ],
+    "285": [
+      [
+        "key",
+        "Escape",
+        true
+      ]
+    ],
+    "287": [
+      [
+        "key",
+        "Escape",
+        false
+      ]
+    ],
+    "300": [
+      [
+        "mouse",
+        30,
+        -20
+      ]
+    ],
+    "320": [
+      [
+        "key",
+        "c",
+        true
+      ]
+    ],
+    "325": [
+      [
+        "key",
+        "c",
+        false
+      ],
+      [
+        "key",
+        "Home",
+        true
+      ],
+      [
+        "key",
+        "b",
+        true
+      ]
+    ],
+    "400": [
+      [
+        "key",
+        "Home",
+        false
+      ],
+      [
+        "key",
+        "b",
+        false
+      ]
+    ],
+    "410": [
+      [
+        "key",
+        "space",
+        true
+      ],
+      [
+        "key",
+        "mouse1",
+        true
+      ]
+    ],
+    "415": [
+      [
+        "key",
+        "space",
+        false
+      ],
+      [
+        "key",
+        "mouse1",
+        false
+      ]
+    ],
+    "420": [
+      [
+        "key",
+        "w",
+        true
+      ],
+      [
+        "key",
+        "s",
+        true
+      ]
+    ],
+    "435": [
+      [
+        "key",
+        "w",
+        false
+      ]
+    ],
+    "445": [
+      [
+        "key",
+        "s",
+        false
+      ]
+    ],
+    "450": [
+      [
+        "key",
+        "r",
+        true
+      ],
+      [
+        "key",
+        "w",
+        true
+      ],
+      [
+        "key",
+        "Right",
+        true
+      ]
+    ],
+    "465": [
+      [
+        "key",
+        "r",
+        false
+      ],
+      [
+        "key",
+        "w",
+        false
+      ],
+      [
+        "key",
+        "Right",
+        false
+      ]
+    ],
+    "470": [
+      [
+        "key",
+        "w",
+        true
+      ]
+    ],
+    "490": [
+      [
+        "key",
+        "w",
+        false
+      ],
+      [
+        "key",
+        "b",
+        true
+      ]
+    ],
+    "515": [
+      [
+        "key",
+        "b",
+        false
+      ]
+    ]
+  }
+}
