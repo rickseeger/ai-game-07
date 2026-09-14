@@ -227,3 +227,29 @@ the damage speed gate to per-ship speeds, and records enemy_state/enemy_health/
 enemy_events. --static-targets keeps the node-4 static hitboxes for isolated
 weapon tests; --no-combat-targets registers nothing. See docs/ENEMIES.md and
 tests/test_enemies.py.
+
+## Node 6 concrete cockpit/HUD/radar boundary
+
+cockpit.CockpitSystem owns the first-person presentation and is strictly
+read-only: it reads HealthView/AimState/ShipView/enemy ShipViews and never writes
+flight/damage/weapons state. It is constructed in app.py with (render, camera,
+aspect2d, camLens, player_entity_id, damage, weapons, enemies, flight) and driven
+by present(alpha, pose, player_health, aim, target_health=None) each frame after
+the fixed step; pose is the interpolated ShipView from FlightCamera.present. The
+camera-attached root builds the cockpit frame + four state-tinted instrument
+gauges; the aspect2d root owns the HUD panels/bars, the radar scope, the targeting
+bracket and the red alert border.
+
+Pure, window-free helpers are exported for tests and tools: world_to_body /
+world_to_camera (forward +Y, right +X, up +Z), radar_blip / build_radar (world ->
+spherical scope: azimuth, elevation, range, scope_x/scope_y, vertical), and
+project_camera_point / target_aspect2d (camera -> NDC -> aspect2d, matching
+Lens.project). build_hud_state / hud_lines bind the HUD to the real snapshots.
+The app records hud and radar on every frame trace, so the HUD and radar are
+verifiable from the deterministic trace plus code-level PNG sampling (no vision).
+
+The radar reach is RADAR_BASE_RANGE * sensors_multiplier (a destroyed SENSORS
+subsystem blinds the radar); the targeting bracket reads the target's live enemy
+pose when present and the weapons hitbox registry otherwise. --target-script
+(JSON [{tick}]) injects Tab edges and --radar-spawns (JSON [{id, position}])
+spawns extra enemy fighters for off-screen radar validation.

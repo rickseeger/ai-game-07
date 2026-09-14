@@ -289,6 +289,10 @@ class WeaponsSystem:
     def targets(self):
         return tuple(self._targets)
 
+    def target_position(self, entity_id):
+        """World position of a registered target hitbox (tuple)."""
+        return tuple(self._targets[entity_id].position)
+
     @property
     def projectiles(self):
         return tuple(self._projectiles)

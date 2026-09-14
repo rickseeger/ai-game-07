@@ -9,6 +9,7 @@ from breach.contracts import DamageEvent, RepairIntent, Subsystem
 from breach.damage import DamageSystem, FIGHTER_PROFILE, CAPITAL_PROFILE
 from breach.enemies import CAPITAL_HALF, FIGHTER_HALF, EnemySystem, look_quat
 from breach.weapons import WEAPONS_WITH_TURRET, WeaponsSystem
+from breach.cockpit import CockpitSystem
 
 
 def parser():
@@ -31,6 +32,12 @@ def parser():
     p.add_argument("--fire-script", type=Path,
                    help="JSON array of {tick, fire} toggles that force the held "
                         "fire level for scripted/offscreen combat runs.")
+    p.add_argument("--target-script", type=Path,
+                   help="JSON array of {tick} entries that trigger a Tab target-lock "
+                        "edge on the listed fixed tick (for HUD/radar target checks).")
+    p.add_argument("--radar-spawns", type=Path,
+                   help="JSON array of {id, position:[x,y,z]} to spawn extra enemy "
+                        "fighters (for off-screen radar validation).")
     p.add_argument("--no-combat-targets", action="store_true",
                    help="do not register any enemy/capital hitboxes")
     p.add_argument("--static-targets", action="store_true",
@@ -65,6 +72,17 @@ def load_fire_schedule(path):
     return entries
 
 
+def load_target_schedule(path):
+    """Parse a JSON list of {tick} entries into a set of target-lock ticks."""
+    return {int(e["tick"]) for e in json.loads(Path(path).read_text())}
+
+
+def load_radar_spawns(path):
+    """Parse a JSON list of {id, position:[x,y,z]} into a list of dicts."""
+    return [dict(id=e["id"], position=tuple(float(v) for v in e["position"]))
+            for e in json.loads(Path(path).read_text())]
+
+
 def main():
     args = parser().parse_args()
     if args.frames < 0 or ((args.capture or args.report or args.trace_dir) and not args.frames):
@@ -76,6 +94,8 @@ def main():
     capture_frames = {int(x) for x in args.capture_frames.split(",") if x}
     damage_schedule = load_damage_schedule(args.damage_script) if args.damage_script else {}
     fire_schedule = load_fire_schedule(args.fire_script) if args.fire_script else []
+    target_ticks = load_target_schedule(args.target_script) if args.target_script else set()
+    radar_spawns = load_radar_spawns(args.radar_spawns) if args.radar_spawns else []
     if args.trace_dir:
         args.trace_dir.mkdir(parents=True, exist_ok=False)
     loadPrcFileData("flight", "window-title G14 - Breach Flight\nwin-size 960 540\nsync-video false\nclock-mode limited\nclock-frame-rate 60\nframebuffer-multisample false\nnotify-level info")
@@ -86,7 +106,7 @@ def main():
         loadPrcFileData("window", "window-type offscreen")
     from direct.showbase.ShowBase import ShowBase
     from direct.gui.OnscreenText import OnscreenText
-    from panda3d.core import (AmbientLight, DirectionalLight, TextNode, WindowProperties,
+    from panda3d.core import (AmbientLight, DirectionalLight, WindowProperties,
                               ClockObject, Quat, Vec3)
     from breach.scene import box, build_scene, combat_targets
     from breach.flight import FlightSystem
@@ -144,11 +164,16 @@ def main():
                         self.combat_ids.append(eid)
                     self.enemies.spawn_capital("capital", (0, 85, 4))
                     self.combat_ids.append("capital")
+                    for entry in radar_spawns:
+                        rpos = Vec3(*entry["position"])
+                        aim = (player_pos - rpos).normalized()
+                        self.enemies.spawn_fighter(entry["id"], entry["position"],
+                                                   orientation=look_quat(tuple(aim)))
+                        self.combat_ids.append(entry["id"])
             self.stepper = FixedStepper(self.flight, systems=[self.enemies,
                                                               self.weapons,
                                                               self.damage])
             self.view = FlightCamera(self.render, self.camera)
-            self.view.add_canopy()
             self.view.present(self.stepper.previous, self.stepper.current, 1)
             self.scene = build_scene(self.render)
             if not args.no_combat_targets and not args.static_targets:
@@ -167,17 +192,20 @@ def main():
             key_np = self.render.attachNewNode(key)
             key_np.setHpr(-30, -45, 0)
             self.render.setLight(key_np)
-            OnscreenText(text="BREACH FLIGHT / COMBAT TEST", pos=(-1.68, 0.90),
-                         scale=0.046, fg=(0.3, 0.9, 0.85, 1), align=TextNode.ALeft)
-            for i, line in enumerate(displayed_controls):
-                OnscreenText(text=line, pos=(0, -0.55-i*.073), scale=0.052,
-                             fg=(0.8, 0.85, 0.9, 1), bg=(.012, .021, .042, 1))
+            # Single compact control hint; the cockpit HUD is the primary display.
+            OnscreenText(text="Tab lock | Space fire | Q weapon | R repair | Esc pause",
+                         pos=(0, -0.955), scale=0.038,
+                         fg=(0.55, 0.66, 0.75, 1), bg=(.012, .021, .042, 0.6))
             OnscreenText(text="+", pos=(0, 0), scale=.045, fg=(.4, 1, .85, 1))
-            self.aim_marker = OnscreenText(text="o", pos=(0, 0), scale=.03, fg=(1,.75,.3,1))
-            self.hud = OnscreenText(text="", pos=(-1.68, .82), scale=.038,
-                                   fg=(.9,.95,1,1), align=TextNode.ALeft, mayChange=True)
             self.pause_label = OnscreenText(text="", pos=(0,.3), scale=.06,
                                            fg=(1,.8,.4,1), mayChange=True)
+            self.cockpit = CockpitSystem(self.render, self.camera, self.aspect2d,
+                                         self.camLens, self.flight.entity_id,
+                                         self.damage, self.weapons, self.enemies,
+                                         self.flight)
+            self.cockpit.present(1, self.stepper.current,
+                                 self.damage.snapshot(self.flight.entity_id),
+                                 self.weapons.aim_snapshot())
             self.frame_count = 0
             self.input_events = 0
             self.mouse_events = 0
@@ -187,6 +215,7 @@ def main():
             self.fire_schedule = fire_schedule
             self.fire_index = 0
             self.fire_level = False
+            self.target_ticks = target_ticks
             for binding, action in BINDINGS.items():
                 if action == "pause":
                     self.accept(binding, self.toggle_pause)
@@ -315,6 +344,8 @@ def main():
             controls = self.controls.sample()
             if self.fire_level:
                 controls = replace(controls, fire=True)
+            if upcoming in self.target_ticks:
+                controls = replace(controls, target_next=True)
             return controls
 
         def simulation_tick(self, tick, controls, ship):
@@ -341,28 +372,14 @@ def main():
                 self.record("time_drop", seconds=self.stepper.dropped_seconds-before)
                 print("TIME_DROP " + str(self.stepper.dropped_seconds-before), flush=True)
             pose = self.view.present(self.stepper.previous, self.stepper.current, self.stepper.alpha)
-            speed = self.flight.velocity.length()
             health = self.health_dict()
             aim = self.weapons_dict()
-            hud_line = (f"Throttle {self.flight.throttle:.0%} | Speed {speed:.1f} m/s | "
-                        f"Hull {health['hull']:.0%} {health['state'].upper()} | "
-                        f"{aim['weapon_name']} heat {aim['heat']:.0f}")
-            if health["repairing"]:
-                hud_line += f" | repairing {health['repairing']} {health['repair_progress']:.0%}"
-            if aim["firing_blocked"]:
-                hud_line += " | WEAPONS BLOCKED"
-            if aim["locked_target"]:
-                hud_line += f" | lock {aim['locked_target']}"
-            if aim["on_target"]:
-                hud_line += " [FIRE SOLUTION]"
-            self.hud.setText(hud_line)
-            self.aim_marker.setPos(self.controls.aim[0]*.25, self.controls.aim[1]*.25)
-            if aim["on_target"]:
-                self.aim_marker.setFg((0.3, 1.0, 0.4, 1))
-            elif aim["locked_target"]:
-                self.aim_marker.setFg((1.0, 0.9, 0.3, 1))
-            else:
-                self.aim_marker.setFg((1.0, 0.75, 0.3, 1))
+            health_view = self.damage.snapshot(self.flight.entity_id)
+            aim_state = self.weapons.aim_snapshot()
+            locked = aim["locked_target"]
+            target_health = self.damage.snapshot(locked) if locked is not None else None
+            hud = self.cockpit.present(self.stepper.alpha, pose, health_view, aim_state,
+                                       target_health)
             self.pause_label.setText("PAUSED - Esc to resume (controls cleared)" if self.controls.paused else "")
             for eid, mesh in self.enemy_meshes.items():
                 if not self.enemies.is_alive(eid):
@@ -386,6 +403,8 @@ def main():
                                       for eid in self.combat_ids},
                         enemy_state=self.enemies.ai_snapshot(),
                         enemy_events=self.enemies.last_enemy_events,
+                        hud=hud.to_dict(),
+                        radar=[b.to_dict() for b in self.cockpit.last_blips],
                         camera_position=tuple(self.camera.getPos(self.render)),
                         camera_orientation=tuple(self.camera.getQuat(self.render)),
                         eye_local=tuple(self.camera.getPos()), capture=capture)

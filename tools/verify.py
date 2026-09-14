@@ -50,6 +50,7 @@ def main():
     run([python, "tools/weapons_runtime.py", "--output", str(out / "weapons-runtime")], out / "weapons-runtime.log", env)
     run([python, "tools/enemies_sim.py", "--output", str(out / "enemies-sim")], out / "enemies-sim.log", env)
     run([python, "tools/enemies_runtime.py", "--output", str(out / "enemies-runtime")], out / "enemies-runtime.log", env, timeout=300)
+    run([python, "tools/cockpit_runtime.py", "--output", str(out / "cockpit-runtime")], out / "cockpit-runtime.log", env, timeout=300)
     print("VERIFY_PASS " + str(out))
 if __name__ == "__main__":
     main()

@@ -12,6 +12,11 @@ against ship hitboxes, and every hit routes through the shared DamageSystem.
 Accumulated hull/sub-system damage and repair ARE delivered (node 3): the
 player's condition drives live thrust/turning/weapons performance through the
 shared DamageSystem, and enemies degrade/repair under the same model.
+The first-person cockpit presentation IS delivered (node 6): a modeled cockpit
+frame with state-tinted instruments, a readable HUD (hull, per-subsystem health,
+weapon heat, target lock and the selected enemy's damage/repair, red damage
+alerts), and a spatial radar plotting enemy direction/distance/above-below from
+live enemy positions. It is verified with code-level pixel sampling, not vision.
 
 ## Setup and launch (repository root)
 
@@ -91,9 +96,10 @@ render limiters, drives a scripted damage/repair timeline through the live
 DamageSystem, runs the deterministic combat simulation (miss/track/sustain/
 no-one-hit-kill/frame-interval checks) and two real offscreen combat captures
 (hit and miss), then runs the enemy AI simulation (pursuit/attack/impairment/
-repair entry-exit-abort/destruction/capital) and two real offscreen enemy
-encounters (live opposition + a scripted repair window) validated from the
-trace and code-level PNG sampling. Actual receipt, simulation ticks, poses,
+repair entry-exit-abort/destruction/capital) two real offscreen enemy
+encounters (live opposition + a scripted repair window), and the cockpit
+presentation check (healthy/offscreen-radar/damaged captures) — validated from
+the trace and code-level PNG sampling (no image-perception model). Actual receipt, simulation ticks, poses,
 input decisions, renderer reports, health/state transitions, weapon/hit and
 enemy telemetry, PNGs and hashes are retained.
 Exit nonzero means failure.
@@ -115,6 +121,7 @@ validate window input. The test host uses llvmpipe, not physical GPU evidence.
 Current flight: docs/FLIGHT.md and artifacts/flight-release/.
 Damage/repair: docs/DAMAGE.md and artifacts/damage-release/.
 Weapons/hit resolution: docs/WEAPONS.md and artifacts/weapons-release/.
+Cockpit/HUD/radar: docs/COCKPIT.md and artifacts/cockpit-release/.
 Foundation history: docs/EVIDENCE.md and artifacts/initial, independent.
 Interfaces/ownership: docs/INTEGRATION.md. Asset policy: docs/ASSETS.md.
 No human desktop playtest, audible playback, laptop performance, native Wayland,
