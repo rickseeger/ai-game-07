@@ -48,6 +48,10 @@ MUZZLE_OFFSET = 2.0
 LOCK_CONE_DEG = 45.0
 # Cooldown readiness tolerance: absorbs float residue from repeated 1/60 decay.
 EPS = 1e-9
+# Fraction of a hit's hull damage also applied to the subsystem at the hit point
+# (node 8). Sustained combat therefore degrades subsystems and opens repair loops
+# through normal play, not only scripted events.
+SUBSYSTEM_DAMAGE_FRACTION = 0.5
 
 
 class WeaponKind(str, Enum):
@@ -202,6 +206,23 @@ def _pellet_directions(forward, spread, pellets):
         dirs.append((fwd + right * (s * math.cos(azimuth))
                      + up * (s * math.sin(azimuth))).normalized())
     return dirs
+
+
+def classify_subsystem_hit(target, hit_pos):
+    """Map a world-space hit point to the subsystem at that point of the box.
+
+    Deterministic and orientation-aware: the hit is transformed into the box's
+    local frame and classified by its forward (+Y) coordinate into three equal
+    thirds -- front (WEAPONS), rear (ENGINE), middle (SENSORS). A head-on hit
+    therefore blunts an enemy's guns; a tail hit slows its engines.
+    """
+    local = target.orientation.conjugate().xform(Vec3(*hit_pos) - target.position)
+    hy = target.half_extents[1]
+    if local.y >= hy / 3.0:
+        return Subsystem.WEAPONS
+    if local.y <= -hy / 3.0:
+        return Subsystem.ENGINE
+    return Subsystem.SENSORS
 
 
 def _segment_obb(p0, p1, target):
@@ -401,6 +422,29 @@ class WeaponsSystem:
         self._lock_index = (self._lock_index + 1) % len(enemies)
         self._locked = enemies[self._lock_index]
 
+    def reset(self):
+        """Restore a fresh, unregistered state for a clean mission restart.
+
+        Clears every piece of mutable combat state (targets, projectiles,
+        resources, lock, counters, event buffers) without touching the injected
+        damage/pose providers. The app re-registers player/enemy hitboxes after
+        a restart via set_faction/add_target as ships respawn.
+        """
+        self._targets.clear()
+        self._projectiles = []
+        self._cooldown = {w: 0.0 for w in self.specs}
+        self._heat = {w: 0.0 for w in self.specs}
+        self._selected = {self.player_entity_id: WeaponKind.CANNON}
+        self._lock_index = 0
+        self._locked = None
+        self._fired = 0
+        self._hits = 0
+        self._misses = 0
+        self.last_events = []
+        self.hits_this_tick = []
+        self.fired_this_tick = []
+        self.impacts_this_tick = []
+
     def clear_tick_effects(self):
         """Clear the fire-event buffer after the effects system reads it
         (once per fixed tick). Firing accumulates across enemies + player via
@@ -432,6 +476,17 @@ class WeaponsSystem:
                                         amount=proj.damage, subsystem=None)
                     self.last_events.append(event)
                     self.damage.queue(event)
+                    # Node 8: degrade the subsystem at the hit point too, so
+                    # subsystem damage / repair is reachable in ordinary combat.
+                    subsystem = classify_subsystem_hit(target, _hit_pos)
+                    sub_amount = proj.damage * SUBSYSTEM_DAMAGE_FRACTION
+                    if sub_amount > 0:
+                        sub_event = DamageEvent(source_id=proj.owner_id,
+                                                target_id=target.entity_id,
+                                                amount=sub_amount,
+                                                subsystem=subsystem)
+                        self.last_events.append(sub_event)
+                        self.damage.queue(sub_event)
                 continue
             if proj.travelled >= proj.max_range:
                 self._misses += 1
@@ -493,5 +548,6 @@ class WeaponsSystem:
 __all__ = [
     "WeaponKind", "WeaponSpec", "WEAPONS", "WEAPON_ORDER", "TURRET_SPEC",
     "WEAPONS_WITH_TURRET", "AimState", "Hitbox", "WeaponsSystem",
-    "NeutralWeaponDamage", "MUZZLE_OFFSET", "LOCK_CONE_DEG",
+    "NeutralWeaponDamage", "MUZZLE_OFFSET", "LOCK_CONE_DEG", "SUBSYSTEM_DAMAGE_FRACTION",
+    "classify_subsystem_hit",
 ]

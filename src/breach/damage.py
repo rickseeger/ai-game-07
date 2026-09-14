@@ -180,6 +180,21 @@ class DamageSystem:
     def is_spawned(self, entity_id):
         return entity_id in self._ships
 
+    def reset(self):
+        """Drop all ships and pending state for a clean mission restart.
+
+        The app re-spawns the player (and any initial mission enemies) after
+        this call; reset() itself has no knowledge of profiles, so it only
+        clears. speed_provider is preserved because it is re-wired per ship by
+        the app and does not change across a restart.
+        """
+        self._ships.clear()
+        self._queue.clear()
+        self._player_intent = None
+        self.events = []
+        self.destroyed_this_tick = []
+        self.repair_interruptions.clear()
+
     # -- event intake ------------------------------------------------------
     def queue(self, event):
         if not isinstance(event, (DamageEvent, RepairIntent)):

@@ -221,6 +221,28 @@ class EffectsSystem:
         self.event_tally = {}     # cumulative effect-event counts (never reset)
         self.destroyed_kinds = set()  # cumulative destroyed ship kinds
 
+    def reset(self, tracked_entities=None):
+        """Clear all transient particles/counters for a clean mission restart.
+
+        Cumulative event tallies (used for trace evidence) are zeroed too, since
+        a restart begins a fresh attempt. tracked_entities is refreshed to the
+        newly spawned ship set.
+        """
+        self.particles = []
+        for q in self.quads:
+            q.hide()
+        self.quads = []
+        self._emit_acc = {}
+        self._glow_acc = {}
+        self._repair_prev = {}
+        self._fire_loop_active = False
+        self.last_audio = []
+        self.last_spawns = []
+        self.event_tally = {}
+        self.destroyed_kinds = set()
+        if tracked_entities is not None:
+            self.tracked_entities = list(tracked_entities)
+
     # -- event binding (fixed-step; deterministic) ---------------------------
     def fixed_update(self, dt, controls=None):
         if not math.isfinite(dt) or dt <= 0:
@@ -320,6 +342,8 @@ class EffectsSystem:
     def _process_damage_states(self, dt):
         any_burning = False
         for eid in self.tracked_entities:
+            if not self.damage.is_spawned(eid):
+                continue  # future-wave entities that are not yet in the world
             view = self.damage.snapshot(eid)
             state = view.state
             pos = self._entity_pos(eid)
@@ -352,6 +376,8 @@ class EffectsSystem:
     # -- repair cues ---------------------------------------------------------
     def _process_repair(self, dt):
         for eid in self.tracked_entities:
+            if not self.damage.is_spawned(eid):
+                continue  # future-wave entities that are not yet in the world
             view = self.damage.snapshot(eid)
             now = view.repairing
             prev = self._repair_prev.get(eid)

@@ -65,6 +65,15 @@ class FlightSystem:
         self.orientation.normalize()
         self.throttle = 0.0
 
+    def reset(self, position=None, orientation=(1, 0, 0, 0)):
+        """Return the player to a pristine spawn state for a mission restart."""
+        if position is not None:
+            self.position = Vec3(*position)
+        self.velocity = Vec3(0)
+        self.orientation = Quat(*orientation)
+        self.orientation.normalize()
+        self.throttle = 0.0
+
     def snapshot(self):
         return ShipView(self.entity_id, tuple(self.position), tuple(self.velocity),
                         tuple(self.orientation), self.throttle)

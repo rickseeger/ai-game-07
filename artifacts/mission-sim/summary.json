@@ -1,0 +1,42 @@
+{
+  "approachable_start": {
+    "wave": 1,
+    "objective": "Destroy the patrol fighter",
+    "enemies": 1,
+    "fighter_range": 55.0
+  },
+  "autopilot_victory": {
+    "phase": "victory",
+    "objective": "Mission complete - frigate destroyed",
+    "transitions": [
+      [
+        "wave",
+        2
+      ],
+      [
+        "wave",
+        3
+      ],
+      [
+        "wave",
+        4
+      ],
+      [
+        "victory",
+        4
+      ]
+    ],
+    "player_hull_hp": 88.0
+  },
+  "exploit_enemy_repair": {
+    "held_fire": true,
+    "stationary": true,
+    "destroyed_in_window": true,
+    "wave_after": 2
+  },
+  "risky_player_repair": {
+    "repair_progressed": true,
+    "repair_progress": 0.0,
+    "hit_interrupted_without_undo": true
+  }
+}

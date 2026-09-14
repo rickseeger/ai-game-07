@@ -9,6 +9,7 @@ from breach.contracts import DamageEvent, RepairIntent, Subsystem
 from breach.damage import DamageSystem, FIGHTER_PROFILE, CAPITAL_PROFILE
 from breach.enemies import CAPITAL_HALF, FIGHTER_HALF, EnemySystem, look_quat
 from breach.weapons import WEAPONS_WITH_TURRET, WeaponsSystem
+from breach.mission import PLAYER_SPAWN, MissionSystem, MissionPhase, DEFAULT_WAVES, WaveSpec
 from breach.cockpit import CockpitSystem
 from breach.audio import AudioEngine
 from breach.effects import EffectsSystem
@@ -39,11 +40,18 @@ def parser():
     p.add_argument("--target-script", type=Path,
                    help="JSON array of {tick} entries that trigger a Tab target-lock "
                         "edge on the listed fixed tick (for HUD/radar target checks).")
+    p.add_argument("--key-script", type=Path,
+                   help="JSON array of {tick, key, down} injected key events "
+                        "for deterministic scripted restart/pause runs.")
     p.add_argument("--radar-spawns", type=Path,
                    help="JSON array of {id, position:[x,y,z]} to spawn extra enemy "
                         "fighters (for off-screen radar validation).")
     p.add_argument("--no-combat-targets", action="store_true",
                    help="do not register any enemy/capital hitboxes")
+    p.add_argument("--demo-enemies", action="store_true",
+                   help="spawn the node-5 enemy-AI lab layout (3 fighters + "
+                        "capital at once, no mission escalation) for isolated "
+                        "enemy tests")
     p.add_argument("--static-targets", action="store_true",
                    help="use node-4 static hitboxes (no enemy AI) for isolated weapon tests")
     return p
@@ -81,6 +89,18 @@ def load_target_schedule(path):
     return {int(e["tick"]) for e in json.loads(Path(path).read_text())}
 
 
+def load_key_schedule(path):
+    """Parse a JSON list of {frame, key, down} into {frame: [(key, down), ...]}.
+
+    Keys are frame-indexed (not tick-indexed) so they also fire while the fixed
+    sim is frozen at a terminal end state (where the tick counter stops).
+    """
+    schedule = {}
+    for e in json.loads(Path(path).read_text()):
+        schedule.setdefault(int(e["frame"]), []).append(
+            (str(e["key"]), bool(e["down"])))
+    return schedule
+
 def load_radar_spawns(path):
     """Parse a JSON list of {id, position:[x,y,z]} into a list of dicts."""
     return [dict(id=e["id"], position=tuple(float(v) for v in e["position"]))
@@ -100,6 +120,7 @@ def main():
     fire_schedule = load_fire_schedule(args.fire_script) if args.fire_script else []
     target_ticks = load_target_schedule(args.target_script) if args.target_script else set()
     radar_spawns = load_radar_spawns(args.radar_spawns) if args.radar_spawns else []
+    key_schedule = load_key_schedule(args.key_script) if args.key_script else {}
     if args.trace_dir:
         args.trace_dir.mkdir(parents=True, exist_ok=False)
     loadPrcFileData("flight", "window-title G14 - Breach Flight\nwin-size 960 540\nsync-video false\nclock-mode limited\nclock-frame-rate 60\nframebuffer-multisample false\nnotify-level info")
@@ -127,7 +148,7 @@ def main():
             self.camLens.setFov(78)
             self.camLens.setNearFar(0.1, 2000)
             self.controls = InputAdapter(settings=settings)
-            self.flight = FlightSystem()
+            self.flight = FlightSystem(position=PLAYER_SPAWN)
             self.damage = DamageSystem(player_entity_id=self.flight.entity_id)
             self.flight.damage = self.damage
             self.damage.spawn(self.flight.entity_id, FIGHTER_PROFILE)
@@ -142,7 +163,26 @@ def main():
             self.damage.speed_provider = (
                 lambda eid: self.flight.velocity.length()
                 if eid == self.flight.entity_id else self.enemies.speed_of(eid))
+            if args.demo_enemies:
+                demo_waves = (WaveSpec("Demo encounter",
+                                       fighters=("fighter-1", "fighter-2", "fighter-3"),
+                                       capital=True),)
+                demo_positions = {"fighter-1": (-23, 56, 7),
+                                  "fighter-2": (21, 63, -5),
+                                  "fighter-3": (27, 100, 19),
+                                  "capital": (0, 85, 4)}
+                self.mission = MissionSystem(
+                    player_entity_id=self.flight.entity_id,
+                    damage=self.damage, enemies=self.enemies, weapons=self.weapons,
+                    player_pose_provider=self.flight.snapshot,
+                    waves=demo_waves, spawn_positions=demo_positions)
+            else:
+                self.mission = MissionSystem(
+                    player_entity_id=self.flight.entity_id,
+                    damage=self.damage, enemies=self.enemies, weapons=self.weapons,
+                    player_pose_provider=self.flight.snapshot)
             self.combat_ids = []
+            self.enemy_set = set()
             if not args.no_combat_targets:
                 if args.static_targets:
                     # Node-4 static hitboxes (no AI) for isolated weapon tests.
@@ -156,36 +196,31 @@ def main():
                         self.damage.spawn(target["id"], profile)
                         self.combat_ids.append(target["id"])
                 else:
-                    # Node-5 live enemies: fighters pursue/attack, capital fights back.
-                    player_pos = self.flight.position
-                    spawns = [("fighter-1", (-23, 56, 7)),
-                              ("fighter-2", (21, 63, -5)),
-                              ("fighter-3", (27, 100, 19))]
-                    for eid, pos in spawns:
-                        aim = (player_pos - Vec3(*pos)).normalized()
-                        self.enemies.spawn_fighter(eid, pos,
-                                                   orientation=look_quat(tuple(aim)))
-                        self.combat_ids.append(eid)
-                    self.enemies.spawn_capital("capital", (0, 85, 4))
-                    self.combat_ids.append("capital")
+                    # Node-8 mission loop: escalating waves -> capital climax.
+                    self.mission.start()
+                    self.combat_ids = list(self.enemies.entities)
+                    self.enemy_set.update(self.enemies.entities)
                     for entry in radar_spawns:
                         rpos = Vec3(*entry["position"])
-                        aim = (player_pos - rpos).normalized()
+                        aim = (self.flight.position - rpos).normalized()
                         self.enemies.spawn_fighter(entry["id"], entry["position"],
                                                    orientation=look_quat(tuple(aim)))
                         self.combat_ids.append(entry["id"])
+                        self.enemy_set.add(entry["id"])
             self.audio = AudioEngine(
                 loader=self.loader,
                 sfx_manager=(self.sfxManagerList[0] if self.sfxManagerList else None),
                 muted=args.mute,
                 master_volume=args.master_volume)
+            mission_entity_set = [eid for wave in DEFAULT_WAVES for eid in wave.enemy_ids()]
             self.effects = EffectsSystem(
                 self.render, self.camera, self.damage, self.weapons,
                 self.enemies, self.flight, audio=self.audio,
-                tracked_entities=list(self.combat_ids) + [self.flight.entity_id])
+                tracked_entities=mission_entity_set + [self.flight.entity_id])
             self.stepper = FixedStepper(self.flight, systems=[self.enemies,
                                                               self.weapons,
                                                               self.damage,
+                                                              self.mission,
                                                               self.effects])
             self.view = FlightCamera(self.render, self.camera)
             self.view.present(self.stepper.previous, self.stepper.current, 1)
@@ -213,6 +248,10 @@ def main():
             OnscreenText(text="+", pos=(0, 0), scale=.045, fg=(.4, 1, .85, 1))
             self.pause_label = OnscreenText(text="", pos=(0,.3), scale=.06,
                                            fg=(1,.8,.4,1), mayChange=True)
+            self.objective_banner = OnscreenText(text="", pos=(0, .82), scale=.052,
+                                                 fg=(.9,.95,1,1), mayChange=True)
+            self.objective_sub = OnscreenText(text="", pos=(0, .76), scale=.040,
+                                              fg=(.6,.72,.82,1), mayChange=True)
             self.cockpit = CockpitSystem(self.render, self.camera, self.aspect2d,
                                          self.camLens, self.flight.entity_id,
                                          self.damage, self.weapons, self.enemies,
@@ -230,6 +269,7 @@ def main():
             self.fire_index = 0
             self.fire_level = False
             self.target_ticks = target_ticks
+            self.key_schedule = key_schedule
             for binding, action in BINDINGS.items():
                 if action == "pause":
                     self.accept(binding, self.toggle_pause)
@@ -265,6 +305,17 @@ def main():
                 self.trace.flush()
 
         def input_key(self, key, down):
+            action = self.controls.bindings.get(key)
+            if action == "restart" and down:
+                # Restart is a one-action reset on a terminal end state (or a
+                # manual reset mid-run). It does not flow through the held/edge
+                # input adapter, so it works while the world is frozen.
+                self.restart_mission()
+                self.input_events += 1
+                self.record("key", key=key, down=True, restart=True,
+                            paused=self.controls.paused)
+                print("INPUT " + key + " down", flush=True)
+                return
             self.controls.key(key, down)
             self.input_events += int(down)
             self.record("key", key=key, down=down, paused=self.controls.paused)
@@ -334,6 +385,13 @@ def main():
         def weapons_dict(self):
             return self.weapons.aim_snapshot().to_dict()
 
+        def enemy_health_dict(self):
+            # Union of static targets (node-4 --static-targets) and live enemies
+            # (mission/demo), filtered to whatever is actually spawned.
+            ids = set(self.combat_ids) | set(self.enemies.entities)
+            return {eid: self.damage.snapshot(eid).to_dict()
+                    for eid in sorted(ids) if self.damage.is_spawned(eid)}
+
         def _enemy_tint(self, state):
             # Code-level "visible weakening": colour darkens as the hull degrades.
             return {"healthy": (1, 1, 1, 1), "smoking": (1, 0.55, 0.35, 1),
@@ -341,13 +399,74 @@ def main():
                     "destroyed": (0.3, 0.15, 0.1, 1)}.get(state, (1, 1, 1, 1))
 
         def _spawn_enemy_presentation(self):
+            for mesh in getattr(self, "enemy_meshes", {}).values():
+                mesh.removeNode()
             self.enemy_meshes = {}
+            self.ensure_enemy_meshes()
+
+        def ensure_enemy_meshes(self):
+            # New waves spawn dynamically; build a presentation mesh for any
+            # enemy that does not have one yet (idempotent across waves/restart).
             for eid in self.enemies.entities:
+                if eid in self.enemy_meshes:
+                    continue
                 half = CAPITAL_HALF if self.enemies.is_capital(eid) else FIGHTER_HALF
                 size = tuple(2.0 * h for h in half)
                 mesh = box(f"enemy-{eid}", size, (0.95, 0.32, 0.16, 1))
                 mesh.reparentTo(self.render)
                 self.enemy_meshes[eid] = mesh
+
+        def restart_mission(self):
+            # Rebuild the deterministic combat state from a pristine spawn,
+            # reusing the same service objects (so cockpit/effects references
+            # stay valid) but clearing every mutable combat registry.
+            self.flight.reset(position=PLAYER_SPAWN)
+            self.damage.reset()
+            self.weapons.reset()
+            self.enemies.reset()
+            self.flight.damage = self.damage
+            self.damage.spawn(self.flight.entity_id, FIGHTER_PROFILE)
+            self.damage.speed_provider = (
+                lambda eid: self.flight.velocity.length()
+                if eid == self.flight.entity_id else self.enemies.speed_of(eid))
+            # Re-register the player hitbox and a fresh mission.
+            if args.demo_enemies:
+                demo_waves = (WaveSpec("Demo encounter",
+                                       fighters=("fighter-1", "fighter-2", "fighter-3"),
+                                       capital=True),)
+                demo_positions = {"fighter-1": (-23, 56, 7),
+                                  "fighter-2": (21, 63, -5),
+                                  "fighter-3": (27, 100, 19),
+                                  "capital": (0, 85, 4)}
+                self.mission = MissionSystem(
+                    player_entity_id=self.flight.entity_id,
+                    damage=self.damage, enemies=self.enemies, weapons=self.weapons,
+                    player_pose_provider=self.flight.snapshot,
+                    waves=demo_waves, spawn_positions=demo_positions)
+            else:
+                self.mission = MissionSystem(
+                    player_entity_id=self.flight.entity_id,
+                    damage=self.damage, enemies=self.enemies, weapons=self.weapons,
+                    player_pose_provider=self.flight.snapshot)
+            self.mission.start()
+            self.combat_ids = list(self.enemies.entities)
+            # Reset presentation caches and particle state; effects keeps the
+            # full mission entity set so later waves are already tracked.
+            self.cockpit.reset()
+            self.effects.reset(tracked_entities=(
+                list(self.enemies.entities) + [self.flight.entity_id]))
+            self._spawn_enemy_presentation()
+            # Rebuild the stepper so the fresh mission is in the fixed order.
+            self.stepper = FixedStepper(self.flight, systems=[self.enemies,
+                                                              self.weapons,
+                                                              self.damage,
+                                                              self.mission,
+                                                              self.effects])
+            self.fire_index = 0
+            self.fire_level = False
+            self.record("restart", phase=self.mission.phase,
+                        wave=self.mission.snapshot().wave)
+            print("MISSION_RESTART phase=combat wave=1", flush=True)
 
         def sample_controls(self):
             # Scripted fire toggles overlay the sampled input for deterministic
@@ -379,10 +498,21 @@ def main():
 
         def tick(self, task):
             self.frame_count += 1
+            # Deterministic scripted key events (frame-indexed) for lifecycle
+            # validation: pause, restart, and other keys without a live human.
+            for kf in self.key_schedule.get(self.frame_count, ()):
+                action = self.controls.bindings.get(kf[0])
+                if action == "pause" and kf[1]:
+                    self.toggle_pause()
+                elif action == "quit" and kf[1]:
+                    self.userExit()
+                else:
+                    self.input_key(kf[0], kf[1])
             self.read_mouse()
             dt = ClockObject.getGlobalClock().getDt()
             before = self.stepper.dropped_seconds
-            steps = self.stepper.advance(dt, self.sample_controls, self.controls.paused,
+            frozen = self.controls.paused or self.mission.terminal
+            steps = self.stepper.advance(dt, self.sample_controls, frozen,
                                          self.simulation_tick)
             if self.stepper.dropped_seconds > before:
                 self.record("time_drop", seconds=self.stepper.dropped_seconds-before)
@@ -397,6 +527,16 @@ def main():
             hud = self.cockpit.present(self.stepper.alpha, pose, health_view, aim_state,
                                        target_health)
             self.pause_label.setText("PAUSED - Esc to resume (controls cleared)" if self.controls.paused else "")
+            mission = self.mission.snapshot()
+            self.objective_banner.setText(mission.objective)
+            self.objective_sub.setText(
+                ("Wave %d/%d  |  Enemies: %d  %s"
+                 % (mission.wave, mission.total_waves,
+                    len(mission.remaining_enemies), mission.restart_hint))
+                if not mission.terminal else
+                ("Wave %d/%d  |  %s" % (mission.wave, mission.total_waves,
+                                        mission.restart_hint)))
+            self.ensure_enemy_meshes()
             for eid, mesh in self.enemy_meshes.items():
                 if not self.enemies.is_alive(eid):
                     mesh.hide()
@@ -416,8 +556,7 @@ def main():
                         ship=asdict(self.stepper.current), pose=asdict(pose),
                         health=health, weapons=aim,
                         weapon_hits=[[h[0], h[1].value, h[2]] for h in self.weapons.hits_this_tick],
-                        enemy_health={eid: self.damage.snapshot(eid).to_dict()
-                                      for eid in self.combat_ids},
+                        enemy_health=self.enemy_health_dict(),
                         enemy_state=self.enemies.ai_snapshot(),
                         enemy_events=self.enemies.last_enemy_events,
                         hud=hud.to_dict(),
@@ -428,6 +567,8 @@ def main():
                         effects=self.effects.counts(),
                         effects_spawns=self.effects.last_spawns,
                         effects_audio=self.effects.last_audio,
+                        mission=mission.to_dict(),
+                        mission_transitions=list(self.mission.transition_log),
                         capture=capture)
             if args.trace_dir:
                 print("FLIGHT_FRAME " + str(self.frame_count), flush=True)
@@ -442,14 +583,15 @@ def main():
                                     ship=asdict(self.flight.snapshot()),
                                     health=self.health_dict(),
                                     weapons=self.weapons_dict(),
-                                    enemy_health={eid: self.damage.snapshot(eid).to_dict()
-                                                  for eid in self.combat_ids},
+                                    enemy_health=self.enemy_health_dict(),
                                     enemy_state=self.enemies.ai_snapshot(),
                                     dropped_seconds=self.stepper.dropped_seconds,
                                     drop_events=self.stepper.drop_events,
                                     effects=self.effects.counts(),
                                     effects_event_tally=self.effects.event_tally,
                                     effects_destroyed_kinds=sorted(self.effects.destroyed_kinds),
+                                    mission=self.mission.snapshot().to_dict(),
+                                    mission_transitions=list(self.mission.transition_log),
                                     audio_played=self.audio.played,
                                     audio_events=len(self.audio.events),
                                     audio_tally=audio_tally,

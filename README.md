@@ -5,8 +5,11 @@ assisted inertial flight and a fixed 60 Hz simulation. Enemy AI and the
 dangerous capital ship ARE delivered (node 5): three fighters pursue and attack
 under the exact same flight/weapon/impairment/repair rules as the player, and an
 anchored capital with a turret battery fights back and needs ~40–50 s of
-sustained fire to destroy. Win/lose loop and a packaged game are not yet
-delivered. Combat weapons and hit resolution ARE delivered (node 4): the player
+sustained fire to destroy. The mission loop IS delivered (node 8): an
+approachable, replayable sortie with escalating fighter waves and a capital-ship
+climax, a clear objective banner, comprehensible victory/defeat, a one-action
+restart (N), and pause (Esc). Combat weapons and hit resolution ARE delivered
+(node 4): the player
 fires three distinct weapons in real time, projectiles resolve hits/misses
 against ship hitboxes, and every hit routes through the shared DamageSystem.
 Accumulated hull/sub-system damage and repair ARE delivered (node 3): the
@@ -41,6 +44,7 @@ use --project; no system Python/harness dependency changes are needed.
     R: hold to repair selected subsystem (brakes + locks)
     1/2/3 engine/weapons/sensors | Space/LMB fire | Q cycle weapon
     Tab: target lock | reticle lights when the locked target is in range
+    N: restart the mission after victory or defeat
 
 Hold W to increase throttle; releasing it retains the setting. S lowers the
 setting, not reverse thrust. Idle drag slows a zero-throttle ship gradually;
@@ -77,6 +81,16 @@ them (no hidden recovery). The capital anchors in place and returns fire from a
 turret battery; damage its weapons to blunt it, or keep up fire to stop it
 repairing. Enemy meshes darken from healthy to smoking to burning as they take
 hull damage, then drop out when destroyed.
+
+Every resolved hit also degrades a subsystem (front third = weapons, rear third
+= engine, middle = sensors, at half the hull damage), so accumulated combat
+damage — not just scripted events — drives the repair loop. A head-on trade
+blunts both ships' guns. Destroy the four escalating waves (one fighter, two,
+three, then the frigate) to win; your hull reaching zero loses. On either end
+state press N to restart from wave 1 at full health. The objective and wave
+progress show in the top HUD banner. Tuning targets (time-to-kill and repair
+windows) are committed in data/mission_balance.json and validated by
+tests/test_mission.py. See docs/MISSION.md.
 
 Options: --mouse-sensitivity 0.006 (default 0.012), --invert-y,
 --keyboard-only (no pointer capture), --render-hz 30 (15–240; simulation always
@@ -122,6 +136,8 @@ Current flight: docs/FLIGHT.md and artifacts/flight-release/.
 Damage/repair: docs/DAMAGE.md and artifacts/damage-release/.
 Weapons/hit resolution: docs/WEAPONS.md and artifacts/weapons-release/.
 Cockpit/HUD/radar: docs/COCKPIT.md and artifacts/cockpit-release/.
+Mission loop / damage-and-repair tuning: docs/MISSION.md and
+artifacts/mission-sim/, artifacts/mission-runtime/.
 Foundation history: docs/EVIDENCE.md and artifacts/initial, independent.
 Interfaces/ownership: docs/INTEGRATION.md. Asset policy: docs/ASSETS.md.
 No human desktop playtest, audible playback, laptop performance, native Wayland,

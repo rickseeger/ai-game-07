@@ -12,6 +12,7 @@ BINDINGS = {
     "mouse1": "fire", "space": "fire", "tab": "target_next",
     "r": "repair", "1": "engine", "2": "weapons", "3": "sensors",
     "q": "cycle_weapon",
+    "n": "restart",
     "f10": "quit",
 }
 # The HUD and README use these exact strings (no staging bindings remain).
@@ -23,6 +24,7 @@ CONTROL_LINES = (
     "R: hold to repair selected subsystem (brakes + locks)",
     "1/2/3 engine/weapons/sensors | Space/LMB fire | Q cycle weapon",
     "Tab: target lock | reticle lights when the locked target is in range",
+    "N: restart the mission after victory or defeat",
 )
 
 

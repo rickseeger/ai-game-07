@@ -1,0 +1,191 @@
+{
+  "engine": "Panda3D",
+  "mode": "offscreen",
+  "output_type": "glxGraphicsBuffer",
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "vendor": "Mesa",
+  "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3",
+  "size": [
+    960,
+    540
+  ],
+  "seed": 14,
+  "fixed_dt": 0.016666666666666666,
+  "render_hz": 60,
+  "controls": [
+    "W/S raise/lower throttle | B brake and zero throttle",
+    "A/D roll left/right | Arrows: nose up/down/left/right",
+    "Mouse: aim stick (up = nose up) | C: center aim",
+    "Hold Home: level horizon | Esc: pause/resume | F10: quit",
+    "R: hold to repair selected subsystem (brakes + locks)",
+    "1/2/3 engine/weapons/sensors | Space/LMB fire | Q cycle weapon",
+    "Tab: target lock | reticle lights when the locked target is in range",
+    "N: restart the mission after victory or defeat"
+  ],
+  "settings": {
+    "sensitivity": 0.012,
+    "deadzone": 0.12,
+    "invert_y": false
+  },
+  "eye_offset": [
+    0.0,
+    0.0,
+    0.65
+  ],
+  "audio": "muted",
+  "master_volume": 1.0,
+  "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame",
+  "frames": 200,
+  "ticks": 86,
+  "input_events": 1,
+  "mouse_events": 0,
+  "ship": {
+    "entity_id": "player",
+    "position": [
+      0.0,
+      -15.0,
+      4.0
+    ],
+    "velocity": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "orientation": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "throttle": 0
+  },
+  "health": {
+    "entity_id": "player",
+    "hull": 0.04,
+    "hull_hp": 4.0,
+    "state": "burning",
+    "subsystems": {
+      "engine": 1.0,
+      "weapons": 0.0,
+      "sensors": 1.0
+    },
+    "repairing": null,
+    "repair_progress": 0.0,
+    "engine_multiplier": 1.0,
+    "turning_multiplier": 1.0,
+    "weapons_multiplier": 0.0,
+    "sensors_multiplier": 1.0
+  },
+  "weapons": {
+    "weapon": "cannon",
+    "weapon_name": "Rapid Cannon",
+    "ready": false,
+    "cooldown_remaining": 0.06666666666666668,
+    "heat": 17.0,
+    "heat_capacity": 100.0,
+    "overheated": false,
+    "weapons_multiplier": 0.0,
+    "firing_blocked": true,
+    "locked_target": null,
+    "lock_in_range": false,
+    "lock_in_front": false,
+    "on_target": false,
+    "projectiles": 2,
+    "fired": 10,
+    "hits": 8,
+    "misses": 0
+  },
+  "enemy_health": {
+    "fighter-1": {
+      "entity_id": "fighter-1",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    }
+  },
+  "enemy_state": [
+    {
+      "entity_id": "fighter-1",
+      "kind": "fighter",
+      "faction": "enemy",
+      "position": [
+        -1.3897287090003374e-06,
+        24.103357315063477,
+        4.0
+      ],
+      "velocity": [
+        -1.2420216535247164e-06,
+        -14.207071304321289,
+        0.0
+      ],
+      "speed": 14.207071304321289,
+      "throttle": 0.3157126978324358,
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "repair_interruptions": 0,
+      "firing": false,
+      "destroyed": false
+    }
+  ],
+  "dropped_seconds": 0.05840499999999976,
+  "drop_events": 2,
+  "effects": {
+    "active": 31,
+    "by_kind": {
+      "smoke": 15,
+      "fire": 7,
+      "spark": 9
+    },
+    "fire_loop": true
+  },
+  "effects_event_tally": {
+    "fire": 10,
+    "impact": 8
+  },
+  "effects_destroyed_kinds": [],
+  "mission": {
+    "phase": "combat",
+    "wave": 1,
+    "total_waves": 4,
+    "objective": "Destroy the patrol fighter",
+    "remaining_enemies": [
+      "fighter-1"
+    ],
+    "terminal": false,
+    "restart_hint": ""
+  },
+  "mission_transitions": [],
+  "audio_played": 40,
+  "audio_events": 40,
+  "audio_tally": {
+    "cannon": 20,
+    "impact": 17,
+    "fire_loop": 2,
+    "explosion_fighter": 1
+  },
+  "audio_cues": {
+    "name": "cannon",
+    "volume": 0.8429,
+    "loop": false
+  },
+  "capture": null
+}

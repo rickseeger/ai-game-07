@@ -403,6 +403,14 @@ class CockpitSystem:
         self._build_alert()
         self._build_bracket()
 
+    def reset(self):
+        """Drop cached blips/selection so a mission restart redraws cleanly."""
+        self.last_blips = []
+        self.last_hud = None
+        self.blips = {}
+        for q in self.bracket_quads:
+            q.hide()
+
     # -- cockpit frame (3D, camera-attached) ---------------------------------
     def _build_cockpit_frame(self):
         from breach.scene import box

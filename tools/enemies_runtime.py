@@ -24,8 +24,10 @@ import zlib
 
 FIRE_SCRIPT = [{"tick": 10, "fire": True}]
 DAMAGE_SCRIPT = [
-    {"tick": 120, "target_id": "fighter-1", "amount": 40, "subsystem": "weapons"},
-    {"tick": 200, "target_id": "capital", "amount": 600, "subsystem": "weapons"},
+    {"tick": 10, "target_id": "fighter-1", "amount": 40, "subsystem": "weapons"},
+    {"tick": 10, "target_id": "fighter-2", "amount": 40, "subsystem": "weapons"},
+    {"tick": 10, "target_id": "fighter-3", "amount": 40, "subsystem": "weapons"},
+    {"tick": 10, "target_id": "capital", "amount": 600, "subsystem": "weapons"},
 ]
 ENCOUNTER_FRAMES = 720
 REPAIR_FRAMES = 1200
@@ -39,6 +41,7 @@ def write_json(path, obj):
 def run_app(out, fire=None, damage=None, frames=ENCOUNTER_FRAMES):
     out.mkdir(parents=True, exist_ok=False)
     command = [sys.executable, "-m", "breach.app", "--mute", "--offscreen",
+               "--demo-enemies",
                "--frames", str(frames),
                "--trace-dir", str(out / "trace"),
                "--report", str(out / "report.json"),

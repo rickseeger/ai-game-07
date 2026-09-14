@@ -1,0 +1,17 @@
+[
+  "/opt/g-harness/workspace/G14/node_8_step_218/ai-game-07/.venv/bin/python",
+  "-m",
+  "breach.app",
+  "--mute",
+  "--offscreen",
+  "--frames",
+  "200",
+  "--trace-dir",
+  "artifacts/mission-runtime/lifecycle/trace",
+  "--report",
+  "artifacts/mission-runtime/lifecycle/report.json",
+  "--capture-frames",
+  "40,120,180",
+  "--key-script",
+  "artifacts/mission-runtime/lifecycle/key-script.json"
+]

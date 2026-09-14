@@ -1,0 +1,49 @@
+{
+  "node": 8,
+  "tree": "G14",
+  "purpose": "Committed damage-and-repair tension targets for the combat mission loop.",
+  "note": "Windows are validated against breach.weapons.WEAPONS and breach.damage.*_PROFILE by tests/test_mission.py; concrete spec values live in those modules.",
+  "sustained_dps_time_to_kill": {
+    "fighter_s": {
+      "min": 1.2,
+      "max": 4.0
+    },
+    "capital_s": {
+      "min": 35.0,
+      "max": 75.0
+    }
+  },
+  "repair_vulnerability_window": {
+    "fighter_s": {
+      "min": 2.0,
+      "max": 6.0
+    },
+    "capital_s": {
+      "min": 20.0,
+      "max": 40.0
+    }
+  },
+  "no_one_shot_rules": {
+    "torpedo_damage": 90.0,
+    "fighter_hull_max_hp": 100.0,
+    "capital_hull_max_hp": 3000.0,
+    "single_torpedo_must_not_kill_fighter": true,
+    "single_torpedo_must_not_kill_capital": true,
+    "subsystem_damage_fraction": 0.5
+  },
+  "realized_values": {
+    "cannon_damage": 12.0,
+    "cannon_cooldown_s": 0.15,
+    "cannon_heat_per_shot": 6.0,
+    "cannon_heat_capacity": 100.0,
+    "cannon_cool_rate_hps": 30.0,
+    "torpedo_damage": 90.0,
+    "fighter_repair_duration_s": 4.0,
+    "capital_repair_duration_s": 30.0,
+    "fighter_repair_cap": 0.7,
+    "capital_repair_cap": 0.7,
+    "subsystem_damage_fraction": 0.5,
+    "fighter_subsystem_max_hp": 40.0,
+    "capital_subsystem_max_hp": 600.0
+  }
+}

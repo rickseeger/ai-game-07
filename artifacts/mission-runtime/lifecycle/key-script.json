@@ -1,0 +1,17 @@
+[
+  {
+    "frame": 100,
+    "key": "n",
+    "down": true
+  },
+  {
+    "frame": 130,
+    "key": "escape",
+    "down": true
+  },
+  {
+    "frame": 155,
+    "key": "escape",
+    "down": true
+  }
+]

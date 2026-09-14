@@ -253,3 +253,38 @@ subsystem blinds the radar); the targeting bracket reads the target's live enemy
 pose when present and the weapons hitbox registry otherwise. --target-script
 (JSON [{tick}]) injects Tab edges and --radar-spawns (JSON [{id, position}])
 spawns extra enemy fighters for off-screen radar validation.
+
+## Node 8 concrete mission/balance boundary
+
+mission.MissionSystem owns the mission loop: wave spawns, objectives,
+win/lose/restart. It reuses the sibling systems rather than reimplementing them:
+spawns go through enemies.EnemySystem, progression is detected from
+damage.DamageSystem snapshots, and it publishes an immutable MissionState for
+the HUD. It has no window/NodePath side effects.
+
+- MissionSystem(player_entity_id, damage, enemies, weapons,
+  player_pose_provider, waves, balance, spawn_positions); start() begins/restarts
+  from wave 1; fixed_update(dt, controls) advances waves and win/lose;
+  snapshot() -> MissionState(phase, wave, total_waves, objective,
+  remaining_enemies, terminal, restart_hint). terminal phases are VICTORY /
+  DEFEAT; the app freezes the fixed stepper at a terminal phase and an N key
+  triggers app.restart_mission().
+- DEFAULT_WAVES is a finite escalation (1/2/3 fighters then the capital); no wave
+  respawns. The capital spawns only when the escorts are cleared.
+- Combat subsystem damage: every resolved ship hit in weapons.py also emits a
+  subsystem DamageEvent (classify_subsystem_hit maps the hit point's local +Y
+  third to WEAPONS/ENGINE/SENSORS; amount = SUBSYSTEM_DAMAGE_FRACTION * hull
+  damage). This makes subsystem damage and the repair loop reachable through
+  ordinary gameplay, not only scripted events.
+- app.restart_mission() reuses the same service objects but resets their mutable
+  combat registries (flight/damage/weapons/enemies/effects reset() methods,
+  enemy mesh rebuild, cockpit/effects cache clear, fresh FixedStepper) and
+  re-spawns the player + wave 1. The player hitbox is re-registered by
+  enemies.reset().
+- MissionBalance holds the numeric tuning targets (per-ship-class sustained-DPS
+  time-to-kill windows, repair vulnerability windows, no-one-shot rules);
+  tests/test_mission.py computes the realized values from the actual specs and
+  fails if they drift outside the committed windows (data/mission_balance.json).
+- app.py inserts mission after damage in the fixed order and records
+  mission state/transitions per frame. --key-script (JSON [{frame, key, down}])
+  injects scripted keys for deterministic restart/pause lifecycle runs.

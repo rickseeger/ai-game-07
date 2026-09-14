@@ -172,6 +172,43 @@ class EnemySystem:
         self.capital_id = entity_id
         return entity_id
 
+    def reset(self):
+        """Clear all owned enemy ships for a clean mission restart.
+
+        Leaves the shared damage/weapons references intact (the app resets
+        those separately); it only drops EnemySystem's per-ship flight/AI
+        state and its capital marker. The player hitbox is re-registered by
+        the app on the next spawn pass.
+        """
+        self._ships.clear()
+        self.capital_id = None
+        self.last_enemy_events = []
+        # Re-register the player hitbox (cleared by weapons.reset()) so enemy
+        # projectiles can resolve against the player again after a restart.
+        if self.weapons is not None and self.player_pose_provider is not None:
+            view = self.player_pose_provider()
+            if view is not None:
+                self.weapons.set_faction(self.player_entity_id, "player")
+                self.weapons.add_target(self.player_entity_id, "player",
+                                        view.position, self.player_half_extents,
+                                        view.orientation)
+
+    def despawn(self, entity_id):
+        """Remove a destroyed/defeated enemy from all three registries.
+
+        Owned here because EnemySystem is the single place that knows the full
+        set of per-ship resources (flight system, damage slot, weapon hitbox).
+        Despawning a ship that is already gone is a no-op, so mission cleanup
+        can call it once per defeated ship without tracking prior removals.
+        """
+        ship = self._ships.pop(entity_id, None)
+        if ship is None:
+            return
+        if self.capital_id == entity_id:
+            self.capital_id = None
+        self.damage.despawn(entity_id)
+        self.weapons.remove_target(entity_id)
+
     # -- queries -------------------------------------------------------------
     @property
     def entities(self):
@@ -356,7 +393,7 @@ class EnemySystem:
         if dist > 1e-6:
             forward = ship.flight.orientation.xform(Vec3(0, 1, 0))
             align = max(0.0, forward.dot((player_pos - ship.flight.position) / dist))
-        throttle = self._throttle_for(dist) * align
+        throttle = self._throttle_rate_to(ship, self._throttle_for(dist) * align)
         fire = self._want_fire(ship.flight, player_pos, engagement_range, t.fire_cone_deg)
         controls = PilotInput(yaw=yaw, pitch=pitch, throttle=throttle, fire=fire,
                               repair_subsystem=Subsystem.ENGINE)
@@ -386,7 +423,7 @@ class EnemySystem:
         cross = forward.cross(desired)
         if cross.lengthSquared() < 1e-12:
             if forward.dot(desired) < 0.0:
-                return 0.0, 1.0  # exactly opposed: swing right to come around
+                return 1.0, 0.0  # exactly opposed: hard yaw right to come around
             return 0.0, 0.0
         body = flight.orientation.conjugate().xform(cross)
         pitch = _clamp01(body.x * t.steer_gain)
@@ -404,6 +441,15 @@ class EnemySystem:
         if dist < t.fighter_standoff:
             return 0.35
         return t.fighter_throttle_far
+
+    def _throttle_rate_to(self, ship, target_fraction):
+        """Return a signed throttle rate that drives the ship's throttle setting
+        toward target_fraction. The flight model treats controls.throttle as a
+        rate of change, so a proportional error converges on the target instead
+        of pinning at full speed (the old behavior made fighters overshoot and
+        flee without slowing to turn)."""
+        error = target_fraction - ship.flight.throttle
+        return max(-1.0, min(1.0, error * 4.0))
 
     def _want_fire(self, flight, target, max_range, cone_deg):
         forward = flight.orientation.xform(Vec3(0, 1, 0))
