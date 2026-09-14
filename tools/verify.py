@@ -46,6 +46,8 @@ def main():
     run([python, "tools/flight_runtime.py", "--output", str(out / "input-flight")], out / "flight-runtime.log", env)
     run([python, "tools/independent_flight.py", "--output", str(out / "independent-pilot")], out / "independent-pilot.log", env)
     run([python, "tools/damage_runtime.py", "--output", str(out / "damage-runtime")], out / "damage-runtime.log", env)
+    run([python, "tools/weapons_sim.py", "--output", str(out / "weapons-sim")], out / "weapons-sim.log", env)
+    run([python, "tools/weapons_runtime.py", "--output", str(out / "weapons-runtime")], out / "weapons-runtime.log", env)
     print("VERIFY_PASS " + str(out))
 if __name__ == "__main__":
     main()

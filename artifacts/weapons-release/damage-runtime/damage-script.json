@@ -1,0 +1,28 @@
+[
+  {
+    "tick": 60,
+    "amount": 40,
+    "subsystem": "engine"
+  },
+  {
+    "tick": 120,
+    "amount": 40,
+    "subsystem": null
+  },
+  {
+    "tick": 180,
+    "amount": 30,
+    "subsystem": null
+  },
+  {
+    "tick": 240,
+    "type": "repair",
+    "subsystem": "engine",
+    "active": true
+  },
+  {
+    "tick": 540,
+    "amount": 30,
+    "subsystem": null
+  }
+]

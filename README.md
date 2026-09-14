@@ -3,10 +3,12 @@
 Panda3D 1.10.16 / Python 3.12, Linux-first. Fly from inside the ship using
 assisted inertial flight and a fixed 60 Hz simulation. The capital, dock and
 orange fighters are stationary navigation references, not working enemies.
-No combat, collisions, win/lose loop or packaged game is delivered here.
-Accumulated hull/sub-system damage and repair ARE delivered (node 3): the
-player's condition drives live thrust/turning/weapons performance through the
-shared DamageSystem. The old Space inspection camera has been removed.
+Win/lose loop, enemy AI and a packaged game are not yet delivered. Combat
+weapons and hit resolution ARE delivered (node 4): the player fires three
+distinct weapons in real time, projectiles resolve hits/misses against ship
+hitboxes, and every hit routes through the shared DamageSystem. Accumulated
+hull/sub-system damage and repair ARE delivered (node 3): the player's condition
+drives live thrust/turning/weapons performance through the shared DamageSystem.
 
 ## Setup and launch (repository root)
 
@@ -29,7 +31,8 @@ use --project; no system Python/harness dependency changes are needed.
     Mouse: aim stick (up = nose up) | C: center aim
     Hold Home: level horizon | Esc: pause/resume | F10: quit
     R: hold to repair selected subsystem (brakes + locks)
-    1/2/3 engine/weapons/sensors | Space/LMB, Tab reserved (no combat yet)
+    1/2/3 engine/weapons/sensors | Space/LMB fire | Q cycle weapon
+    Tab: target lock | reticle lights when the locked target is in range
 
 Hold W to increase throttle; releasing it retains the setting. S lowers the
 setting, not reverse thrust. Idle drag slows a zero-throttle ship gradually;
@@ -51,6 +54,13 @@ flight brakes to a stop and locks turning; once below 2 m/s the subsystem is
 restored toward 70% over about 4 s. Any hit interrupts repair without undoing
 already-restored HP, so repairing is a deliberate, exposed choice.
 
+Space/LMB fires the selected weapon; Q cycles cannon -> scatter -> torpedo.
+The cannon is a rapid low-damage stream, scatter is a short-range shotgun, and
+the torpedo is a slow heavy hit. Heat builds with sustained fire and cools
+between shots. Tab cycles target lock; the reticle turns green when the locked
+target is a fire solution. Damage to your weapons subsystem lowers damage per
+shot and a destroyed weapons subsystem stops firing; repair blocks firing too.
+
 Options: --mouse-sensitivity 0.006 (default 0.012), --invert-y,
 --keyboard-only (no pointer capture), --render-hz 30 (15–240; simulation always
 60 Hz). The HUD updates its mouse instructions for inversion/keyboard-only.
@@ -65,9 +75,12 @@ Use a fresh output directory on every run; flight evidence refuses overwrite.
 This health-checks a private Xvfb, installs the lock into the requested venv,
 runs unit tests, captures window/offscreen GLX, injects a 520-frame XTest flight,
 independently pursues a reference fighter through XTest keys at 30/144 Hz
-render limiters, then drives a scripted damage/repair timeline through the live
-DamageSystem. Actual receipt, simulation ticks, poses, input decisions,
-renderer reports, health/state transitions, PNGs and hashes are retained.
+render limiters, drives a scripted damage/repair timeline through the live
+DamageSystem, runs the deterministic combat simulation (miss/track/sustain/
+no-one-hit-kill/frame-interval checks) and two real offscreen combat captures
+(hit and miss). Actual receipt, simulation ticks, poses, input decisions,
+renderer reports, health/state transitions, weapon/hit telemetry, PNGs and
+hashes are retained.
 Exit nonzero means failure.
 
 Optional visible-instructions check (install tesseract-ocr first):
@@ -86,6 +99,7 @@ validate window input. The test host uses llvmpipe, not physical GPU evidence.
 
 Current flight: docs/FLIGHT.md and artifacts/flight-release/.
 Damage/repair: docs/DAMAGE.md and artifacts/damage-release/.
+Weapons/hit resolution: docs/WEAPONS.md and artifacts/weapons-release/.
 Foundation history: docs/EVIDENCE.md and artifacts/initial, independent.
 Interfaces/ownership: docs/INTEGRATION.md. Asset policy: docs/ASSETS.md.
 No human desktop playtest, audible playback, laptop performance, native Wayland,

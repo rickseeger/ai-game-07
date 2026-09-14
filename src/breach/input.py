@@ -11,6 +11,7 @@ BINDINGS = {
     "home": "level", "c": "center", "escape": "pause",
     "mouse1": "fire", "space": "fire", "tab": "target_next",
     "r": "repair", "1": "engine", "2": "weapons", "3": "sensors",
+    "q": "cycle_weapon",
     "f10": "quit",
 }
 # The HUD and README use these exact strings (no staging bindings remain).
@@ -20,7 +21,8 @@ CONTROL_LINES = (
     "Mouse: aim stick (up = nose up) | C: center aim",
     "Hold Home: level horizon | Esc: pause/resume | F10: quit",
     "R: hold to repair selected subsystem (brakes + locks)",
-    "1/2/3 engine/weapons/sensors | Space/LMB, Tab reserved (no combat yet)",
+    "1/2/3 engine/weapons/sensors | Space/LMB fire | Q cycle weapon",
+    "Tab: target lock | reticle lights when the locked target is in range",
 )
 
 
@@ -74,7 +76,7 @@ class InputAdapter:
         if self.paused or not self.focused or key in self.held:
             return
         self.held.add(key)
-        if action == "target_next":
+        if action in ("target_next", "cycle_weapon"):
             self.edges.add(action)
         elif action in ("engine", "weapons", "sensors"):
             self.selected = Subsystem(action)
@@ -108,7 +110,8 @@ class InputAdapter:
             throttle=axis("throttle_up", "throttle_down"),
             brake="brake" in actions, level="level" in actions,
             fire="fire" in actions, repair="repair" in actions,
-            target_next="target_next" in self.edges, repair_subsystem=self.selected)
+            target_next="target_next" in self.edges,
+            cycle_weapon="cycle_weapon" in self.edges, repair_subsystem=self.selected)
         self.edges.clear()
         return result
 

@@ -47,12 +47,14 @@ each in its named module, not app.py.
   state. snapshot(entity_id) -> HealthView. Consume queued events once in enqueue
   order. Also implements FlightDamageService.flight_performance and
   capability()/subsystem_health() queries for the sibling weapons/enemies nodes.
-- weapons.py: WeaponsSystem.fixed_update(dt, controls) -> None. Own projectile
-  positions, cooldowns, hit collision queries and DamageEvent emission; never
-  directly reduce health. Repair blocks firing at this boundary too.
+- weapons.py (IMPLEMENTED, node 4): WeaponsSystem.fixed_update(dt, controls)
+  -> None. Own projectile positions, cooldowns/heat, hit collision queries and
+  DamageEvent emission; never directly reduce health. Repair blocks firing at
+  this boundary too. See the Node 4 boundary below and docs/WEAPONS.md.
 - enemies.py: EnemySystem.fixed_update(dt, controls) -> None; own non-player poses,
   steering and attack decisions; emit weapon requests through weapons.fire(entity_id,
-  origin: Vec3, direction: Vec3) -> bool, which enforces rate/health restrictions.
+  origin: Vec3, direction: Vec3, weapon=None) -> bool, which enforces rate/health
+  restrictions (implemented, node 4).
 - mission.py: MissionSystem.fixed_update(dt, controls) -> None; own spawn registry,
   objectives/win/lose/restart; subscribe to health snapshots. No UI side effects.
 - cockpit.py: CockpitSystem.present(alpha) -> None; own cockpit mesh, HUD and radar,
@@ -180,5 +182,26 @@ into FlightSystem and FixedStepper, and records health in the trace; the
 --damage-script flag drives scripted damage/repair for validation. See
 docs/DAMAGE.md and tests/test_damage.py for the full contract.
 
-The app runs only input -> flight -> snapshot -> presentation at this stage;
-insert the sibling systems in the previously specified order when implemented.
+The app now runs input -> flight -> weapons -> damage -> snapshot ->
+presentation (node 4 inserts weapons before damage so hits resolve the same
+tick). Remaining siblings (enemies, mission, cockpit, effects) insert in the
+previously specified order when implemented.
+
+## Node 4 concrete weapons/hit-resolution boundary
+
+weapons.WeaponsSystem owns projectiles, cadence/resources, target lock/aim
+feedback, deterministic segment-vs-oriented-box hit detection and DamageEvent
+emission; it never reduces health directly. Three WeaponSpec kinds (CANNON,
+SCATTER, TORPEDO) differ in damage/cooldown/projectile speed/range/heat. Two
+declared resources gate firing: cooldown and heat (0..capacity, cooling at
+cool_rate). Weapon impairment reads the shared damage model: WEAPONS capability
+scales damage per shot, a destroyed WEAPONS subsystem blocks firing, and repair
+engagement blocks firing (repair_locked). fire(entity_id, origin, direction,
+weapon=None) -> bool is the shared entry point for the player's held fire and
+future enemy AI. Projectiles sweep per tick and test the nearest target's
+oriented box; ownership filtering (never hit the owner's faction) separates
+friendly/enemy fire; environment blocks without damage. aim_snapshot() ->
+AimState exposes weapon/ready/cooldown/heat/impairment/locked target/fire
+solution for the cockpit. app.py registers scene.combat_targets() hitboxes and
+spawns their damage profiles; --fire-script and --no-combat-targets drive
+deterministic offscreen combat runs. See docs/WEAPONS.md and tests/test_weapons.py.

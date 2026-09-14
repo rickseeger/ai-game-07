@@ -1,0 +1,270 @@
+{"after_frame": 1, "tick": 6, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 15.068488159492212, "pitch_error": -6.357515056182176}
+{"after_frame": 2, "tick": 8, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 17.535104475219953, "pitch_error": -5.515294723953244}
+{"after_frame": 3, "tick": 10, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 19.95251391101233, "pitch_error": -4.551140838245293}
+{"after_frame": 4, "tick": 12, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 22.31588467686224, "pitch_error": -3.4693290073148426}
+{"after_frame": 5, "tick": 14, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 24.621116218341612, "pitch_error": -2.2744350885915847}
+{"after_frame": 6, "tick": 16, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 26.864853334880713, "pitch_error": -0.9712660063321599}
+{"after_frame": 7, "tick": 18, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 29.04440842672464, "pitch_error": 0.435218437223226}
+{"after_frame": 8, "tick": 20, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 31.157762099836507, "pitch_error": 1.9399668678580033}
+{"after_frame": 9, "tick": 22, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 33.20343367809585, "pitch_error": 3.5379034190381033}
+{"after_frame": 10, "tick": 24, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 35.18044789593438, "pitch_error": 5.223968843697185}
+{"after_frame": 11, "tick": 26, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 37.08827269812175, "pitch_error": 6.9931750627805345}
+{"after_frame": 12, "tick": 28, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 38.926654799421144, "pitch_error": 8.840628848311608}
+{"after_frame": 13, "tick": 30, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 40.69565506332711, "pitch_error": 10.761565078754659}
+{"after_frame": 14, "tick": 32, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 42.39544790198597, "pitch_error": 12.751361242343775}
+{"after_frame": 15, "tick": 34, "phase": "disorient", "keys": ["Left", "d"], "range": 81.27730560302734, "yaw_error": 44.02633332350878, "pitch_error": 14.80557199217259}
+{"after_frame": 16, "tick": 36, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 45.58857978825714, "pitch_error": 16.919897019141267}
+{"after_frame": 17, "tick": 38, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.07969099934954, "pitch_error": 15.210123629054566}
+{"after_frame": 18, "tick": 40, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.501637138787956, "pitch_error": 13.484361351721194}
+{"after_frame": 19, "tick": 42, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.85603755201123, "pitch_error": 11.745464770047958}
+{"after_frame": 20, "tick": 44, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.14433440235686, "pitch_error": 9.996196352908038}
+{"after_frame": 21, "tick": 46, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.36777302825946, "pitch_error": 8.239251433216456}
+{"after_frame": 22, "tick": 48, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.52741689566713, "pitch_error": 6.477262252066273}
+{"after_frame": 23, "tick": 50, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.624129542371996, "pitch_error": 4.712810382315957}
+{"after_frame": 24, "tick": 52, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.658577792713714, "pitch_error": 2.948447603660742}
+{"after_frame": 25, "tick": 54, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.631247818187454, "pitch_error": 1.186699586493082}
+{"after_frame": 26, "tick": 56, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.54243368808958, "pitch_error": -0.569914522867239}
+{"after_frame": 27, "tick": 58, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.39225721275633, "pitch_error": -2.318877823343745}
+{"after_frame": 28, "tick": 60, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 47.18064838521388, "pitch_error": -4.057673926160923}
+{"after_frame": 29, "tick": 62, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.90739194952158, "pitch_error": -5.783777083062546}
+{"after_frame": 30, "tick": 64, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 31, "tick": 68, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 32, "tick": 70, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 33, "tick": 72, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 34, "tick": 74, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 35, "tick": 76, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 36, "tick": 78, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 37, "tick": 80, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 38, "tick": 82, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 39, "tick": 84, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 40, "tick": 86, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 41, "tick": 88, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 42, "tick": 90, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 43, "tick": 92, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 44, "tick": 94, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 45, "tick": 96, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 46, "tick": 98, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 47, "tick": 100, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 48, "tick": 102, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 49, "tick": 104, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 50, "tick": 106, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 51, "tick": 108, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 52, "tick": 110, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 53, "tick": 112, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 54, "tick": 114, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 55, "tick": 116, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 56, "tick": 118, "phase": "recover", "keys": ["Home"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 57, "tick": 120, "phase": "pursue stationary fighter", "keys": ["Down", "Right", "w"], "range": 81.27730560302734, "yaw_error": 46.802945308914865, "pitch_error": -6.3575151031326556}
+{"after_frame": 58, "tick": 122, "phase": "pursue stationary fighter", "keys": ["Down", "Right", "w"], "range": 81.26321411132812, "yaw_error": 44.51483157270442, "pitch_error": -5.077023707956532}
+{"after_frame": 59, "tick": 124, "phase": "pursue stationary fighter", "keys": ["Down", "Right", "w"], "range": 81.22924041748047, "yaw_error": 42.27331807202032, "pitch_error": -3.746549542826067}
+{"after_frame": 60, "tick": 126, "phase": "pursue stationary fighter", "keys": ["Down", "Right", "w"], "range": 81.1741714477539, "yaw_error": 40.07596069921782, "pitch_error": -2.3686261868451886}
+{"after_frame": 61, "tick": 128, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 81.0970230102539, "yaw_error": 37.92013083181467, "pitch_error": -0.9455933077349907}
+{"after_frame": 62, "tick": 130, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 80.99685668945312, "yaw_error": 35.807346462906075, "pitch_error": -0.9471350168219467}
+{"after_frame": 63, "tick": 132, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 80.87287139892578, "yaw_error": 33.70305999073936, "pitch_error": -0.9487169016429245}
+{"after_frame": 64, "tick": 134, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 80.724365234375, "yaw_error": 31.606238784555142, "pitch_error": -0.9505160871174969}
+{"after_frame": 65, "tick": 136, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 80.55077362060547, "yaw_error": 29.515820339969103, "pitch_error": -0.952588494826252}
+{"after_frame": 66, "tick": 138, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 80.35159301757812, "yaw_error": 27.43074161113335, "pitch_error": -0.9549626022218494}
+{"after_frame": 67, "tick": 140, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 80.12649536132812, "yaw_error": 25.34993989590495, "pitch_error": -0.9576513285549201}
+{"after_frame": 68, "tick": 142, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 79.87517547607422, "yaw_error": 23.2723484987613, "pitch_error": -0.960668475571144}
+{"after_frame": 69, "tick": 144, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 79.59749603271484, "yaw_error": 21.19690051888403, "pitch_error": -0.9640219516275172}
+{"after_frame": 70, "tick": 146, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 79.29337310791016, "yaw_error": 19.12254175807261, "pitch_error": -0.9677205812468989}
+{"after_frame": 71, "tick": 148, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 78.96281433105469, "yaw_error": 17.048205183315456, "pitch_error": -0.9717728707394835}
+{"after_frame": 72, "tick": 150, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 78.60591125488281, "yaw_error": 14.972849463926698, "pitch_error": -0.9761866394091319}
+{"after_frame": 73, "tick": 152, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 78.22286987304688, "yaw_error": 12.895418327568255, "pitch_error": -0.9809684906075801}
+{"after_frame": 74, "tick": 154, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 77.81390380859375, "yaw_error": 10.814868604258846, "pitch_error": -0.9861255040811906}
+{"after_frame": 75, "tick": 156, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 77.37935638427734, "yaw_error": 8.7301614747376, "pitch_error": -0.9916636729106425}
+{"after_frame": 76, "tick": 158, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 76.91960906982422, "yaw_error": 6.640254541563761, "pitch_error": -0.9975915252558488}
+{"after_frame": 77, "tick": 160, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 76.43511199951172, "yaw_error": 4.544113047705791, "pitch_error": -1.0039160595781937}
+{"after_frame": 78, "tick": 162, "phase": "pursue stationary fighter", "keys": ["Right", "w"], "range": 75.92638397216797, "yaw_error": 2.4406949121737394, "pitch_error": -1.010642853307568}
+{"after_frame": 79, "tick": 164, "phase": "pursue stationary fighter", "keys": ["w"], "range": 75.39398193359375, "yaw_error": 0.328954845652215, "pitch_error": -1.0177818055278873}
+{"after_frame": 80, "tick": 166, "phase": "pursue stationary fighter", "keys": ["w"], "range": 74.83763122558594, "yaw_error": 0.3758173966243277, "pitch_error": -1.025349014862888}
+{"after_frame": 81, "tick": 168, "phase": "pursue stationary fighter", "keys": ["w"], "range": 74.25643157958984, "yaw_error": 0.4160385793997613, "pitch_error": -1.0333743879983937}
+{"after_frame": 82, "tick": 170, "phase": "pursue stationary fighter", "keys": ["w"], "range": 73.64979553222656, "yaw_error": 0.45082976479761777, "pitch_error": -1.0418879130727055}
+{"after_frame": 83, "tick": 172, "phase": "pursue stationary fighter", "keys": ["w"], "range": 73.01728820800781, "yaw_error": 0.4812104247369386, "pitch_error": -1.0509148977592477}
+{"after_frame": 84, "tick": 174, "phase": "pursue stationary fighter", "keys": ["w"], "range": 72.35865783691406, "yaw_error": 0.5080066203423783, "pitch_error": -1.0604811786120043}
+{"after_frame": 85, "tick": 176, "phase": "pursue stationary fighter", "keys": [], "range": 71.67372131347656, "yaw_error": 0.5319154056177209, "pitch_error": -1.070616771886545}
+{"after_frame": 86, "tick": 178, "phase": "pursue stationary fighter", "keys": [], "range": 70.96241760253906, "yaw_error": 0.553212075126993, "pitch_error": -1.0813491865178118}
+{"after_frame": 87, "tick": 180, "phase": "pursue stationary fighter", "keys": [], "range": 70.22472381591797, "yaw_error": 0.5718458256662374, "pitch_error": -1.0927101111555428}
+{"after_frame": 88, "tick": 182, "phase": "pursue stationary fighter", "keys": [], "range": 69.46065521240234, "yaw_error": 0.5877507363762999, "pitch_error": -1.1047312334136947}
+{"after_frame": 89, "tick": 184, "phase": "pursue stationary fighter", "keys": [], "range": 68.67020416259766, "yaw_error": 0.6008530497347099, "pitch_error": -1.1174488444822364}
+{"after_frame": 90, "tick": 186, "phase": "pursue stationary fighter", "keys": [], "range": 67.8533706665039, "yaw_error": 0.6110695897445337, "pitch_error": -1.130902462710787}
+{"after_frame": 91, "tick": 190, "phase": "pursue stationary fighter", "keys": [], "range": 66.17538452148438, "yaw_error": 0.6267809925943978, "pitch_error": -1.159582163041977}
+{"after_frame": 92, "tick": 192, "phase": "pursue stationary fighter", "keys": [], "range": 65.33560180664062, "yaw_error": 0.6348426739573488, "pitch_error": -1.1744882903673084}
+{"after_frame": 93, "tick": 194, "phase": "pursue stationary fighter", "keys": [], "range": 64.49584197998047, "yaw_error": 0.6431118091161226, "pitch_error": -1.189783344301219}
+{"after_frame": 94, "tick": 196, "phase": "pursue stationary fighter", "keys": [], "range": 63.65607452392578, "yaw_error": 0.6516008730577701, "pitch_error": -1.2054819275999138}
+{"after_frame": 95, "tick": 198, "phase": "pursue stationary fighter", "keys": [], "range": 62.81631851196289, "yaw_error": 0.6603143207959944, "pitch_error": -1.2215994165352064}
+{"after_frame": 96, "tick": 200, "phase": "pursue stationary fighter", "keys": [], "range": 61.97657012939453, "yaw_error": 0.6692676110950084, "pitch_error": -1.2381537924857704}
+{"after_frame": 97, "tick": 202, "phase": "pursue stationary fighter", "keys": [], "range": 61.13682556152344, "yaw_error": 0.6784643349163587, "pitch_error": -1.2551636524538223}
+{"after_frame": 98, "tick": 204, "phase": "pursue stationary fighter", "keys": [], "range": 60.297088623046875, "yaw_error": 0.6879191139834366, "pitch_error": -1.2726469561162341}
+{"after_frame": 99, "tick": 206, "phase": "pursue stationary fighter", "keys": [], "range": 59.45736312866211, "yaw_error": 0.6976382893344445, "pitch_error": -1.2906235252091827}
+{"after_frame": 100, "tick": 208, "phase": "pursue stationary fighter", "keys": [], "range": 58.61764144897461, "yaw_error": 0.7076384931872585, "pitch_error": -1.3091157342978903}
+{"after_frame": 101, "tick": 210, "phase": "pursue stationary fighter", "keys": [], "range": 57.77792739868164, "yaw_error": 0.7179275422561052, "pitch_error": -1.3281447707388905}
+{"after_frame": 102, "tick": 212, "phase": "pursue stationary fighter", "keys": [], "range": 56.938228607177734, "yaw_error": 0.7285236925510838, "pitch_error": -1.3477352090605903}
+{"after_frame": 103, "tick": 214, "phase": "pursue stationary fighter", "keys": [], "range": 56.09852981567383, "yaw_error": 0.7394351864057909, "pitch_error": -1.3679121314090512}
+{"after_frame": 104, "tick": 216, "phase": "pursue stationary fighter", "keys": [], "range": 55.25884246826172, "yaw_error": 0.7506794630703124, "pitch_error": -1.3887030366994577}
+{"after_frame": 105, "tick": 218, "phase": "pursue stationary fighter", "keys": [], "range": 54.419166564941406, "yaw_error": 0.762267553135013, "pitch_error": -1.4101339840347014}
+{"after_frame": 106, "tick": 220, "phase": "pursue stationary fighter", "keys": [], "range": 53.57950210571289, "yaw_error": 0.7742214399868363, "pitch_error": -1.4322374983131794}
+{"after_frame": 107, "tick": 222, "phase": "pursue stationary fighter", "keys": [], "range": 52.73984909057617, "yaw_error": 0.7865563766267123, "pitch_error": -1.4550447073179062}
+{"after_frame": 108, "tick": 224, "phase": "pursue stationary fighter", "keys": [], "range": 51.900203704833984, "yaw_error": 0.799291158052203, "pitch_error": -1.4785896980564754}
+{"after_frame": 109, "tick": 226, "phase": "pursue stationary fighter", "keys": ["Down"], "range": 51.060569763183594, "yaw_error": 0.8124439799331875, "pitch_error": -1.5029083120706894}
+{"after_frame": 110, "tick": 228, "phase": "pursue stationary fighter", "keys": [], "range": 50.22068405151367, "yaw_error": 0.8257626512813929, "pitch_error": 0.3279155481573504}
+{"after_frame": 111, "tick": 230, "phase": "pursue stationary fighter", "keys": [], "range": 49.38079071044922, "yaw_error": 0.8398087645802532, "pitch_error": 0.3334929919460225}
+{"after_frame": 112, "tick": 232, "phase": "pursue stationary fighter", "keys": [], "range": 48.5408935546875, "yaw_error": 0.8543411077324305, "pitch_error": 0.3392637340608111}
+{"after_frame": 113, "tick": 234, "phase": "pursue stationary fighter", "keys": [], "range": 47.70100402832031, "yaw_error": 0.8693861587492837, "pitch_error": 0.3452364968628741}
+{"after_frame": 114, "tick": 236, "phase": "pursue stationary fighter", "keys": [], "range": 46.86111831665039, "yaw_error": 0.8849700231700051, "pitch_error": 0.3514244708009076}
+{"after_frame": 115, "tick": 238, "phase": "pursue stationary fighter", "keys": [], "range": 46.021236419677734, "yaw_error": 0.9011240526815459, "pitch_error": 0.3578377716480914}
+{"after_frame": 116, "tick": 240, "phase": "pursue stationary fighter", "keys": [], "range": 45.18135452270508, "yaw_error": 0.9178778518092285, "pitch_error": 0.3644890848658472}
+{"after_frame": 117, "tick": 242, "phase": "pursue stationary fighter", "keys": [], "range": 44.34148025512695, "yaw_error": 0.9352670408004136, "pitch_error": 0.3713923619420617}
+{"after_frame": 118, "tick": 244, "phase": "pursue stationary fighter", "keys": [], "range": 43.50161361694336, "yaw_error": 0.9533272469172654, "pitch_error": 0.37856313650092355}
+{"after_frame": 119, "tick": 246, "phase": "pursue stationary fighter", "keys": [], "range": 42.661746978759766, "yaw_error": 0.9720963151379558, "pitch_error": 0.3860161058562878}
+{"after_frame": 120, "tick": 248, "phase": "pursue stationary fighter", "keys": [], "range": 41.8218879699707, "yaw_error": 0.9916228736067421, "pitch_error": 0.3937672038186726}
+{"after_frame": 121, "tick": 250, "phase": "pursue stationary fighter", "keys": [], "range": 40.98203659057617, "yaw_error": 1.0119490421608965, "pitch_error": 0.40183657564894026}
+{"after_frame": 122, "tick": 252, "phase": "pursue stationary fighter", "keys": [], "range": 40.14219284057617, "yaw_error": 1.0331249024234344, "pitch_error": 0.41024380995650583}
+{"after_frame": 123, "tick": 254, "phase": "pursue stationary fighter", "keys": [], "range": 39.30235290527344, "yaw_error": 1.0552046240443866, "pitch_error": 0.4190093259337202}
+{"after_frame": 124, "tick": 256, "phase": "pursue stationary fighter", "keys": [], "range": 38.462520599365234, "yaw_error": 1.078250548361881, "pitch_error": 0.42815819537824706}
+{"after_frame": 125, "tick": 258, "phase": "pursue stationary fighter", "keys": [], "range": 37.62269592285156, "yaw_error": 1.1023242685451033, "pitch_error": 0.4377158900191514}
+{"after_frame": 126, "tick": 260, "phase": "pursue stationary fighter", "keys": [], "range": 36.782875061035156, "yaw_error": 1.1274986532156706, "pitch_error": 0.44770920037735085}
+{"after_frame": 127, "tick": 262, "phase": "pursue stationary fighter", "keys": [], "range": 35.94306945800781, "yaw_error": 1.153848704202052, "pitch_error": 0.45817007191245857}
+{"after_frame": 128, "tick": 264, "phase": "pursue stationary fighter", "keys": [], "range": 35.103267669677734, "yaw_error": 1.1814602987304021, "pitch_error": 0.46913136429373664}
+{"after_frame": 129, "tick": 266, "phase": "pursue stationary fighter", "keys": [], "range": 34.26348114013672, "yaw_error": 1.2104251001470416, "pitch_error": 0.4806292200150326}
+{"after_frame": 130, "tick": 268, "phase": "pursue stationary fighter", "keys": [], "range": 33.423702239990234, "yaw_error": 1.2408468749259511, "pitch_error": 0.49270522519270277}
+{"after_frame": 131, "tick": 270, "phase": "pursue stationary fighter", "keys": [], "range": 32.58393478393555, "yaw_error": 1.272834305185635, "pitch_error": 0.5054034815635042}
+{"after_frame": 132, "tick": 272, "phase": "pursue stationary fighter", "keys": [], "range": 31.744178771972656, "yaw_error": 1.306513677639751, "pitch_error": 0.5187726989977163}
+{"after_frame": 133, "tick": 274, "phase": "pursue stationary fighter", "keys": [], "range": 30.904438018798828, "yaw_error": 1.3420259183838854, "pitch_error": 0.5328695013436796}
+{"after_frame": 134, "tick": 276, "phase": "pursue stationary fighter", "keys": [], "range": 30.064712524414062, "yaw_error": 1.3795221986430157, "pitch_error": 0.5477522250086201}
+{"after_frame": 135, "tick": 278, "phase": "pursue stationary fighter", "keys": [], "range": 29.224998474121094, "yaw_error": 1.4191715697347544, "pitch_error": 0.5634908776541968}
+{"after_frame": 136, "tick": 280, "phase": "pursue stationary fighter", "keys": [], "range": 28.385305404663086, "yaw_error": 1.4611658590286163, "pitch_error": 0.5801605714296589}
+{"after_frame": 137, "tick": 282, "phase": "pursue stationary fighter", "keys": ["Right"], "range": 27.545631408691406, "yaw_error": 1.505725731189785, "pitch_error": 0.5978450195892722}
+{"after_frame": 138, "tick": 284, "phase": "pursue stationary fighter", "keys": [], "range": 26.705738067626953, "yaw_error": -0.6564895921272473, "pitch_error": 0.6166479478846233}
+{"after_frame": 139, "tick": 286, "phase": "pursue stationary fighter", "keys": [], "range": 25.865846633911133, "yaw_error": -0.6778110959750773, "pitch_error": 0.6366731185645242}
+{"after_frame": 140, "tick": 288, "phase": "pursue stationary fighter", "keys": [], "range": 25.02596092224121, "yaw_error": -0.7005653943594823, "pitch_error": 0.6580421636488165}
+{"after_frame": 141, "tick": 290, "phase": "pursue stationary fighter", "keys": [], "range": 24.186084747314453, "yaw_error": -0.7248980102134355, "pitch_error": 0.6808944637047282}
+{"after_frame": 142, "tick": 292, "phase": "pursue stationary fighter", "keys": [], "range": 23.346216201782227, "yaw_error": -0.7509833069727748, "pitch_error": 0.7053921852622469}
+{"after_frame": 143, "tick": 294, "phase": "pursue stationary fighter", "keys": [], "range": 22.506359100341797, "yaw_error": -0.7790163458317226, "pitch_error": 0.7317168727349261}
+{"after_frame": 144, "tick": 296, "phase": "stop", "keys": ["b"], "range": 21.66651153564453, "yaw_error": -0.8092200099266234, "pitch_error": 0.7600829551061123}
+{"after_frame": 145, "tick": 298, "phase": "stop", "keys": ["b"], "range": 20.876665115356445, "yaw_error": -0.8398451795059916, "pitch_error": 0.7888413709276579}
+{"after_frame": 146, "tick": 300, "phase": "stop", "keys": ["b"], "range": 20.153484344482422, "yaw_error": -0.8699898331550735, "pitch_error": 0.8171494079781102}
+{"after_frame": 147, "tick": 302, "phase": "stop", "keys": ["b"], "range": 19.496965408325195, "yaw_error": -0.8992915002452625, "pitch_error": 0.8446672135139797}
+{"after_frame": 148, "tick": 304, "phase": "stop", "keys": ["b"], "range": 18.907108306884766, "yaw_error": -0.9273594261064699, "pitch_error": 0.8710213884258333}
+{"after_frame": 149, "tick": 306, "phase": "stop", "keys": ["b"], "range": 18.383907318115234, "yaw_error": -0.9537598937915363, "pitch_error": 0.8958131109947123}
+{"after_frame": 150, "tick": 308, "phase": "stop", "keys": ["b"], "range": 17.9273624420166, "yaw_error": -0.9780561442265538, "pitch_error": 0.9186276776850261}
+{"after_frame": 151, "tick": 311, "phase": "stop", "keys": ["b"], "range": 17.367521286010742, "yaw_error": -1.009593023749952, "pitch_error": 0.9482409906735314}
+{"after_frame": 152, "tick": 313, "phase": "stop", "keys": ["b"], "range": 17.077606201171875, "yaw_error": -1.0267383034009334, "pitch_error": 0.9643409243555459}
+{"after_frame": 153, "tick": 315, "phase": "stop", "keys": ["b"], "range": 16.854341506958008, "yaw_error": -1.0403471690960457, "pitch_error": 0.9771158072175213}
+{"after_frame": 154, "tick": 317, "phase": "stop", "keys": ["b"], "range": 16.697723388671875, "yaw_error": -1.0501138224479611, "pitch_error": 0.9862825223116143}
+{"after_frame": 155, "tick": 319, "phase": "stop", "keys": ["b"], "range": 16.60775375366211, "yaw_error": -1.0558054062857005, "pitch_error": 0.9916259793512655}
+{"after_frame": 156, "tick": 321, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 157, "tick": 323, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 158, "tick": 325, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 159, "tick": 327, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 160, "tick": 329, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 161, "tick": 331, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 162, "tick": 333, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 163, "tick": 335, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 164, "tick": 337, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 165, "tick": 339, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 166, "tick": 341, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 167, "tick": 343, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 168, "tick": 345, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 169, "tick": 347, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 170, "tick": 349, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 171, "tick": 351, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 172, "tick": 353, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 173, "tick": 355, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 174, "tick": 357, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 175, "tick": 359, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 176, "tick": 361, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 177, "tick": 363, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 178, "tick": 365, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 179, "tick": 367, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 180, "tick": 369, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 181, "tick": 371, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 182, "tick": 373, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 183, "tick": 375, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 184, "tick": 377, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 185, "tick": 379, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 186, "tick": 381, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 187, "tick": 383, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 188, "tick": 385, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 189, "tick": 387, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 190, "tick": 389, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 191, "tick": 391, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 192, "tick": 393, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 193, "tick": 395, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 194, "tick": 397, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 195, "tick": 399, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 196, "tick": 401, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 197, "tick": 403, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 198, "tick": 405, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 199, "tick": 407, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 200, "tick": 409, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 201, "tick": 411, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 202, "tick": 413, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 203, "tick": 415, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 204, "tick": 417, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 205, "tick": 419, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 206, "tick": 421, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 207, "tick": 423, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 208, "tick": 425, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 209, "tick": 427, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 210, "tick": 429, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 211, "tick": 434, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 212, "tick": 436, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 213, "tick": 438, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 214, "tick": 440, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 215, "tick": 442, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 216, "tick": 444, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 217, "tick": 446, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 218, "tick": 448, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 219, "tick": 450, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 220, "tick": 452, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 221, "tick": 454, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 222, "tick": 456, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 223, "tick": 458, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 224, "tick": 460, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 225, "tick": 462, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 226, "tick": 464, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 227, "tick": 466, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 228, "tick": 468, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 229, "tick": 470, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 230, "tick": 472, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 231, "tick": 474, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 232, "tick": 476, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 233, "tick": 478, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 234, "tick": 480, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 235, "tick": 482, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 236, "tick": 484, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 237, "tick": 486, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 238, "tick": 488, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 239, "tick": 490, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 240, "tick": 492, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 241, "tick": 494, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 242, "tick": 496, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 243, "tick": 498, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 244, "tick": 500, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 245, "tick": 502, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 246, "tick": 504, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 247, "tick": 506, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 248, "tick": 508, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 249, "tick": 510, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 250, "tick": 512, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 251, "tick": 514, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 252, "tick": 516, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 253, "tick": 518, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 254, "tick": 520, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 255, "tick": 522, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 256, "tick": 524, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 257, "tick": 526, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 258, "tick": 528, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 259, "tick": 530, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 260, "tick": 532, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 261, "tick": 534, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 262, "tick": 536, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 263, "tick": 538, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 264, "tick": 540, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 265, "tick": 542, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 266, "tick": 544, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 267, "tick": 546, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 268, "tick": 548, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 269, "tick": 550, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}
+{"after_frame": 270, "tick": 552, "phase": "stop", "keys": ["b"], "range": 16.584430694580078, "yaw_error": -1.057293099593201, "pitch_error": 0.9930225274893821}

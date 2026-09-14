@@ -1,0 +1,140 @@
+{
+  "status": "passed",
+  "hit": {
+    "status": "passed",
+    "frames": 600,
+    "ticks": 619,
+    "weapons": {
+      "weapon": "cannon",
+      "weapon_name": "Rapid Cannon",
+      "ready": false,
+      "cooldown_remaining": 0.06666666666666668,
+      "heat": 97.5,
+      "heat_capacity": 100.0,
+      "overheated": true,
+      "weapons_multiplier": 1.0,
+      "firing_blocked": false,
+      "locked_target": null,
+      "lock_in_range": false,
+      "lock_in_front": false,
+      "on_target": false,
+      "projectiles": 2,
+      "fired": 67,
+      "hits": 65,
+      "misses": 0
+    },
+    "enemy_health": {
+      "fighter-1": {
+        "entity_id": "fighter-1",
+        "hull": 1.0,
+        "hull_hp": 100.0,
+        "state": "healthy",
+        "subsystems": {
+          "engine": 1.0,
+          "weapons": 1.0,
+          "sensors": 1.0
+        },
+        "repairing": null,
+        "repair_progress": 0.0,
+        "engine_multiplier": 1.0,
+        "turning_multiplier": 1.0,
+        "weapons_multiplier": 1.0,
+        "sensors_multiplier": 1.0
+      },
+      "fighter-2": {
+        "entity_id": "fighter-2",
+        "hull": 1.0,
+        "hull_hp": 100.0,
+        "state": "healthy",
+        "subsystems": {
+          "engine": 1.0,
+          "weapons": 1.0,
+          "sensors": 1.0
+        },
+        "repairing": null,
+        "repair_progress": 0.0,
+        "engine_multiplier": 1.0,
+        "turning_multiplier": 1.0,
+        "weapons_multiplier": 1.0,
+        "sensors_multiplier": 1.0
+      },
+      "fighter-3": {
+        "entity_id": "fighter-3",
+        "hull": 1.0,
+        "hull_hp": 100.0,
+        "state": "healthy",
+        "subsystems": {
+          "engine": 1.0,
+          "weapons": 1.0,
+          "sensors": 1.0
+        },
+        "repairing": null,
+        "repair_progress": 0.0,
+        "engine_multiplier": 1.0,
+        "turning_multiplier": 1.0,
+        "weapons_multiplier": 1.0,
+        "sensors_multiplier": 1.0
+      },
+      "capital": {
+        "entity_id": "capital",
+        "hull": 0.74,
+        "hull_hp": 2220.0,
+        "state": "healthy",
+        "subsystems": {
+          "engine": 1.0,
+          "weapons": 1.0,
+          "sensors": 1.0
+        },
+        "repairing": null,
+        "repair_progress": 0.0,
+        "engine_multiplier": 1.0,
+        "turning_multiplier": 1.0,
+        "weapons_multiplier": 1.0,
+        "sensors_multiplier": 1.0
+      }
+    },
+    "captures": [
+      "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/weapons-runtime/hit/trace/frame-0100.png",
+      "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/weapons-runtime/hit/trace/frame-0300.png",
+      "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/weapons-runtime/hit/trace/frame-0500.png"
+    ]
+  },
+  "miss": {
+    "status": "passed",
+    "frames": 600,
+    "ticks": 618,
+    "weapons": {
+      "weapon": "cannon",
+      "weapon_name": "Rapid Cannon",
+      "ready": false,
+      "cooldown_remaining": 0.08333333333333334,
+      "heat": 98.0,
+      "heat_capacity": 100.0,
+      "overheated": true,
+      "weapons_multiplier": 1.0,
+      "firing_blocked": false,
+      "locked_target": null,
+      "lock_in_range": false,
+      "lock_in_front": false,
+      "on_target": false,
+      "projectiles": 32,
+      "fired": 67,
+      "hits": 0,
+      "misses": 35
+    },
+    "enemy_health": {},
+    "captures": [
+      "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/weapons-runtime/miss/trace/frame-0100.png",
+      "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/weapons-runtime/miss/trace/frame-0300.png",
+      "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/weapons-runtime/miss/trace/frame-0500.png"
+    ]
+  },
+  "checks": [
+    "real Panda3D offscreen renderer with scripted fire",
+    "projectiles spawn, fly, and resolve (no vision used)",
+    "hit run: sustained fire damages the capital through DamageSystem",
+    "miss run: no targets -> all shots miss, nothing damaged",
+    "weapons/aim/enemy-health recorded in the deterministic trace"
+  ],
+  "scope": "Scripted offscreen combat, not a human playtest."
+}

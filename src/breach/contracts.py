@@ -18,6 +18,7 @@ class PilotInput:
     fire: bool = False
     repair: bool = False
     target_next: bool = False
+    cycle_weapon: bool = False
     brake: bool = False
     level: bool = False
     repair_subsystem: Subsystem = Subsystem.ENGINE

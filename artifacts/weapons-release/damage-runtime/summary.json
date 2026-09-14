@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "frames": 700,
+  "ticks": 720,
+  "final_health": {
+    "entity_id": "player",
+    "hull": 0.0,
+    "hull_hp": 0.0,
+    "state": "destroyed",
+    "subsystems": {
+      "engine": 0.7,
+      "weapons": 1.0,
+      "sensors": 1.0
+    },
+    "repairing": null,
+    "repair_progress": 0.0,
+    "engine_multiplier": 0.0,
+    "turning_multiplier": 0.0,
+    "weapons_multiplier": 0.0,
+    "sensors_multiplier": 0.0
+  },
+  "states_observed": [
+    "healthy",
+    "smoking",
+    "burning",
+    "destroyed"
+  ],
+  "captures": [
+    "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/damage-runtime/trace/frame-0120.png",
+    "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/damage-runtime/trace/frame-0240.png",
+    "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/damage-runtime/trace/frame-0480.png",
+    "/opt/g-harness/workspace/G14/node_4_step_197/repo/artifacts/weapons-release/damage-runtime/trace/frame-0680.png"
+  ],
+  "schedule": [
+    {
+      "tick": 60,
+      "amount": 40,
+      "subsystem": "engine"
+    },
+    {
+      "tick": 120,
+      "amount": 40,
+      "subsystem": null
+    },
+    {
+      "tick": 180,
+      "amount": 30,
+      "subsystem": null
+    },
+    {
+      "tick": 240,
+      "type": "repair",
+      "subsystem": "engine",
+      "active": true
+    },
+    {
+      "tick": 540,
+      "amount": 30,
+      "subsystem": null
+    }
+  ],
+  "checks": [
+    "engine damage zeroes thrust+turning live",
+    "hull thresholds smoking/burning/destroyed observed live",
+    "repair restores engine to 0.70 cap live",
+    "terminal destruction zeroes all capability",
+    "real Panda3D app, deterministic trace (no vision)"
+  ],
+  "scope": "Scripted events -> DamageSystem -> live FlightSystem performance; no human playtest."
+}

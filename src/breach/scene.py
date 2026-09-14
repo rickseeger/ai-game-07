@@ -70,3 +70,30 @@ def build_scene(render):
                      (value*.8, value*.9, value, 1))
         star.setLightOff()
     return root
+
+
+def combat_targets():
+    """Enemy hitbox definitions matching the placed scene geometry.
+
+    Returns a list of dicts (id, faction, position, half, orientation wxyz) for
+    the three reference fighters and the capital hull. These are the weapons
+    node's static target set; EnemySystem (a later node) will own live AI poses
+    and replace these with its own registry entries.
+    """
+    from panda3d.core import Quat
+
+    def orient(hpr):
+        q = Quat()
+        q.setHpr(hpr)
+        return tuple(q)
+
+    return [
+        dict(id="fighter-1", faction="enemy", position=(-23, 56, 7),
+             half=(2.5, 2.0, 0.4), orientation=orient((20, 10, 25))),
+        dict(id="fighter-2", faction="enemy", position=(21, 63, -5),
+             half=(2.5, 2.0, 0.4), orientation=orient((20, 10, 25))),
+        dict(id="fighter-3", faction="enemy", position=(27, 100, 19),
+             half=(2.5, 2.0, 0.4), orientation=orient((20, 10, 25))),
+        dict(id="capital", faction="enemy", position=(0, 85, 4),
+             half=(8.0, 23.0, 4.0), orientation=orient((0, 0, 0))),
+    ]

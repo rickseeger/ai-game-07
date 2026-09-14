@@ -1,12 +1,13 @@
 """Single-window integration: hardware -> fixed simulation -> cockpit presentation."""
 import argparse
-from dataclasses import asdict
+from dataclasses import asdict, replace
 import json
 from pathlib import Path
 from panda3d.core import loadPrcFileData
 from breach.input import BINDINGS, CONTROL_LINES, InputAdapter, InputSettings, control_lines
 from breach.contracts import DamageEvent, RepairIntent, Subsystem
-from breach.damage import DamageSystem, FIGHTER_PROFILE
+from breach.damage import DamageSystem, FIGHTER_PROFILE, CAPITAL_PROFILE
+from breach.weapons import WeaponsSystem
 
 
 def parser():
@@ -26,6 +27,11 @@ def parser():
                    help="JSON array of scripted damage/repair events keyed by tick "
                         "(see docs/DAMAGE.md); queued at the listed tick and applied "
                         "the following fixed tick (60 Hz).")
+    p.add_argument("--fire-script", type=Path,
+                   help="JSON array of {tick, fire} toggles that force the held "
+                        "fire level for scripted/offscreen combat runs.")
+    p.add_argument("--no-combat-targets", action="store_true",
+                   help="do not register the default enemy/capital hitboxes")
     return p
 
 
@@ -48,6 +54,14 @@ def load_damage_schedule(path):
     return schedule
 
 
+def load_fire_schedule(path):
+    """Parse a JSON list of {tick, fire} toggles into a sorted (tick, fire) list."""
+    entries = [(int(e["tick"]), bool(e["fire"]))
+               for e in json.loads(Path(path).read_text())]
+    entries.sort()
+    return entries
+
+
 def main():
     args = parser().parse_args()
     if args.frames < 0 or ((args.capture or args.report or args.trace_dir) and not args.frames):
@@ -58,6 +72,7 @@ def main():
     displayed_controls = control_lines(settings, args.keyboard_only)
     capture_frames = {int(x) for x in args.capture_frames.split(",") if x}
     damage_schedule = load_damage_schedule(args.damage_script) if args.damage_script else {}
+    fire_schedule = load_fire_schedule(args.fire_script) if args.fire_script else []
     if args.trace_dir:
         args.trace_dir.mkdir(parents=True, exist_ok=False)
     loadPrcFileData("flight", "window-title G14 - Breach Flight\nwin-size 960 540\nsync-video false\nclock-mode limited\nclock-frame-rate 60\nframebuffer-multisample false\nnotify-level info")
@@ -69,7 +84,7 @@ def main():
     from direct.showbase.ShowBase import ShowBase
     from direct.gui.OnscreenText import OnscreenText
     from panda3d.core import AmbientLight, DirectionalLight, TextNode, WindowProperties, ClockObject
-    from breach.scene import build_scene
+    from breach.scene import build_scene, combat_targets
     from breach.flight import FlightSystem
     from breach.timing import FixedStepper
     from breach.camera import FlightCamera, EYE_OFFSET
@@ -89,7 +104,21 @@ def main():
                                        speed_provider=lambda eid: self.flight.velocity.length())
             self.flight.damage = self.damage
             self.damage.spawn(self.flight.entity_id, FIGHTER_PROFILE)
-            self.stepper = FixedStepper(self.flight, systems=[self.damage])
+            self.weapons = WeaponsSystem(player_entity_id=self.flight.entity_id,
+                                         damage=self.damage,
+                                         pose_provider=self.flight.snapshot)
+            self.combat_ids = []
+            if not args.no_combat_targets:
+                for target in combat_targets():
+                    self.weapons.set_faction(target["id"], target["faction"])
+                    self.weapons.add_target(target["id"], target["faction"],
+                                            target["position"], target["half"],
+                                            target["orientation"])
+                    profile = (CAPITAL_PROFILE if target["id"] == "capital"
+                               else FIGHTER_PROFILE)
+                    self.damage.spawn(target["id"], profile)
+                    self.combat_ids.append(target["id"])
+            self.stepper = FixedStepper(self.flight, systems=[self.weapons, self.damage])
             self.view = FlightCamera(self.render, self.camera)
             self.view.add_canopy()
             self.view.present(self.stepper.previous, self.stepper.current, 1)
@@ -102,7 +131,7 @@ def main():
             key_np = self.render.attachNewNode(key)
             key_np.setHpr(-30, -45, 0)
             self.render.setLight(key_np)
-            OnscreenText(text="BREACH FLIGHT / FLIGHT TEST - NO COMBAT", pos=(-1.68, 0.90),
+            OnscreenText(text="BREACH FLIGHT / COMBAT TEST", pos=(-1.68, 0.90),
                          scale=0.046, fg=(0.3, 0.9, 0.85, 1), align=TextNode.ALeft)
             for i, line in enumerate(displayed_controls):
                 OnscreenText(text=line, pos=(0, -0.55-i*.073), scale=0.052,
@@ -119,6 +148,9 @@ def main():
             self.capture_active = False
             self.skip_mouse = True
             self.trace = (args.trace_dir / "trace.jsonl").open("w") if args.trace_dir else None
+            self.fire_schedule = fire_schedule
+            self.fire_index = 0
+            self.fire_level = False
             for binding, action in BINDINGS.items():
                 if action == "pause":
                     self.accept(binding, self.toggle_pause)
@@ -218,6 +250,22 @@ def main():
         def health_dict(self):
             return self.damage.snapshot(self.flight.entity_id).to_dict()
 
+        def weapons_dict(self):
+            return self.weapons.aim_snapshot().to_dict()
+
+        def sample_controls(self):
+            # Scripted fire toggles overlay the sampled input for deterministic
+            # offscreen combat runs; keyed by the upcoming fixed tick.
+            upcoming = self.stepper.tick + 1
+            while (self.fire_index < len(self.fire_schedule)
+                   and self.fire_schedule[self.fire_index][0] <= upcoming):
+                self.fire_level = self.fire_schedule[self.fire_index][1]
+                self.fire_index += 1
+            controls = self.controls.sample()
+            if self.fire_level:
+                controls = replace(controls, fire=True)
+            return controls
+
         def simulation_tick(self, tick, controls, ship):
             if self.trace:
                 self.record("simulation", controls=asdict(controls), ship=asdict(ship),
@@ -236,7 +284,7 @@ def main():
             self.read_mouse()
             dt = ClockObject.getGlobalClock().getDt()
             before = self.stepper.dropped_seconds
-            steps = self.stepper.advance(dt, self.controls.sample, self.controls.paused,
+            steps = self.stepper.advance(dt, self.sample_controls, self.controls.paused,
                                          self.simulation_tick)
             if self.stepper.dropped_seconds > before:
                 self.record("time_drop", seconds=self.stepper.dropped_seconds-before)
@@ -244,12 +292,26 @@ def main():
             pose = self.view.present(self.stepper.previous, self.stepper.current, self.stepper.alpha)
             speed = self.flight.velocity.length()
             health = self.health_dict()
+            aim = self.weapons_dict()
             hud_line = (f"Throttle {self.flight.throttle:.0%} | Speed {speed:.1f} m/s | "
-                        f"Hull {health['hull']:.0%} {health['state'].upper()}")
+                        f"Hull {health['hull']:.0%} {health['state'].upper()} | "
+                        f"{aim['weapon_name']} heat {aim['heat']:.0f}")
             if health["repairing"]:
                 hud_line += f" | repairing {health['repairing']} {health['repair_progress']:.0%}"
+            if aim["firing_blocked"]:
+                hud_line += " | WEAPONS BLOCKED"
+            if aim["locked_target"]:
+                hud_line += f" | lock {aim['locked_target']}"
+            if aim["on_target"]:
+                hud_line += " [FIRE SOLUTION]"
             self.hud.setText(hud_line)
             self.aim_marker.setPos(self.controls.aim[0]*.25, self.controls.aim[1]*.25)
+            if aim["on_target"]:
+                self.aim_marker.setFg((0.3, 1.0, 0.4, 1))
+            elif aim["locked_target"]:
+                self.aim_marker.setFg((1.0, 0.9, 0.3, 1))
+            else:
+                self.aim_marker.setFg((1.0, 0.75, 0.3, 1))
             self.pause_label.setText("PAUSED - Esc to resume (controls cleared)" if self.controls.paused else "")
             capture = None
             if args.trace_dir and self.frame_count in capture_frames:
@@ -258,7 +320,10 @@ def main():
             self.record("frame", dt=dt, steps=steps, alpha=self.stepper.alpha,
                         paused=self.controls.paused, held=sorted(self.controls.held),
                         ship=asdict(self.stepper.current), pose=asdict(pose),
-                        health=health,
+                        health=health, weapons=aim,
+                        weapon_hits=[[h[0], h[1].value, h[2]] for h in self.weapons.hits_this_tick],
+                        enemy_health={eid: self.damage.snapshot(eid).to_dict()
+                                      for eid in self.combat_ids},
                         camera_position=tuple(self.camera.getPos(self.render)),
                         camera_orientation=tuple(self.camera.getQuat(self.render)),
                         eye_local=tuple(self.camera.getPos()), capture=capture)
@@ -271,6 +336,9 @@ def main():
                                     input_events=self.input_events, mouse_events=self.mouse_events,
                                     ship=asdict(self.flight.snapshot()),
                                     health=self.health_dict(),
+                                    weapons=self.weapons_dict(),
+                                    enemy_health={eid: self.damage.snapshot(eid).to_dict()
+                                                  for eid in self.combat_ids},
                                     dropped_seconds=self.stepper.dropped_seconds,
                                     drop_events=self.stepper.drop_events,
                                     capture=str(args.capture) if args.capture else None)

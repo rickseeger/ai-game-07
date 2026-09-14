@@ -1,0 +1,23 @@
+{
+  "miss": {
+    "misses": 7,
+    "fired": 40,
+    "fighter_hull_hp": 100.0
+  },
+  "track_and_sustain": {
+    "hits": 65,
+    "misses": 0,
+    "first_hit_hull": 88.0,
+    "final_hull": 0.0
+  },
+  "no_one_hit_kill": {
+    "fighter_hull_after_torpedo": 10.0,
+    "capital_hull_after_torpedo": 2910.0
+  },
+  "frame_intervals": {
+    "fired": 40,
+    "hits": 37,
+    "misses": 0,
+    "capital_hull_hp": 2556.0
+  }
+}

@@ -30,7 +30,7 @@ def main():
     text = result.stdout.lower()
     phrases = ["raise/lower throttle", "brake and zero throttle", "roll", "arrows",
                "level horizon", "pause/resume", "quit", "hold to repair",
-               "subsystem", "no combat yet"]
+               "subsystem", "fire", "cycle weapon", "target lock"]
     phrases += ["disabled", "arrow keys"] if args.keyboard_only else ["aim stick", "nose up", "center aim"]
     for phrase in phrases:
         assert phrase in text, (phrase, result.stdout)

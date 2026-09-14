@@ -1,0 +1,170 @@
+{
+  "engine": "Panda3D",
+  "mode": "window",
+  "output_type": "glxGraphicsWindow",
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "vendor": "Mesa",
+  "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3",
+  "size": [
+    960,
+    540
+  ],
+  "seed": 14,
+  "fixed_dt": 0.016666666666666666,
+  "render_hz": 144,
+  "controls": [
+    "W/S raise/lower throttle | B brake and zero throttle",
+    "A/D roll left/right | Arrows: nose up/down/left/right",
+    "Mouse aim disabled (--keyboard-only); use arrow keys",
+    "Hold Home: level horizon | Esc: pause/resume | F10: quit",
+    "R: hold to repair selected subsystem (brakes + locks)",
+    "1/2/3 engine/weapons/sensors | Space/LMB fire | Q cycle weapon",
+    "Tab: target lock | reticle lights when the locked target is in range"
+  ],
+  "settings": {
+    "sensitivity": 0.012,
+    "deadzone": 0.12,
+    "invert_y": false
+  },
+  "eye_offset": [
+    0.0,
+    0.0,
+    0.65
+  ],
+  "audio": "explicitly disabled",
+  "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame",
+  "window_id": 4194312,
+  "frames": 1296,
+  "ticks": 561,
+  "input_events": 10,
+  "mouse_events": 0,
+  "ship": {
+    "entity_id": "player",
+    "position": [
+      15.80340576171875,
+      47.23360824584961,
+      -2.708850383758545
+    ],
+    "velocity": [
+      0.0,
+      0.0,
+      -0.0
+    ],
+    "orientation": [
+      0.9865086674690247,
+      -0.05966266989707947,
+      -0.0364382341504097,
+      -0.1480303853750229
+    ],
+    "throttle": 0.0
+  },
+  "health": {
+    "entity_id": "player",
+    "hull": 1.0,
+    "hull_hp": 100.0,
+    "state": "healthy",
+    "subsystems": {
+      "engine": 1.0,
+      "weapons": 1.0,
+      "sensors": 1.0
+    },
+    "repairing": null,
+    "repair_progress": 0.0,
+    "engine_multiplier": 1.0,
+    "turning_multiplier": 1.0,
+    "weapons_multiplier": 1.0,
+    "sensors_multiplier": 1.0
+  },
+  "weapons": {
+    "weapon": "cannon",
+    "weapon_name": "Rapid Cannon",
+    "ready": true,
+    "cooldown_remaining": 0.0,
+    "heat": 0.0,
+    "heat_capacity": 100.0,
+    "overheated": false,
+    "weapons_multiplier": 1.0,
+    "firing_blocked": false,
+    "locked_target": null,
+    "lock_in_range": false,
+    "lock_in_front": false,
+    "on_target": false,
+    "projectiles": 0,
+    "fired": 0,
+    "hits": 0,
+    "misses": 0
+  },
+  "enemy_health": {
+    "fighter-1": {
+      "entity_id": "fighter-1",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    },
+    "fighter-2": {
+      "entity_id": "fighter-2",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    },
+    "fighter-3": {
+      "entity_id": "fighter-3",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    },
+    "capital": {
+      "entity_id": "capital",
+      "hull": 1.0,
+      "hull_hp": 3000.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    }
+  },
+  "dropped_seconds": 0.75117,
+  "drop_events": 1,
+  "capture": null
+}
