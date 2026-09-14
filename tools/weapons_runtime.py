@@ -32,6 +32,9 @@ def run_app(out, no_targets):
                "--fire-script", str(out / "fire-script.json")]
     if no_targets:
         command.append("--no-combat-targets")
+    else:
+        # Isolate node-4 weapons evidence from the node-5 enemy AI.
+        command.append("--static-targets")
     (out / "command.json").write_text(json.dumps(command, indent=2) + "\n")
     result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                             text=True, timeout=180)

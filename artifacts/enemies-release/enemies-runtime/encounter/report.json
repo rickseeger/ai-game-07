@@ -1,0 +1,291 @@
+{
+  "engine": "Panda3D",
+  "mode": "offscreen",
+  "output_type": "glxGraphicsBuffer",
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "vendor": "Mesa",
+  "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3",
+  "size": [
+    960,
+    540
+  ],
+  "seed": 14,
+  "fixed_dt": 0.016666666666666666,
+  "render_hz": 60,
+  "controls": [
+    "W/S raise/lower throttle | B brake and zero throttle",
+    "A/D roll left/right | Arrows: nose up/down/left/right",
+    "Mouse: aim stick (up = nose up) | C: center aim",
+    "Hold Home: level horizon | Esc: pause/resume | F10: quit",
+    "R: hold to repair selected subsystem (brakes + locks)",
+    "1/2/3 engine/weapons/sensors | Space/LMB fire | Q cycle weapon",
+    "Tab: target lock | reticle lights when the locked target is in range"
+  ],
+  "settings": {
+    "sensitivity": 0.012,
+    "deadzone": 0.12,
+    "invert_y": false
+  },
+  "eye_offset": [
+    0.0,
+    0.0,
+    0.65
+  ],
+  "audio": "explicitly disabled",
+  "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame",
+  "frames": 720,
+  "ticks": 738,
+  "input_events": 0,
+  "mouse_events": 0,
+  "ship": {
+    "entity_id": "player",
+    "position": [
+      0.0,
+      -15.0,
+      4.0
+    ],
+    "velocity": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "orientation": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "throttle": 0.0
+  },
+  "health": {
+    "entity_id": "player",
+    "hull": 0.0,
+    "hull_hp": 0.0,
+    "state": "destroyed",
+    "subsystems": {
+      "engine": 1.0,
+      "weapons": 1.0,
+      "sensors": 1.0
+    },
+    "repairing": null,
+    "repair_progress": 0.0,
+    "engine_multiplier": 0.0,
+    "turning_multiplier": 0.0,
+    "weapons_multiplier": 0.0,
+    "sensors_multiplier": 0.0
+  },
+  "weapons": {
+    "weapon": "cannon",
+    "weapon_name": "Rapid Cannon",
+    "ready": false,
+    "cooldown_remaining": 0.11666666666666667,
+    "heat": 35.0,
+    "heat_capacity": 100.0,
+    "overheated": false,
+    "weapons_multiplier": 1.0,
+    "firing_blocked": true,
+    "locked_target": null,
+    "lock_in_range": false,
+    "lock_in_front": false,
+    "on_target": false,
+    "projectiles": 22,
+    "fired": 61,
+    "hits": 39,
+    "misses": 0
+  },
+  "enemy_health": {
+    "fighter-1": {
+      "entity_id": "fighter-1",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    },
+    "fighter-2": {
+      "entity_id": "fighter-2",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    },
+    "fighter-3": {
+      "entity_id": "fighter-3",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    },
+    "capital": {
+      "entity_id": "capital",
+      "hull": 0.964,
+      "hull_hp": 2892.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    }
+  },
+  "enemy_state": [
+    {
+      "entity_id": "fighter-1",
+      "kind": "fighter",
+      "faction": "enemy",
+      "position": [
+        79.13044738769531,
+        -259.2730712890625,
+        -1.8962054252624512
+      ],
+      "velocity": [
+        9.65650749206543,
+        -29.809221267700195,
+        -0.7173330187797546
+      ],
+      "speed": 31.34250259399414,
+      "throttle": 0.6964999753534759,
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "repair_interruptions": 0,
+      "firing": false,
+      "destroyed": false
+    },
+    {
+      "entity_id": "fighter-2",
+      "kind": "fighter",
+      "faction": "enemy",
+      "position": [
+        -68.8458023071289,
+        -270.7130126953125,
+        38.99948501586914
+      ],
+      "velocity": [
+        -8.559041976928711,
+        -31.790742874145508,
+        4.358390808105469
+      ],
+      "speed": 33.209999084472656,
+      "throttle": 0.7379999448358999,
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "repair_interruptions": 0,
+      "firing": false,
+      "destroyed": false
+    },
+    {
+      "entity_id": "fighter-3",
+      "kind": "fighter",
+      "faction": "enemy",
+      "position": [
+        -13.090920448303223,
+        -70.75763702392578,
+        69.88372802734375
+      ],
+      "velocity": [
+        6.798781394958496,
+        28.957782745361328,
+        -33.76720428466797
+      ],
+      "speed": 45.00000762939453,
+      "throttle": 1,
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "repair_interruptions": 0,
+      "firing": false,
+      "destroyed": false
+    },
+    {
+      "entity_id": "capital",
+      "kind": "capital",
+      "faction": "enemy",
+      "position": [
+        0.0,
+        85.0,
+        4.0
+      ],
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "speed": 0.0,
+      "throttle": 0,
+      "hull": 0.964,
+      "hull_hp": 2892.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "repair_interruptions": 0,
+      "firing": false,
+      "destroyed": false
+    }
+  ],
+  "dropped_seconds": 0.43374100000000004,
+  "drop_events": 1,
+  "capture": null
+}

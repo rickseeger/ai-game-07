@@ -42,7 +42,7 @@ def launch(out, mode):
     # Remove stale evidence so it cannot satisfy a failed launch.
     capture.unlink(missing_ok=True)
     report.unlink(missing_ok=True)
-    command = [sys.executable, "-m", "breach.app", "--mute", "--frames", "180",
+    command = [sys.executable, "-m", "breach.app", "--mute", "--no-combat-targets", "--frames", "180",
                "--capture", str(capture), "--report", str(report)]
     if mode == "offscreen":
         command.append("--offscreen")

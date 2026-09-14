@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "encounter": {
+    "moved": {
+      "fighter-1": 331.4669465937039,
+      "fighter-2": 348.33058399849887,
+      "fighter-3": 182.53126920701723
+    },
+    "enemy_fired": true,
+    "player_hull_hp": 0.0,
+    "capital_hull_hp": 2892.0,
+    "capture_distinct_colors": [
+      448,
+      434,
+      436
+    ]
+  },
+  "repair": {
+    "fighter_entered": 122,
+    "fighter_exited": 378,
+    "fighter_peak_progress": 0.9958,
+    "fighter_held_fire": true,
+    "capital_entered": 202,
+    "capital_exited": null,
+    "capital_peak_progress": 0.5667,
+    "capital_held_fire": true
+  },
+  "checks": [
+    "real Panda3D offscreen renderer with the live EnemySystem",
+    "fighters maneuver and attack; capital turret returns fire",
+    "player fire damages the capital through the shared DamageSystem",
+    "crippled enemies enter a vulnerable repair (hold fire, brake, timed)",
+    "code-level PNG framebuffer sampling (no vision model used)"
+  ],
+  "scope": "Scripted offscreen encounter, not a human playtest."
+}

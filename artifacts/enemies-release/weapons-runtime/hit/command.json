@@ -1,0 +1,18 @@
+[
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/.venv-verify/bin/python",
+  "-m",
+  "breach.app",
+  "--mute",
+  "--offscreen",
+  "--frames",
+  "600",
+  "--trace-dir",
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/artifacts/enemies-release/weapons-runtime/hit/trace",
+  "--report",
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/artifacts/enemies-release/weapons-runtime/hit/report.json",
+  "--capture-frames",
+  "100,300,500",
+  "--fire-script",
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/artifacts/enemies-release/weapons-runtime/hit/fire-script.json",
+  "--static-targets"
+]

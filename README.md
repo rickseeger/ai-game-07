@@ -1,14 +1,17 @@
 # Breach Flight — G14 player-flight slice
 
 Panda3D 1.10.16 / Python 3.12, Linux-first. Fly from inside the ship using
-assisted inertial flight and a fixed 60 Hz simulation. The capital, dock and
-orange fighters are stationary navigation references, not working enemies.
-Win/lose loop, enemy AI and a packaged game are not yet delivered. Combat
-weapons and hit resolution ARE delivered (node 4): the player fires three
-distinct weapons in real time, projectiles resolve hits/misses against ship
-hitboxes, and every hit routes through the shared DamageSystem. Accumulated
-hull/sub-system damage and repair ARE delivered (node 3): the player's condition
-drives live thrust/turning/weapons performance through the shared DamageSystem.
+assisted inertial flight and a fixed 60 Hz simulation. Enemy AI and the
+dangerous capital ship ARE delivered (node 5): three fighters pursue and attack
+under the exact same flight/weapon/impairment/repair rules as the player, and an
+anchored capital with a turret battery fights back and needs ~40–50 s of
+sustained fire to destroy. Win/lose loop and a packaged game are not yet
+delivered. Combat weapons and hit resolution ARE delivered (node 4): the player
+fires three distinct weapons in real time, projectiles resolve hits/misses
+against ship hitboxes, and every hit routes through the shared DamageSystem.
+Accumulated hull/sub-system damage and repair ARE delivered (node 3): the
+player's condition drives live thrust/turning/weapons performance through the
+shared DamageSystem, and enemies degrade/repair under the same model.
 
 ## Setup and launch (repository root)
 
@@ -61,6 +64,15 @@ between shots. Tab cycles target lock; the reticle turns green when the locked
 target is a fire solution. Damage to your weapons subsystem lowers damage per
 shot and a destroyed weapons subsystem stops firing; repair blocks firing too.
 
+Enemy fighters steer toward you, throttle down to turn, open fire inside range
+and a nose cone, and — when crippled — brake to a stop and try a vulnerable,
+interruptible repair you can punish. Their engine damage slows them, their
+weapons damage weakens their shots, and a destroyed weapons subsystem silences
+them (no hidden recovery). The capital anchors in place and returns fire from a
+turret battery; damage its weapons to blunt it, or keep up fire to stop it
+repairing. Enemy meshes darken from healthy to smoking to burning as they take
+hull damage, then drop out when destroyed.
+
 Options: --mouse-sensitivity 0.006 (default 0.012), --invert-y,
 --keyboard-only (no pointer capture), --render-hz 30 (15–240; simulation always
 60 Hz). The HUD updates its mouse instructions for inversion/keyboard-only.
@@ -78,9 +90,12 @@ independently pursues a reference fighter through XTest keys at 30/144 Hz
 render limiters, drives a scripted damage/repair timeline through the live
 DamageSystem, runs the deterministic combat simulation (miss/track/sustain/
 no-one-hit-kill/frame-interval checks) and two real offscreen combat captures
-(hit and miss). Actual receipt, simulation ticks, poses, input decisions,
-renderer reports, health/state transitions, weapon/hit telemetry, PNGs and
-hashes are retained.
+(hit and miss), then runs the enemy AI simulation (pursuit/attack/impairment/
+repair entry-exit-abort/destruction/capital) and two real offscreen enemy
+encounters (live opposition + a scripted repair window) validated from the
+trace and code-level PNG sampling. Actual receipt, simulation ticks, poses,
+input decisions, renderer reports, health/state transitions, weapon/hit and
+enemy telemetry, PNGs and hashes are retained.
 Exit nonzero means failure.
 
 Optional visible-instructions check (install tesseract-ocr first):

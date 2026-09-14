@@ -1,0 +1,18 @@
+[
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/.venv-verify/bin/python",
+  "-m",
+  "breach.app",
+  "--mute",
+  "--no-combat-targets",
+  "--keyboard-only",
+  "--render-hz",
+  "144",
+  "--frames",
+  "1296",
+  "--trace-dir",
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/artifacts/enemies-release/independent-pilot/144/flight",
+  "--report",
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/artifacts/enemies-release/independent-pilot/144/report.json",
+  "--capture-frames",
+  "144,432,720,1008,1296"
+]

@@ -22,7 +22,7 @@ TARGET = Vec3(21, 63, -5)
 def run_flight(out, hz):
     out.mkdir(parents=True, exist_ok=False)
     total = hz * 9
-    command = [sys.executable, "-m", "breach.app", "--mute", "--keyboard-only",
+    command = [sys.executable, "-m", "breach.app", "--mute", "--no-combat-targets", "--keyboard-only",
                "--render-hz", str(hz), "--frames", str(total),
                "--trace-dir", str(out / "flight"), "--report", str(out / "report.json"),
                "--capture-frames", ",".join(str(hz*s) for s in (1, 3, 5, 7, 9))]

@@ -9,9 +9,9 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 
-def run(command, log, env):
+def run(command, log, env, timeout=180):
     result = subprocess.run(command, cwd=ROOT, env=env, stdout=subprocess.PIPE,
-                            stderr=subprocess.STDOUT, text=True, timeout=180)
+                            stderr=subprocess.STDOUT, text=True, timeout=timeout)
     log.write_text("COMMAND " + " ".join(map(str, command)) + "\n" + result.stdout)
     print(result.stdout, end="", flush=True)
     if result.returncode:
@@ -48,6 +48,8 @@ def main():
     run([python, "tools/damage_runtime.py", "--output", str(out / "damage-runtime")], out / "damage-runtime.log", env)
     run([python, "tools/weapons_sim.py", "--output", str(out / "weapons-sim")], out / "weapons-sim.log", env)
     run([python, "tools/weapons_runtime.py", "--output", str(out / "weapons-runtime")], out / "weapons-runtime.log", env)
+    run([python, "tools/enemies_sim.py", "--output", str(out / "enemies-sim")], out / "enemies-sim.log", env)
+    run([python, "tools/enemies_runtime.py", "--output", str(out / "enemies-runtime")], out / "enemies-runtime.log", env, timeout=300)
     print("VERIFY_PASS " + str(out))
 if __name__ == "__main__":
     main()

@@ -31,7 +31,7 @@ SCHEDULE = [
 def run_app(out):
     out.mkdir(parents=True, exist_ok=False)
     (out / "damage-script.json").write_text(json.dumps(SCHEDULE, indent=2) + "\n")
-    command = [sys.executable, "-m", "breach.app", "--mute", "--offscreen",
+    command = [sys.executable, "-m", "breach.app", "--mute", "--no-combat-targets", "--offscreen",
                "--frames", "700", "--trace-dir", str(out / "trace"),
                "--report", str(out / "report.json"),
                "--damage-script", str(out / "damage-script.json"),

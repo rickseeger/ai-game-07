@@ -41,7 +41,7 @@ def main():
             log.flush()
             env = dict(os.environ, DISPLAY=display, LIBGL_ALWAYS_SOFTWARE="1")
             result = subprocess.run([sys.executable, "tools/verify.py", "--venv", args.venv,
-                                     "--output", args.output], cwd=ROOT, env=env, timeout=240)
+                                     "--output", args.output], cwd=ROOT, env=env, timeout=600)
             if result.returncode:
                 raise SystemExit(result.returncode)
         finally:

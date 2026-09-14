@@ -1,0 +1,14 @@
+[
+  {
+    "tick": 120,
+    "target_id": "fighter-1",
+    "amount": 40,
+    "subsystem": "weapons"
+  },
+  {
+    "tick": 200,
+    "target_id": "capital",
+    "amount": 600,
+    "subsystem": "weapons"
+  }
+]

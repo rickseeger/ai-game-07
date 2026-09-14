@@ -205,3 +205,25 @@ AimState exposes weapon/ready/cooldown/heat/impairment/locked target/fire
 solution for the cockpit. app.py registers scene.combat_targets() hitboxes and
 spawns their damage profiles; --fire-script and --no-combat-targets drive
 deterministic offscreen combat runs. See docs/WEAPONS.md and tests/test_weapons.py.
+
+## Node 5 concrete enemies/capital boundary
+
+enemies.EnemySystem owns every non-player ship: pose, steering, attack and
+repair decisions. It reuses the SAME flight, weapon, subsystem-impairment and
+repair rules as the player — no separate enemy model. Each fighter is a real
+FlightSystem sharing FlightTuning and the shared DamageSystem as its
+FlightDamageService, so ENGINE damage impairs its thrust/turning and destruction
+zeroes it. Enemies fire through weapons.fire(entity_id, origin, direction,
+weapon) -> bool, so WEAPONS damage scales their damage, a destroyed WEAPONS
+subsystem blocks them, and repair engagement blocks them. A crippled enemy
+brakes to a stop, stops shooting and restores one subsystem via RepairIntent at
+the same timed, hit-interruptible rate as the player; entry/exit are explicit
+trace transitions (never silent/instant recovery). The capital (CAPITAL_PROFILE)
+is anchored with a turret battery (WeaponKind.TURRET, in WEAPONS_WITH_TURRET;
+the player still cycles only CANNON/SCATTER/TORPEDO) and requires ~40-50 s of
+sustained fire. EnemyTuning holds all AI knobs. app.py runs enemies -> weapons
+-> damage after flight, registers the player hitbox from flight.snapshot, wires
+the damage speed gate to per-ship speeds, and records enemy_state/enemy_health/
+enemy_events. --static-targets keeps the node-4 static hitboxes for isolated
+weapon tests; --no-combat-targets registers nothing. See docs/ENEMIES.md and
+tests/test_enemies.py.

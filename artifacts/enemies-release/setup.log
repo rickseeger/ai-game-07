@@ -1,0 +1,2 @@
+COMMAND uv sync --project /opt/g-harness/workspace/G14/node_5_step_198/repo --frozen
+Checked 2 packages in 0.23ms

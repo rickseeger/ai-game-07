@@ -1,0 +1,52 @@
+{
+  "pursuit": {
+    "initial_distance": 60.0,
+    "min_distance": 0.21,
+    "turned_to_face": true
+  },
+  "attack": {
+    "fighter_shots": 14,
+    "player_hull_hp": 0.0
+  },
+  "impairment": {
+    "intact_speed": 35.75,
+    "engine_destroyed_speed": 0.0,
+    "weapons_destroyed_shots": 0
+  },
+  "repair_entry_exit": {
+    "repair_cap": 0.7,
+    "early_health_1s": 0.2042,
+    "final_health": 0.7,
+    "exited": true
+  },
+  "repair_interrupted": {
+    "interruptions": 5,
+    "health_unchanged": true,
+    "aborted": true
+  },
+  "destruction": {
+    "destroyed": true,
+    "removed_from_targets": true,
+    "inert": true
+  },
+  "capital_danger": {
+    "capital_shots": 5,
+    "player_hull_hp": 0.0
+  },
+  "capital_prolonged": {
+    "hull_after_30s": 1032.0,
+    "hull_after_40s": 432.0,
+    "hull_max": 3000.0,
+    "state_after_40s": "burning"
+  },
+  "capital_repair": {
+    "early_health_2s": 0.0506,
+    "final_health": 0.7,
+    "repair_cap": 0.7,
+    "held_fire": true
+  },
+  "determinism": {
+    "sequences": 4,
+    "identical": true
+  }
+}

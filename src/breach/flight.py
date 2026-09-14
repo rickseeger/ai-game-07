@@ -54,13 +54,15 @@ def interpolate(a: ShipView, b: ShipView, alpha: float) -> ShipView:
                     a.throttle+(b.throttle-a.throttle)*alpha)
 
 class FlightSystem:
-    def __init__(self, damage: FlightDamageService | None = None, tuning=None):
+    def __init__(self, damage: FlightDamageService | None = None, tuning=None,
+                 entity_id="player", position=(0, -15, 4), orientation=(1, 0, 0, 0)):
         self.damage = damage if damage is not None else NeutralDamage()
         self.tuning = tuning or FlightTuning()
-        self.entity_id = "player"
-        self.position = Vec3(0, -15, 4)
+        self.entity_id = entity_id
+        self.position = Vec3(*position)
         self.velocity = Vec3(0)
-        self.orientation = Quat(1, 0, 0, 0)
+        self.orientation = Quat(*orientation)
+        self.orientation.normalize()
         self.throttle = 0.0
 
     def snapshot(self):

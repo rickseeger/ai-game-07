@@ -54,6 +54,7 @@ class WeaponKind(str, Enum):
     CANNON = "cannon"
     SCATTER = "scatter"
     TORPEDO = "torpedo"
+    TURRET = "turret"
 
 
 @dataclass(frozen=True)
@@ -102,6 +103,17 @@ WEAPONS = {
 
 # Stable order used for cycling and deterministic selection.
 WEAPON_ORDER = (WeaponKind.CANNON, WeaponKind.SCATTER, WeaponKind.TORPEDO)
+
+# Capital turret battery (node 5). It is deliberately NOT part of the player's
+# WEAPONS catalog: the player cycles only CANNON/SCATTER/TORPEDO. The capital's
+# WeaponsSystem is constructed with WEAPONS_WITH_TURRET so its turret shares the
+# exact same cadence/heat/impairment boundary as every other weapon.
+TURRET_SPEC = WeaponSpec(
+    WeaponKind.TURRET, "Turret Battery", damage=40.0, cooldown=1.2,
+    projectile_speed=240.0, max_range=900.0, heat_per_shot=25.0,
+    heat_capacity=100.0, cool_rate=15.0)
+
+WEAPONS_WITH_TURRET = {**WEAPONS, WeaponKind.TURRET: TURRET_SPEC}
 
 
 @dataclass(frozen=True)
@@ -223,10 +235,13 @@ class WeaponsSystem:
     """Owns projectiles, cadence/resources, hit resolution and damage emission."""
 
     def __init__(self, player_entity_id="player", damage=None, pose_provider=None,
-                 specs=None):
+                 specs=None, player_order=None):
         self.player_entity_id = player_entity_id
         self.specs = dict(WEAPONS if specs is None else specs)
-        self._order = tuple(self.specs.keys())
+        # The player's cycle order is fixed (CANNON/SCATTER/TORPEDO), independent
+        # of the full spec catalog, so a capital turret added to `specs` never
+        # leaks into the player's weapon cycle.
+        self._player_order = tuple(WEAPON_ORDER if player_order is None else player_order)
         self.damage = damage if damage is not None else NeutralWeaponDamage()
         # pose_provider() -> ShipView; supplies the player's muzzle/aim each tick.
         self.pose_provider = pose_provider
@@ -363,8 +378,8 @@ class WeaponsSystem:
 
     def _cycle_weapon(self):
         current = self.weapon
-        idx = self._order.index(current)
-        self._selected[self.player_entity_id] = self._order[(idx + 1) % len(self._order)]
+        idx = self._player_order.index(current)
+        self._selected[self.player_entity_id] = self._player_order[(idx + 1) % len(self._player_order)]
 
     def _enemy_ids(self):
         return [eid for eid, t in self._targets.items()
@@ -458,6 +473,7 @@ class WeaponsSystem:
 
 
 __all__ = [
-    "WeaponKind", "WeaponSpec", "WEAPONS", "WEAPON_ORDER", "AimState", "Hitbox",
-    "WeaponsSystem", "NeutralWeaponDamage", "MUZZLE_OFFSET", "LOCK_CONE_DEG",
+    "WeaponKind", "WeaponSpec", "WEAPONS", "WEAPON_ORDER", "TURRET_SPEC",
+    "WEAPONS_WITH_TURRET", "AimState", "Hitbox", "WeaponsSystem",
+    "NeutralWeaponDamage", "MUZZLE_OFFSET", "LOCK_CONE_DEG",
 ]

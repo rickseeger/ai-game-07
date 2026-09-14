@@ -195,7 +195,7 @@ def main():
     if args.validate_only:
         validate(out); return
     out.mkdir(parents=True,exist_ok=False)
-    command=[sys.executable,"-m","breach.app","--mute","--frames","520",
+    command=[sys.executable,"-m","breach.app","--mute","--no-combat-targets","--frames","520",
              "--trace-dir",str(out/"flight"),"--report",str(out/"report.json")]
     (out/"commands.json").write_text(json.dumps(dict(command=command,seed=14,schedule=SCHEDULE),indent=2)+"\n")
     x=XInput()

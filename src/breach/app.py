@@ -7,7 +7,8 @@ from panda3d.core import loadPrcFileData
 from breach.input import BINDINGS, CONTROL_LINES, InputAdapter, InputSettings, control_lines
 from breach.contracts import DamageEvent, RepairIntent, Subsystem
 from breach.damage import DamageSystem, FIGHTER_PROFILE, CAPITAL_PROFILE
-from breach.weapons import WeaponsSystem
+from breach.enemies import CAPITAL_HALF, FIGHTER_HALF, EnemySystem, look_quat
+from breach.weapons import WEAPONS_WITH_TURRET, WeaponsSystem
 
 
 def parser():
@@ -31,7 +32,9 @@ def parser():
                    help="JSON array of {tick, fire} toggles that force the held "
                         "fire level for scripted/offscreen combat runs.")
     p.add_argument("--no-combat-targets", action="store_true",
-                   help="do not register the default enemy/capital hitboxes")
+                   help="do not register any enemy/capital hitboxes")
+    p.add_argument("--static-targets", action="store_true",
+                   help="use node-4 static hitboxes (no enemy AI) for isolated weapon tests")
     return p
 
 
@@ -83,8 +86,9 @@ def main():
         loadPrcFileData("window", "window-type offscreen")
     from direct.showbase.ShowBase import ShowBase
     from direct.gui.OnscreenText import OnscreenText
-    from panda3d.core import AmbientLight, DirectionalLight, TextNode, WindowProperties, ClockObject
-    from breach.scene import build_scene, combat_targets
+    from panda3d.core import (AmbientLight, DirectionalLight, TextNode, WindowProperties,
+                              ClockObject, Quat, Vec3)
+    from breach.scene import box, build_scene, combat_targets
     from breach.flight import FlightSystem
     from breach.timing import FixedStepper
     from breach.camera import FlightCamera, EYE_OFFSET
@@ -100,29 +104,61 @@ def main():
             self.camLens.setNearFar(0.1, 2000)
             self.controls = InputAdapter(settings=settings)
             self.flight = FlightSystem()
-            self.damage = DamageSystem(player_entity_id=self.flight.entity_id,
-                                       speed_provider=lambda eid: self.flight.velocity.length())
+            self.damage = DamageSystem(player_entity_id=self.flight.entity_id)
             self.flight.damage = self.damage
             self.damage.spawn(self.flight.entity_id, FIGHTER_PROFILE)
             self.weapons = WeaponsSystem(player_entity_id=self.flight.entity_id,
                                          damage=self.damage,
-                                         pose_provider=self.flight.snapshot)
+                                         pose_provider=self.flight.snapshot,
+                                         specs=WEAPONS_WITH_TURRET)
+            self.enemies = EnemySystem(player_entity_id=self.flight.entity_id,
+                                       damage=self.damage,
+                                       weapons=self.weapons,
+                                       player_pose_provider=self.flight.snapshot)
+            self.damage.speed_provider = (
+                lambda eid: self.flight.velocity.length()
+                if eid == self.flight.entity_id else self.enemies.speed_of(eid))
             self.combat_ids = []
             if not args.no_combat_targets:
-                for target in combat_targets():
-                    self.weapons.set_faction(target["id"], target["faction"])
-                    self.weapons.add_target(target["id"], target["faction"],
-                                            target["position"], target["half"],
-                                            target["orientation"])
-                    profile = (CAPITAL_PROFILE if target["id"] == "capital"
-                               else FIGHTER_PROFILE)
-                    self.damage.spawn(target["id"], profile)
-                    self.combat_ids.append(target["id"])
-            self.stepper = FixedStepper(self.flight, systems=[self.weapons, self.damage])
+                if args.static_targets:
+                    # Node-4 static hitboxes (no AI) for isolated weapon tests.
+                    for target in combat_targets():
+                        self.weapons.set_faction(target["id"], target["faction"])
+                        self.weapons.add_target(target["id"], target["faction"],
+                                                target["position"], target["half"],
+                                                target["orientation"])
+                        profile = (CAPITAL_PROFILE if target["id"] == "capital"
+                                   else FIGHTER_PROFILE)
+                        self.damage.spawn(target["id"], profile)
+                        self.combat_ids.append(target["id"])
+                else:
+                    # Node-5 live enemies: fighters pursue/attack, capital fights back.
+                    player_pos = self.flight.position
+                    spawns = [("fighter-1", (-23, 56, 7)),
+                              ("fighter-2", (21, 63, -5)),
+                              ("fighter-3", (27, 100, 19))]
+                    for eid, pos in spawns:
+                        aim = (player_pos - Vec3(*pos)).normalized()
+                        self.enemies.spawn_fighter(eid, pos,
+                                                   orientation=look_quat(tuple(aim)))
+                        self.combat_ids.append(eid)
+                    self.enemies.spawn_capital("capital", (0, 85, 4))
+                    self.combat_ids.append("capital")
+            self.stepper = FixedStepper(self.flight, systems=[self.enemies,
+                                                              self.weapons,
+                                                              self.damage])
             self.view = FlightCamera(self.render, self.camera)
             self.view.add_canopy()
             self.view.present(self.stepper.previous, self.stepper.current, 1)
             self.scene = build_scene(self.render)
+            if not args.no_combat_targets and not args.static_targets:
+                # Live enemies replace the node-2 staging combat meshes.
+                for pattern in ("**/fighter-placeholder", "**/capital-hull",
+                                "**/capital-deck", "**/capital-bridge",
+                                "**/engine-pod", "**/engine-marker"):
+                    for node in self.scene.findAllMatches(pattern):
+                        node.hide()
+            self._spawn_enemy_presentation()
             ambient = AmbientLight("ambient")
             ambient.setColor((0.4, 0.4, 0.45, 1))
             self.render.setLight(self.render.attachNewNode(ambient))
@@ -253,6 +289,21 @@ def main():
         def weapons_dict(self):
             return self.weapons.aim_snapshot().to_dict()
 
+        def _enemy_tint(self, state):
+            # Code-level "visible weakening": colour darkens as the hull degrades.
+            return {"healthy": (1, 1, 1, 1), "smoking": (1, 0.55, 0.35, 1),
+                    "burning": (0.55, 0.3, 0.2, 1),
+                    "destroyed": (0.3, 0.15, 0.1, 1)}.get(state, (1, 1, 1, 1))
+
+        def _spawn_enemy_presentation(self):
+            self.enemy_meshes = {}
+            for eid in self.enemies.entities:
+                half = CAPITAL_HALF if self.enemies.is_capital(eid) else FIGHTER_HALF
+                size = tuple(2.0 * h for h in half)
+                mesh = box(f"enemy-{eid}", size, (0.95, 0.32, 0.16, 1))
+                mesh.reparentTo(self.render)
+                self.enemy_meshes[eid] = mesh
+
         def sample_controls(self):
             # Scripted fire toggles overlay the sampled input for deterministic
             # offscreen combat runs; keyed by the upcoming fixed tick.
@@ -313,6 +364,15 @@ def main():
             else:
                 self.aim_marker.setFg((1.0, 0.75, 0.3, 1))
             self.pause_label.setText("PAUSED - Esc to resume (controls cleared)" if self.controls.paused else "")
+            for eid, mesh in self.enemy_meshes.items():
+                if not self.enemies.is_alive(eid):
+                    mesh.hide()
+                    continue
+                view = self.enemies.snapshot(eid)
+                mesh.show()
+                mesh.setPos(*view.position)
+                mesh.setQuat(Quat(*view.orientation))
+                mesh.setColor(*self._enemy_tint(self.damage.snapshot(eid).state.value))
             capture = None
             if args.trace_dir and self.frame_count in capture_frames:
                 capture = f"frame-{self.frame_count:04d}.png"
@@ -324,6 +384,8 @@ def main():
                         weapon_hits=[[h[0], h[1].value, h[2]] for h in self.weapons.hits_this_tick],
                         enemy_health={eid: self.damage.snapshot(eid).to_dict()
                                       for eid in self.combat_ids},
+                        enemy_state=self.enemies.ai_snapshot(),
+                        enemy_events=self.enemies.last_enemy_events,
                         camera_position=tuple(self.camera.getPos(self.render)),
                         camera_orientation=tuple(self.camera.getQuat(self.render)),
                         eye_local=tuple(self.camera.getPos()), capture=capture)
@@ -339,6 +401,7 @@ def main():
                                     weapons=self.weapons_dict(),
                                     enemy_health={eid: self.damage.snapshot(eid).to_dict()
                                                   for eid in self.combat_ids},
+                                    enemy_state=self.enemies.ai_snapshot(),
                                     dropped_seconds=self.stepper.dropped_seconds,
                                     drop_events=self.stepper.drop_events,
                                     capture=str(args.capture) if args.capture else None)

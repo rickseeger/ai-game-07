@@ -1,0 +1,17 @@
+[
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/.venv-verify/bin/python",
+  "-m",
+  "breach.app",
+  "--mute",
+  "--offscreen",
+  "--frames",
+  "720",
+  "--trace-dir",
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/artifacts/enemies-release/enemies-runtime/encounter/trace",
+  "--report",
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/artifacts/enemies-release/enemies-runtime/encounter/report.json",
+  "--capture-frames",
+  "150,450,650",
+  "--fire-script",
+  "/opt/g-harness/workspace/G14/node_5_step_198/repo/artifacts/enemies-release/enemies-runtime/encounter/fire-script.json"
+]
