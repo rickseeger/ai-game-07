@@ -1,0 +1,199 @@
+{
+  "engine": "Panda3D",
+  "mode": "offscreen",
+  "output_type": "glxGraphicsBuffer",
+  "renderer": "llvmpipe (LLVM 21.1.8, 256 bits)",
+  "vendor": "Mesa",
+  "driver": "4.5 (Compatibility Profile) Mesa 26.0.8-1ubuntu0.3",
+  "size": [
+    960,
+    540
+  ],
+  "seed": 14,
+  "fixed_dt": 0.016666666666666666,
+  "render_hz": 60,
+  "controls": [
+    "W/S raise/lower throttle | B brake and zero throttle",
+    "A/D roll left/right | Arrows: nose up/down/left/right",
+    "Mouse: aim stick (up = nose up) | C: center aim",
+    "Hold Home: level horizon | Esc: pause/resume | F10: quit",
+    "R: hold to repair selected subsystem (brakes + locks)",
+    "1/2/3 engine/weapons/sensors | Space/LMB fire | Q cycle weapon",
+    "Tab: target lock | reticle lights when the locked target is in range"
+  ],
+  "settings": {
+    "sensitivity": 0.012,
+    "deadzone": 0.12,
+    "invert_y": false
+  },
+  "eye_offset": [
+    0.0,
+    0.0,
+    0.65
+  ],
+  "audio": "muted",
+  "master_volume": 1.0,
+  "capture_method": "GraphicsOutput.saveScreenshot after graphicsEngine.renderFrame",
+  "frames": 340,
+  "ticks": 595,
+  "input_events": 0,
+  "mouse_events": 0,
+  "ship": {
+    "entity_id": "player",
+    "position": [
+      0.0,
+      -15.0,
+      4.0
+    ],
+    "velocity": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "orientation": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "throttle": 0
+  },
+  "health": {
+    "entity_id": "player",
+    "hull": 1.0,
+    "hull_hp": 100.0,
+    "state": "healthy",
+    "subsystems": {
+      "engine": 1.0,
+      "weapons": 1.0,
+      "sensors": 1.0
+    },
+    "repairing": null,
+    "repair_progress": 0.0,
+    "engine_multiplier": 1.0,
+    "turning_multiplier": 1.0,
+    "weapons_multiplier": 1.0,
+    "sensors_multiplier": 1.0
+  },
+  "weapons": {
+    "weapon": "cannon",
+    "weapon_name": "Rapid Cannon",
+    "ready": true,
+    "cooldown_remaining": 0.0,
+    "heat": 0.0,
+    "heat_capacity": 100.0,
+    "overheated": false,
+    "weapons_multiplier": 1.0,
+    "firing_blocked": false,
+    "locked_target": null,
+    "lock_in_range": false,
+    "lock_in_front": false,
+    "on_target": false,
+    "projectiles": 0,
+    "fired": 0,
+    "hits": 0,
+    "misses": 0
+  },
+  "enemy_health": {
+    "fighter-1": {
+      "entity_id": "fighter-1",
+      "hull": 0.0,
+      "hull_hp": 0.0,
+      "state": "destroyed",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 0.0,
+      "turning_multiplier": 0.0,
+      "weapons_multiplier": 0.0,
+      "sensors_multiplier": 0.0
+    },
+    "fighter-2": {
+      "entity_id": "fighter-2",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 0.7,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 0.7,
+      "turning_multiplier": 0.7,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    },
+    "fighter-3": {
+      "entity_id": "fighter-3",
+      "hull": 1.0,
+      "hull_hp": 100.0,
+      "state": "healthy",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 1.0,
+      "turning_multiplier": 1.0,
+      "weapons_multiplier": 1.0,
+      "sensors_multiplier": 1.0
+    },
+    "capital": {
+      "entity_id": "capital",
+      "hull": 0.0,
+      "hull_hp": 0.0,
+      "state": "destroyed",
+      "subsystems": {
+        "engine": 1.0,
+        "weapons": 1.0,
+        "sensors": 1.0
+      },
+      "repairing": null,
+      "repair_progress": 0.0,
+      "engine_multiplier": 0.0,
+      "turning_multiplier": 0.0,
+      "weapons_multiplier": 0.0,
+      "sensors_multiplier": 0.0
+    }
+  },
+  "enemy_state": [],
+  "dropped_seconds": 0.49249,
+  "drop_events": 1,
+  "effects": {
+    "active": 0,
+    "by_kind": {},
+    "fire_loop": false
+  },
+  "effects_event_tally": {
+    "destroy": 2,
+    "repair_start": 1,
+    "repair_complete": 1
+  },
+  "effects_destroyed_kinds": [
+    "capital",
+    "fighter"
+  ],
+  "audio_played": 5,
+  "audio_events": 5,
+  "audio_tally": {
+    "fire_loop": 1,
+    "explosion_capital": 1,
+    "explosion_fighter": 1,
+    "repair_start": 1,
+    "repair_complete": 1
+  },
+  "audio_cues": {
+    "name": "repair_complete",
+    "volume": 0.6052,
+    "loop": false
+  },
+  "capture": null
+}

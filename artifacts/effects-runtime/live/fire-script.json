@@ -1,0 +1,10 @@
+[
+  {
+    "tick": 5,
+    "fire": true
+  },
+  {
+    "tick": 28,
+    "fire": false
+  }
+]

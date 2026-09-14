@@ -8,6 +8,10 @@ Foundation inventory:
 - Panda3D 1.10.16: installed wheel, Modified BSD; upstream license copied verbatim
   from wheel metadata to docs/PANDA3D-LICENSE.txt. Its bundled default Perspective
   Sans font is used through the framework, not separately extracted or relicensed.
+- src/breach/audio/*.wav: original procedural sound effects synthesized by
+  src/breach/synth.py (tone + filtered noise + envelope, fixed seeds), generated
+  by tools/gen_audio.py; MIT with the rest of the repository, with a provenance
+  manifest.json (path, duration, peak, SHA256). Not third-party recordings.
 - No external models, textures, music, sound recordings or downloaded art assets.
 
 Use original procedural content by default. Future external art must be CC0 or

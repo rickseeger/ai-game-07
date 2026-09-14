@@ -1,0 +1,35 @@
+[
+  {
+    "tick": 20,
+    "target_id": "capital",
+    "amount": 1020
+  },
+  {
+    "tick": 40,
+    "target_id": "capital",
+    "amount": 990
+  },
+  {
+    "tick": 60,
+    "target_id": "capital",
+    "amount": 990
+  },
+  {
+    "tick": 80,
+    "target_id": "fighter-1",
+    "amount": 100
+  },
+  {
+    "tick": 90,
+    "target_id": "fighter-2",
+    "amount": 40,
+    "subsystem": "engine"
+  },
+  {
+    "tick": 96,
+    "type": "repair",
+    "target_id": "fighter-2",
+    "subsystem": "engine",
+    "active": true
+  }
+]

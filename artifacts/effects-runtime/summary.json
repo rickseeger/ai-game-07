@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "progression": {
+    "smoke_changed": 40,
+    "burning_changed": 191,
+    "capital_boom": 6241,
+    "fighter_boom": 1001,
+    "glow_changed": 1001,
+    "destroyed_kinds": [
+      "capital",
+      "fighter"
+    ],
+    "event_tally": {
+      "destroy": 2,
+      "repair_start": 1,
+      "repair_complete": 1
+    },
+    "audio_cues": [
+      "explosion_capital",
+      "explosion_fighter",
+      "fire_loop",
+      "repair_complete",
+      "repair_start"
+    ]
+  },
+  "audio": {
+    "peak": 18575.0,
+    "max_rms": 7647.3,
+    "duration_s": 7.3,
+    "tally": {
+      "cannon": 3,
+      "impact": 3,
+      "fire_loop": 1,
+      "explosion_capital": 1,
+      "explosion_fighter": 1,
+      "repair_start": 1,
+      "repair_complete": 1
+    }
+  },
+  "emitted_audio_wav": "artifacts/effects-runtime/audio/emitted-audio.wav",
+  "live": {
+    "spawn_kinds": [
+      "destroy",
+      "fire",
+      "impact"
+    ],
+    "peak_by_kind": {
+      "muzzle": 2,
+      "spark": 25,
+      "smoke": 20,
+      "fire": 5,
+      "flash": 1,
+      "explosion": 38
+    },
+    "audio_tally": {
+      "cannon": 29,
+      "turret": 4,
+      "impact": 33,
+      "fire_loop": 1,
+      "explosion_fighter": 1
+    }
+  },
+  "checks": [
+    "progressive smoke (smoking) and fire (burning) render before destruction",
+    "destruction renders an explosion; a capital's is larger than a fighter's",
+    "repair recovery renders a green glow and emits start/complete cues",
+    "weapon fire and impacts emit distinct effects and sounds (live run)",
+    "the running game's mixed audio was captured via the OpenAL 'wave' backend"
+  ],
+  "scope": "Scripted offscreen combat + real audio capture; subjective quality is deferred to the human playtest node."
+}

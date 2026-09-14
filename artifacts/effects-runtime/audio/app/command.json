@@ -1,0 +1,19 @@
+[
+  "/tmp/ai-game-07/.venv/bin/python",
+  "-m",
+  "breach.app",
+  "--offscreen",
+  "--static-targets",
+  "--frames",
+  "420",
+  "--trace-dir",
+  "artifacts/effects-runtime/audio/app/trace",
+  "--report",
+  "artifacts/effects-runtime/audio/app/report.json",
+  "--capture-frames",
+  "1",
+  "--damage-script",
+  "artifacts/effects-runtime/audio/app/damage-script.json",
+  "--fire-script",
+  "artifacts/effects-runtime/audio/app/fire-script.json"
+]
