@@ -317,6 +317,10 @@ def run_live(out):
     fire = fire_script()
     write_json(out / "fire-script.json", fire)
     command = [sys.executable, "-m", "breach.app", "--mute", "--offscreen",
+               "--demo-enemies",  # node-8 default is the mission loop (capital
+                                  # only appears at wave 4); demo-enemies spawns
+                                  # the 3-fighter + capital lab at once so the
+                                  # capital turret actually engages here.
                "--frames", "240", "--trace-dir", str(out / "trace"),
                "--report", str(out / "report.json"),
                "--fire-script", str(out / "fire-script.json")]

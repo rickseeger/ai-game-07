@@ -35,6 +35,21 @@ Launch on a graphical Linux desktop (X11 or XWayland DISPLAY). No sound assets
 are played yet. First setup can require network. Stay in this repository and
 use --project; no system Python/harness dependency changes are needed.
 
+## Packaged Linux distribution (self-contained)
+
+`tools/package.sh` builds a versioned, self-contained Linux tarball that bundles
+its own CPython 3.12 runtime, Panda3D 1.10.16, and this package, so it runs
+outside this repository with no system Python, virtualenv or network:
+
+    tools/package.sh    # -> dist/breach-flight-1.0.0-linux-x86_64.tar.gz + .sha256
+
+Unpack anywhere and run `./launch.sh`. Install/launch instructions, the full
+control list, the reproducible-build notes, and the license inventory live in
+`docs/DISTRIBUTION.md`, `NOTICE`, `docs/PANDA3D-LICENSE.txt`, and
+`docs/CPYTHON-LICENSE.txt`. `tools/validate_distribution.sh` independently
+extracts the tarball into a clean directory and checks graphics, controls,
+combat, sound, restart, and quit against the distributed artifact.
+
 ## Displayed controls
 
     W/S raise/lower throttle | B brake and zero throttle

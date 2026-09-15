@@ -1,6 +1,6 @@
 [project]
 name = "g14-breach-flight"
-version = "0.1.0"
+version = "1.0.0"
 description = "Linux 3D foundation for Breach Flight"
 requires-python = ">=3.12,<3.13"
 dependencies = ["panda3d==1.10.16"]
