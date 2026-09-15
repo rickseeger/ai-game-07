@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "defeat_frame": 78,
+  "restart_wave": 1,
+  "restart_hull": 100.0,
+  "pause_observed": 25,
+  "capture_distinct_colors": [
+    383,
+    372,
+    386
+  ],
+  "transitions": [],
+  "checks": [
+    "real Panda3D offscreen renderer with the live MissionSystem",
+    "idle player destroyed by the patrol fighter -> defeat end state",
+    "scripted 'n' restarts to combat wave 1 with full health",
+    "scripted 'escape' pauses and resumes the world",
+    "code-level PNG framebuffer sampling (no vision model used)"
+  ],
+  "scope": "Scripted offscreen lifecycle run, not a human playtest."
+}

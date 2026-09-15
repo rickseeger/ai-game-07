@@ -1,0 +1,8 @@
+version 1.0.0
+tests OK
+graphics distinct_colors=149
+controls FLIGHT_RUNTIME_PASS
+combat WEAPONS_RUNTIME_PASS
+sound EFFECTS_RUNTIME_PASS (emitted-audio.wav captured)
+restart MISSION_RUNTIME_PASS (N restart to wave 1)
+quit F10 clean exit

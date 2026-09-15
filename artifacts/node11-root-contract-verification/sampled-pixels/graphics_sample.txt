@@ -1,0 +1,1 @@
+SAMPLE_PNG /opt/g-harness/workspace/G14/node_11_step_230/validation/cleanroom/evidence/gfx/frame-0030.png 960x540 distinct_colors=149 pixels=518400
